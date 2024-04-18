@@ -1,0 +1,75 @@
+.carousel {
+  height: 30vh;
+}
+
+.subtle {
+  opacity: 0.5;
+}
+
+.products {
+  padding: 1rem;
+
+
+  .prod {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+
+    span {
+      font-size: x-large;
+    }
+
+    .prod-img {
+      height: 10rem;
+      margin-right: 1rem;
+    }
+
+    div {
+      display: inline;
+    }
+
+    .btn-buy {
+      background-color: #222;
+      color: #fff;
+    }
+  }
+
+
+}
+
+
+.comments {
+
+  .scroller {
+    display: flex;
+    overflow-x: scroll; //TRATAR DE ARREGLAR QUE SE HACE LA PANTALLA MÁS GRANDE
+
+    .com {
+      min-width: 50vw;
+      background-color: #eee;
+      margin: 0 .2rem;
+      border: #222;
+      border-radius: 1rem;
+      padding: .5rem;
+    }
+  }
+
+  ngb-rating {
+    color: #ffc107;
+    font-size: x-large;
+  }
+
+  .userCom {
+    padding: 1rem;
+
+    .btn-comment {
+      background-color: #222;
+      color: #fff;
+      display: block;
+      margin-top: 1rem;
+
+    }
+  }
+
+
+}
