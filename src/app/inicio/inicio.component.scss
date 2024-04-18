@@ -1,0 +1,33 @@
+.main-container {
+  background-image: url("../../assets/bg-landing.webp");
+  height: 70vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  span {
+    color: #fff;
+  }
+
+  .btn {
+    margin-top: 3rem;
+    background-color: #fff;
+    padding: 1rem;
+  }
+}
+
+.about-us {
+  padding: 0 1rem;
+}
+
+
+.carousel {
+  background: linear-gradient(to bottom, #fff, #aaa);
+
+  .carousel-item {
+    min-height: 30vh;
+  }
+}
