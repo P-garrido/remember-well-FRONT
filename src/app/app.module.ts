@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductosComponent } from './productos/productos.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavBarComponent,
     InicioComponent,
     FooterComponent,
-    ProductosComponent
+    ProductosComponent,
+    PreguntasFrecuentesComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,

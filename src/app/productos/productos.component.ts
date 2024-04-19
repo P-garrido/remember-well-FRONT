@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ProductosComponent {
 
 
-  products: any[] = [{ name: 'QR Chico', description: 'QR de 10x10cm de metal con adherente', imgUrl: 'https://i.etsystatic.com/14699669/r/il/a49001/5067000493/il_570xN.5067000493_4ycd.jpg', price: 500, quantity: 0 }, { name: 'QR Grande', description: 'QR de 15x15cm de metal con adherente', imgUrl: 'https://i.etsystatic.com/14699669/r/il/a49001/5067000493/il_570xN.5067000493_4ycd.jpg', price: 5500, quantity: 0 }];
+  products: any[] = [{ name: 'QR Chico', description: 'QR de 10x10cm de metal con adherente', imgUrl: 'https://i.etsystatic.com/14699669/r/il/a49001/5067000493/il_570xN.5067000493_4ycd.jpg', price: 500 }, { name: 'QR Grande', description: 'QR de 15x15cm de metal con adherente', imgUrl: 'https://i.etsystatic.com/14699669/r/il/a49001/5067000493/il_570xN.5067000493_4ycd.jpg', price: 5500 }];
   comments: any[] = [{ stars: 4, text: 'Muy buen producto, me legó a tiempo', user: 'Pedro' }, { stars: 5, text: 'Esto me ayudó a recoradr mejor a mi abuelo. Gracias!', user: 'Juana' }, { stars: 5, text: 'Me sirvie mucho para ponerme contento en estos momentos', user: 'Jose' }];
 
 
