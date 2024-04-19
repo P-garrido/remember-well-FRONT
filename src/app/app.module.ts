@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     FooterComponent,
     ProductosComponent,
     PreguntasFrecuentesComponent,
-    PedidosComponent
+    PedidosComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

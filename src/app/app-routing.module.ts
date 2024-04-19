@@ -4,6 +4,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ProductosComponent } from './productos/productos.component';
 import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'preguntasfrecuentes', component: PreguntasFrecuentesComponent },
   { path: 'pedidos', component: PedidosComponent },
+  { path: 'usuarios', component: UsuariosComponent },
 
 ];
 

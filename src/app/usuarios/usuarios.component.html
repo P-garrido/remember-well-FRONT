@@ -1,0 +1,26 @@
+<h2 class="text-center display-2">ADMINISTRAR USUARIOS</h2>
+<p class="text-center">Panel de administrador</p>
+
+
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item" *ngFor="let us of usuarios; let i=index">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i"
+        [ngClass]="{'admin':us.admin, 'not-admin':!us.admin}">
+        {{us.name}}
+      </button>
+    </h2>
+    <div [id]="'collapse' + i" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>Mail: {{us.mail}}</p>
+        <p>Teléfono: {{us.phone}}</p>
+        <p>Tipo: {{us.admin? 'Admin' : 'Cliente'}}</p>
+
+        <button class="btn" (click)="changeStatus(us)">{{us.admin?'Quitar admin': 'Dar admin'}}</button>
+        <button class="btn btn-eliminar" (click)="delete(us)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
