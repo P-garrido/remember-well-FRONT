@@ -1,0 +1,16 @@
+.form {
+  width: 90vw;
+
+  margin: 0 auto;
+
+  button {
+    margin-top: 1rem;
+    width: 90vw;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .ng-invalid.ng-touched {
+    outline: .1rem solid #f00;
+  }
+}

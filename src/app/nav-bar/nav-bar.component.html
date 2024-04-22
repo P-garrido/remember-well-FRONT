@@ -22,6 +22,20 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="preguntasfrecuentes">Preguntas Frecuentes</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login">Iniciar Sesión</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" [ngClass]="{'disabled': profiles.length==0}" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Mis perfiles
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let prof of profiles"><a class="dropdown-item"
+                routerLink="/perfiles/{{prof.id}}">{{prof.name}}</a></li>
+          </ul>
+        </li>
 
         <hr>
         <li class="nav-item">

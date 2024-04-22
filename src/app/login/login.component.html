@@ -1,0 +1,12 @@
+<h1 class="display-1 text-center"><b>ETERNAL MOMENTS</b></h1>
+<p class=" text-center">Inicie sesión con su mail y contraseña</p>
+
+
+<form class="form" [formGroup]="loginForm" (ngSubmit)="getOneUser()">
+  <input type="text" placeholder="Mail" class="form-input" formControlName="mail" />
+  <input type="password" placeholder="Contraseña" class="form-input" formControlName="password" />
+
+  <button type="submit" class="btn"><b>INICIAR SESIÓN</b></button>
+
+  <a routerLink="/registrarse">No esta registrado?</a>
+</form>

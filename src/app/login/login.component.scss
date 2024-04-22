@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .form-input {
+    width: 90vw;
+    margin-top: 1rem;
+  }
+
+  button {
+    margin-top: 1rem;
+    width: 90vw;
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+h1 {
+  padding-top: 2rem;
+}

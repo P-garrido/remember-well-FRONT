@@ -1,0 +1,36 @@
+<h2 class="text-center display-2">REGISTRAR USUARIO</h2> <!--FALTA VALIDAR SI ES CREAR O EDITAR USUARIO-->
+<p class="text-center">Complete sus datos en el formulario</p>
+
+<!-- <h2 class="text-center display-2" *ngIf="service.user!=null">PERFIL</h2>
+<p class="text-center" *ngIf="service.user!=null">Información de su perfil</p> -->
+
+<form class="row g-3 needs-validation form" [formGroup]="registerForm" (ngSubmit)="register()">
+
+
+  <div class="col-md-4">
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" class="form-control" placeholder="Correo Electrónico" aria-describedby="inputGroupPrepend"
+        formControlName="mail">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+  </div>
+
+
+  <div class="col-md-6">
+    <input type="text" class="form-control" placeholder="Nombre" formControlName="name">
+  </div>
+
+  <div class="col-md-6">
+    <input type="text" class="form-control" placeholder="Teléfono" formControlName="phone">
+  </div>
+
+
+
+  <div class="col-12">
+    <button class="btn" type="submit"><b>REGISTRARSE</b></button>
+  </div>
+</form>

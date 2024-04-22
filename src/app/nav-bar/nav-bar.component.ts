@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
 
+
+  profiles: any[] = [{ id: 1, name: 'jose' }, { id: 2, name: 'carla' }];
+
 }
