@@ -14,6 +14,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AdminProductosComponent } from './admin-productos/admin-productos.component';
 import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { AgregarProductoComponent } from './agregar-producto/agregar-producto.co
     PedidosComponent,
     UsuariosComponent,
     AdminProductosComponent,
-    AgregarProductoComponent
+    AgregarProductoComponent,
+    ContactoComponent,
+    SobreNosotrosComponent
   ],
   imports: [
     BrowserModule,

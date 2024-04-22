@@ -2,7 +2,7 @@
 <p class="text-center">Panel de administrador</p>
 
 
-<button class="btn btn-agregar" routerLink="/agregarProducto"><b>Agregar Productos</b></button>
+<button class="btn btn-agregar" routerLink="/agregarProducto" (click)="addProd()"><b>Agregar Productos</b></button>
 
 <section class="products">
   <article *ngFor="let prod of products" class="prod">
@@ -10,7 +10,7 @@
     <div>
       <span><b>{{prod.name}}</b></span>
       <p>{{prod.description}}</p>
-      <button type="button" class="btn btn-editar">Editar</button>
+      <button type="button" class="btn btn-editar" (click)="edit(prod)" routerLink="/agregarProducto">Editar</button>
       <button type="button" class="btn btn-eliminar" (click)="delete(prod)">Eliminar</button>
     </div>
   </article>

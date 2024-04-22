@@ -39,7 +39,7 @@
 
 <section class="products">
   <p class="display-6 subtle">Eternal Moments</p>
-  <button class="btn" routerLink="/adminProductos">Administrar Productos</button>
+  <button class="btn btn-admin" routerLink="/adminProductos">Administrar Productos</button>
   <article *ngFor="let prod of products" class="prod">
 
     <img src="{{prod.imgUrl}}" alt="{{prod.name}}" class="prod-img">

@@ -8,6 +8,7 @@
   </div>
 
   <div class="col-md-4">
+    <label *ngIf="onEdit" for="img">Solo colocar imágen si quiere cambiar la actual</label>
     <input name="img" type="file" class="form-control" placeholder="imagen" formControlName="file" accept="image/*"
       #fileInput>
   </div>
