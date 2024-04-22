@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PreguntasFrecuentesComponent } from './preguntas-frecuentes/preguntas-frecuentes.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { AdminProductosComponent } from './admin-productos/admin-productos.component';
+import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     ProductosComponent,
     PreguntasFrecuentesComponent,
     PedidosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    AdminProductosComponent,
+    AgregarProductoComponent
   ],
   imports: [
     BrowserModule,

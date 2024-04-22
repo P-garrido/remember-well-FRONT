@@ -1,0 +1,43 @@
+.products {
+  padding: 1rem;
+
+
+  .prod {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1rem 0;
+
+    span {
+      font-size: x-large;
+    }
+
+    .prod-img {
+      height: 10rem;
+      margin-right: 1rem;
+    }
+
+    div {
+      display: inline;
+    }
+  }
+}
+
+.btn-agregar {
+  display: block;
+  margin: auto;
+}
+
+.btn {
+  background-color: #222;
+  color: #fff;
+}
+
+
+.btn-editar {
+  background-color: #777;
+  margin-right: 1rem;
+}
+
+.btn-eliminar {
+  background-color: #f00;
+}

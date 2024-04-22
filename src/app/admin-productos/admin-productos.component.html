@@ -1,0 +1,18 @@
+<h2 class="text-center display-2">ADMINISTRAR PRODUCTOS</h2>
+<p class="text-center">Panel de administrador</p>
+
+
+<button class="btn btn-agregar" routerLink="/agregarProducto"><b>Agregar Productos</b></button>
+
+<section class="products">
+  <article *ngFor="let prod of products" class="prod">
+    <img src="{{prod.imgUrl}}" alt="{{prod.name}}" class="prod-img">
+    <div>
+      <span><b>{{prod.name}}</b></span>
+      <p>{{prod.description}}</p>
+      <button type="button" class="btn btn-editar">Editar</button>
+      <button type="button" class="btn btn-eliminar" (click)="delete(prod)">Eliminar</button>
+    </div>
+  </article>
+
+</section>

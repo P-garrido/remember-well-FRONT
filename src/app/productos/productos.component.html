@@ -39,13 +39,14 @@
 
 <section class="products">
   <p class="display-6 subtle">Eternal Moments</p>
+  <button class="btn" routerLink="/adminProductos">Administrar Productos</button>
   <article *ngFor="let prod of products" class="prod">
 
     <img src="{{prod.imgUrl}}" alt="{{prod.name}}" class="prod-img">
     <div>
       <span><b>{{prod.name}}</b></span>
       <p>{{prod.description}}</p>
-      <button type="button" class="btn btn-buy">Agregar al carrito</button>
+      <button type="button" class="btn">Agregar al carrito</button>
     </div>
   </article>
 

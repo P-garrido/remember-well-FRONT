@@ -13,7 +13,7 @@
   .prod {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 
     span {
       font-size: x-large;
@@ -28,13 +28,15 @@
       display: inline;
     }
 
-    .btn-buy {
-      background-color: #222;
-      color: #fff;
-    }
+
   }
 
 
+}
+
+.btn {
+  background-color: #222;
+  color: #fff;
 }
 
 
@@ -63,8 +65,6 @@
     padding: 1rem;
 
     .btn-comment {
-      background-color: #222;
-      color: #fff;
       display: block;
       margin-top: 1rem;
 
