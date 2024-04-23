@@ -19,7 +19,10 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
 import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { GaleriaComponent } from './galeria/galeria.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TributoComponent } from './tributo/tributo.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +40,17 @@ import { PerfilComponent } from './perfil/perfil.component';
     SobreNosotrosComponent,
     LoginComponent,
     RegistrarseComponent,
-    PerfilComponent
+    PerfilComponent,
+    GaleriaComponent,
+    TributoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabsModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

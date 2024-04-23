@@ -1,0 +1,35 @@
+<section class="description">
+  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto de perfil"
+    class="pfp">
+
+  <p class="subtle">En memoria de</p>
+
+  <p>{{profile.name}}</p>
+
+  <p>{{profile.death}}</p>
+
+
+  <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
+
+</section>
+
+
+<section class="tabs">
+  <tabset [justified]="true">
+    <tab heading="Sobre mi" customClass="about-me">
+      <p>
+        {{profile.aboutMe}}
+      </p>
+    </tab>
+    <tab heading="Galería">
+      <p>
+        <app-galeria [galleryData]="images" [showCount]="true"></app-galeria>
+      </p>
+    </tab>
+    <tab heading="Tributos">
+      <div *ngFor="let trib of profile.tributes; let i=index">
+        <app-tributo [message]="profile.tributes[i]"></app-tributo>
+      </div>
+    </tab>
+  </tabset>
+</section>

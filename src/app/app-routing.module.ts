@@ -12,6 +12,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
   { path: 'perfiles/:id', component: PerfilComponent },
+  { path: 'galeria', component: GaleriaComponent },
 
 ];
 
