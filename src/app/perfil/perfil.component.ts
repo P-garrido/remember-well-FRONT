@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class PerfilComponent {
 
 
-  constructor(private route: ActivatedRoute) { }
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
   productId: string | null = null;
 
   ngOnInit() {
@@ -76,5 +77,22 @@ export class PerfilComponent {
     imageSrc: 'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
     imageAlt: '13'
   }]
+
+  onEditFiles: boolean = false;
+
+
+  editProfile() {
+    this.router.navigate(['/adminPerfil'])
+  }
+
+  editFiles() {
+
+    this.onEditFiles = !this.onEditFiles;
+
+  }
+
+  deleteFile(index: number) {
+    this.images.splice(index, 1);
+  }
 
 }

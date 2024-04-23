@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   animate,
   style,
@@ -42,6 +42,9 @@ export class GaleriaComponent implements OnInit {
 
   @Input() galleryData: Item[] = [];
   @Input() showCount = true;
+  @Input() onEdit = false;
+
+  @Output() deleteFile = new EventEmitter<number>;
 
   previewImage = false;
   showMask = false;
@@ -50,11 +53,13 @@ export class GaleriaComponent implements OnInit {
   controls = true;
   totalImageCount = 0;
 
+
   constructor() { }
 
   ngOnInit(): void {
     this.totalImageCount = this.galleryData.length;
   }
+
 
   onPreviewImage(index: number): void {
     this.showMask = true;
@@ -87,5 +92,11 @@ export class GaleriaComponent implements OnInit {
       this.currentIndex = this.galleryData.length - 1;
     }
     this.currentLightboxImage = this.galleryData[this.currentIndex];
+  }
+
+  delete(i: number) {
+    this.deleteFile.emit(i);
+    this.totalImageCount--;
+    this.onClosePreview();
   }
 }

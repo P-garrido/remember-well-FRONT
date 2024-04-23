@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { GaleriaComponent } from './galeria/galeria.component';
+import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
   { path: 'perfiles/:id', component: PerfilComponent },
-  { path: 'galeria', component: GaleriaComponent },
+  { path: 'adminPerfil', component: AdminPerfilComponent },
 
 ];
 

@@ -23,6 +23,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TributoComponent } from './tributo/tributo.component';
+import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TributoComponent } from './tributo/tributo.component';
     RegistrarseComponent,
     PerfilComponent,
     GaleriaComponent,
-    TributoComponent
+    TributoComponent,
+    AdminPerfilComponent,
   ],
   imports: [
     BrowserModule,
