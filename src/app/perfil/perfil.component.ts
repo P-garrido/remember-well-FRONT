@@ -85,9 +85,13 @@ export class PerfilComponent {
     this.router.navigate(['/adminPerfil'])
   }
 
-  editFiles() {
+  editFiles() { //FALTA HACER QUE FILESINPUT VAYA AL BACK MEDIANTE UN FORMDATA
 
-    this.onEditFiles = !this.onEditFiles;
+    const filesInput = <HTMLInputElement>document.getElementById('floatingInput')
+
+    console.log(filesInput.files)
+
+    this.onEditFiles = false;
 
   }
 

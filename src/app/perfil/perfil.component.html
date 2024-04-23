@@ -25,8 +25,8 @@
     </tab>
     <tab heading="Galería">
 
-      <button class="btn" (click)="editFiles()">{{onEditFiles?'Aceptar':
-        'Editar Archivos'}}</button>
+      <button *ngIf="!onEditFiles" class="btn" (click)="this.onEditFiles=true">Editar Archivos</button>
+      <button *ngIf="onEditFiles" class="btn" (click)="editFiles()">Aceptar</button>
 
 
       <div *ngIf="onEditFiles" class="form-floating mb-3">
