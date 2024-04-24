@@ -22,8 +22,11 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="preguntasfrecuentes">Preguntas Frecuentes</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="loginService.user==null" class="nav-item">
           <a class="nav-link" routerLink="login">Iniciar Sesión</a>
+        </li>
+        <li *ngIf="loginService.user!=null" class="nav-item">
+          <a class="nav-link" routerLink="miUsuario">Mi Usuario</a>
         </li>
 
         <li class="nav-item dropdown">

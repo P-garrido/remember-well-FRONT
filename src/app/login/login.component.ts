@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class LoginComponent {
 
 
+  constructor(private service: LoginService) { }
+
+
   loginForm = new FormGroup({
     mail: new FormControl(),
     password: new FormControl()
@@ -16,7 +20,10 @@ export class LoginComponent {
 
 
   getOneUser() {
-
+    this.service.setUserData({ mail: this.loginForm.value.mail, password: this.loginForm.value.password }, "tokenPrueba");
   }
+
+
+
 
 }

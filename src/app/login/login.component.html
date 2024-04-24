@@ -5,12 +5,12 @@
 <form class="form" [formGroup]="loginForm" (ngSubmit)="getOneUser()">
 
   <div class="form-floating mb-3 form-input">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Mail" formControlName="mail">
+    <input type="email" class="form-control" placeholder="Mail" formControlName="mail">
     <label class="label-input" for="floatingInput">Mail</label>
   </div>
 
   <div class="form-floating mb-3 form-input">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Contraseña" formControlName="password">
+    <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
     <label class="label-input" for="floatingInput">Contraseña</label>
   </div>
 
