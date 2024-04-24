@@ -3,24 +3,32 @@
 
 <form class="row g-3 needs-validation form" [formGroup]="newProductForm" (ngSubmit)="addProduct(fileInput)"
   enctype="multipart/form-data">
-  <div class=" col-md-4">
-    <input type="text" class="form-control" placeholder="Nombre del Producto" formControlName="name">
+
+
+
+  <div class="form-floating mb-3 form-input">
+    <input type="email" class="form-control" id="floatingInput" placeholder="Nombre del producto" formControlName="name"
+      accept="image/*" #fileInput>
+    <label class="label-input" for="floatingInput">Nombre del producto</label>
   </div>
 
-  <div class="col-md-4">
+  <div class="form-floating mb-3 form-input">
     <label *ngIf="onEdit" for="img">Solo colocar imágen si quiere cambiar la actual</label>
-    <input name="img" type="file" class="form-control" placeholder="imagen" formControlName="file" accept="image/*"
-      #fileInput>
+    <input type="file" class="form-control" id="floatingInput" placeholder="Imágen" formControlName="file">
+    <label class="label-input" for="floatingInput">Imágen</label>
   </div>
 
-  <div class=" col-md-4">
-    <input type="text" class="form-control" placeholder="Descripción del Producto" formControlName="desc">
+  <div class="form-floating mb-3 form-input">
+    <input type="email" class="form-control" id="floatingInput" placeholder="Descripción del producto"
+      formControlName="desc">
+    <label class="label-input" for="floatingInput">Descripción del producto</label>
   </div>
 
-  <div class="col-md-6">
-    <input type="number" class="form-control" placeholder="Precio del Producto" formControlName="price">
+  <div class="form-floating mb-3 form-input">
+    <input type="email" class="form-control" id="floatingInput" placeholder="Precio del Producto"
+      formControlName="price">
+    <label class="label-input" for="floatingInput">Precio del Producto</label>
   </div>
-
 
   <div class="col-12">
     <button class="btn" type="submit"><b>AGRERGAR</b></button>

@@ -3,8 +3,18 @@
 
 
 <form class="form" [formGroup]="loginForm" (ngSubmit)="getOneUser()">
-  <input type="text" placeholder="Mail" class="form-input" formControlName="mail" />
-  <input type="password" placeholder="Contraseña" class="form-input" formControlName="password" />
+
+  <div class="form-floating mb-3 form-input">
+    <input type="email" class="form-control" id="floatingInput" placeholder="Mail" formControlName="mail">
+    <label class="label-input" for="floatingInput">Mail</label>
+  </div>
+
+  <div class="form-floating mb-3 form-input">
+    <input type="email" class="form-control" id="floatingInput" placeholder="Contraseña" formControlName="password">
+    <label class="label-input" for="floatingInput">Contraseña</label>
+  </div>
+
+
 
   <button type="submit" class="btn"><b>INICIAR SESIÓN</b></button>
 

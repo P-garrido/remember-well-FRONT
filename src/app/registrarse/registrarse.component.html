@@ -7,25 +7,28 @@
 <form class="row g-3 needs-validation form" [formGroup]="registerForm" (ngSubmit)="register()">
 
 
-  <div class="col-md-4">
-    <div class="input-group has-validation">
-      <span class="input-group-text" id="inputGroupPrepend">@</span>
-      <input type="text" class="form-control" placeholder="Correo Electrónico" aria-describedby="inputGroupPrepend"
-        formControlName="mail">
-    </div>
+
+
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Mail" formControlName="mail">
+    <label for="floatingInput">Mail</label>
   </div>
 
-  <div class="col-md-4">
-    <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Contraseña"
+      formControlName="password">
+    <label for="floatingInput">Contraseña</label>
   </div>
 
-
-  <div class="col-md-6">
-    <input type="text" class="form-control" placeholder="Nombre" formControlName="name">
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Nombre" formControlName="name">
+    <label for="floatingInput">Nombre</label>
   </div>
 
-  <div class="col-md-6">
-    <input type="text" class="form-control" placeholder="Teléfono" formControlName="phone">
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Teléfono"
+      formControlName="phone">
+    <label for="floatingInput">Teléfono</label>
   </div>
 
 
