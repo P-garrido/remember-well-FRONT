@@ -1,1 +1,59 @@
-<p>perfil works!</p>
+<section class="description">
+  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto de perfil"
+    class="pfp">
+
+  <p class="subtle">En memoria de</p>
+
+  <p>{{profile.name}}</p>
+
+  <p>{{profile.death}}</p>
+
+
+  <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
+
+  <button class="btn" (click)="editProfile()">Editar Perfil</button>
+
+</section>
+
+
+<section class="tabs">
+  <tabset [justified]="true">
+    <tab heading="Sobre mi" customClass="about-me">
+      <p>
+        {{profile.aboutMe}}
+      </p>
+    </tab>
+    <tab heading="Galería">
+
+      <button *ngIf="!onEditFiles" class="btn" (click)="this.onEditFiles=true">Editar Archivos</button>
+      <button *ngIf="onEditFiles" class="btn" (click)="editFiles()">Aceptar</button>
+
+
+      <div *ngIf="onEditFiles" class="form-floating mb-3">
+        <!--FALTA HACER QUE PUEDA OBTENER ESTE INPUT EN editfiles() PARA PODER AGREGAR LOS ARCHIVOS-->
+        <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" multiple>
+        <label for="floatingInput">Sube tus fotos y videos</label>
+      </div>
+
+      <app-galeria [galleryData]="images" [showCount]="true" [onEdit]="onEditFiles"
+        (deleteFile)="deleteFile($event)"></app-galeria>
+    </tab>
+    <tab heading="Tributos">
+
+      <article class="userTrib">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Dejá tu comentario" id="floatingTextarea2" style="height: 100px"
+            [formControl]="tribute"></textarea>
+          <label for="floatingTextarea2">Comentar</label>
+        </div>
+        <button (click)="sendTribute()" class="btn btn-comment">Enviar</button>
+
+      </article>
+
+
+      <div *ngFor="let trib of profile.tributes; let i=index">
+        <app-tributo [message]="profile.tributes[i]"></app-tributo>
+      </div>
+    </tab>
+  </tabset>
+</section>

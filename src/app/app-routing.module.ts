@@ -12,6 +12,9 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { GaleriaComponent } from './galeria/galeria.component';
+import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
+import { MiUsuarioComponent } from './mi-usuario/mi-usuario.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -27,6 +30,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
   { path: 'perfiles/:id', component: PerfilComponent },
+  { path: 'adminPerfil', component: AdminPerfilComponent },
+  { path: 'miUsuario', component: MiUsuarioComponent },
 
 ];
 
