@@ -39,6 +39,18 @@
         (deleteFile)="deleteFile($event)"></app-galeria>
     </tab>
     <tab heading="Tributos">
+
+      <article class="userTrib">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Dejá tu comentario" id="floatingTextarea2" style="height: 100px"
+            [formControl]="tribute"></textarea>
+          <label for="floatingTextarea2">Comentar</label>
+        </div>
+        <button (click)="sendTribute()" class="btn btn-comment">Enviar</button>
+
+      </article>
+
+
       <div *ngFor="let trib of profile.tributes; let i=index">
         <app-tributo [message]="profile.tributes[i]"></app-tributo>
       </div>

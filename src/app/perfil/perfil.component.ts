@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -78,6 +79,9 @@ export class PerfilComponent {
     imageAlt: '13'
   }]
 
+
+  tribute = new FormControl();
+
   onEditFiles: boolean = false;
 
 
@@ -99,4 +103,9 @@ export class PerfilComponent {
     this.images.splice(index, 1);
   }
 
+
+  sendTribute() {
+    this.profile.tributes.push(this.tribute.value);
+    this.tribute.reset();
+  }
 }
