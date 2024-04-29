@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { LoginService } from '../login.service';
 export class LoginComponent {
 
 
-  constructor(private service: LoginService) { }
+  constructor(private service: LoginService, private router: Router) { }
 
 
   loginForm = new FormGroup({
@@ -21,6 +22,8 @@ export class LoginComponent {
 
   getOneUser() {
     this.service.setUserData({ mail: this.loginForm.value.mail, password: this.loginForm.value.password }, "tokenPrueba");
+    this.router.navigate(['/inicio'])
+
   }
 
 

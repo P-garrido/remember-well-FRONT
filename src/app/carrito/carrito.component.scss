@@ -1,0 +1,48 @@
+.cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: 100vw;
+  padding: 1rem;
+
+
+  .quantity-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .btn {
+      width: 5rem;
+    }
+
+    p {
+      width: 5rem;
+    }
+  }
+
+
+  .btn-checkout {
+    background-color: #000;
+    color: #fff;
+    display: block;
+    margin-top: .5rem;
+    width: 90vw;
+    margin: auto;
+  }
+}
+
+
+
+
+.btn-modal {
+  margin-top: 1rem;
+  width: 90vw;
+  background-color: #000;
+  color: #fff;
+}
+
+.ng-invalid.ng-touched {
+  outline: .1rem solid #f00;
+}

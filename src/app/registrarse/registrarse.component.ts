@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-registrarse',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./registrarse.component.scss']
 })
 export class RegistrarseComponent {
+
+  constructor(public loginService: LoginService) { }
 
 
 
@@ -19,6 +22,13 @@ export class RegistrarseComponent {
 
 
   register() {
+
+    if (this.loginService.user == null) {
+      //ACA VA LA FUNCION REGISTRAR NUEVO USUARIO
+    }
+    else {
+      //ACA VA LA FUNCION EDITAR USUARIO
+    }
 
   }
 

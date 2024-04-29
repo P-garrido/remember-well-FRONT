@@ -12,7 +12,6 @@ export class TributoComponent {
 
 
   ngOnInit() {
-    console.log(this.message)
   }
 
 }

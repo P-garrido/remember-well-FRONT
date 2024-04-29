@@ -24,7 +24,7 @@ import { GaleriaComponent } from './galeria/galeria.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TributoComponent } from './tributo/tributo.component';
 import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
-import { MiUsuarioComponent } from './mi-usuario/mi-usuario.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { MiUsuarioComponent } from './mi-usuario/mi-usuario.component';
     GaleriaComponent,
     TributoComponent,
     AdminPerfilComponent,
-    MiUsuarioComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,

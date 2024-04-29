@@ -1,0 +1,27 @@
+<h2 class="text-center display-2">CARRITO</h2>
+<p class="text-center">Revise los productos agregados y realize el checkout</p>
+
+
+<div class="cart-container">
+  <div class="cart" *ngFor="let lineaPedido of this.carrito">
+
+    <div class="order-product" style="width: 18rem;">
+      <img src="" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{lineaPedido.nombreProd}}</h5>
+        <p class="card-text">{{lineaPedido.descripcion}}</p>
+        <p class="card-text"><b>${{lineaPedido.precio}}</b></p>
+        <div class="quantity-container">
+          <button class="btn btn-secondary" (click)="subAmmount(lineaPedido)">-1</button>
+          <p class="display-6 text-center">{{lineaPedido.cantidad}}</p>
+          <button class="btn btn-secondary" (click)="addAmmount(lineaPedido)">+1</button>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <h2>TOTAL: ${{total}}</h2>
+  <button class=" btn btn-checkout" (click)="checkout()"><b>COMPRAR</b></button>
+</div>
+
+<!--FALTA AGREGAR MODAL PARA PEDIR DATOS DE ENVIO-->

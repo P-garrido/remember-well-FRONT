@@ -23,7 +23,7 @@ export class PerfilComponent {
   }
 
   profile: any = {
-    id: this.productId, name: 'Jose Garcia', death: '25/02/2022', aboutMe: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dicta, pariatur natus est corporis explicabo ut temporatotam quaerat, quasi aspernatur possimus ipsam.Atque molestias explicabo, aspernatur sed vel odio', imgUrls: ['LINK1', 'link2'], tributes: ['Un capo', 'Lo extraño', 'QEPD'], playlist: 'https://open.spotify.com/playlist/2rYjMAFend9fjoArHp53Lq?si=8f509213f5634afb'
+    id: this.productId, name: 'Jose Garcia', death: '25/02/2022', aboutMe: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dicta, pariatur natus est corporis explicabo ut temporatotam quaerat, quasi aspernatur possimus ipsam.Atque molestias explicabo, aspernatur sed vel odio', tributes: ['Un capo', 'Lo extraño', 'QEPD'], playlist: 'https://open.spotify.com/playlist/2rYjMAFend9fjoArHp53Lq?si=8f509213f5634afb'
   }
 
   images: any[] = [{
@@ -97,6 +97,11 @@ export class PerfilComponent {
 
     this.onEditFiles = false;
 
+  }
+
+
+  addEditors() {
+    //ACA VOY A PEDIR EL MAIL A DEL USUARIO A INVITAR
   }
 
   deleteFile(index: number) {

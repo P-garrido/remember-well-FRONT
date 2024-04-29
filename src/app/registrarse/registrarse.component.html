@@ -1,8 +1,9 @@
-<h2 class="text-center display-2">REGISTRAR USUARIO</h2> <!--FALTA VALIDAR SI ES CREAR O EDITAR USUARIO-->
-<p class="text-center">Complete sus datos en el formulario</p>
+<h2 class="text-center display-2" *ngIf="loginService.user==null">REGISTRAR USUARIO</h2>
+<!--FALTA VALIDAR SI ES CREAR O EDITAR USUARIO-->
+<p class="text-center" *ngIf="loginService.user==null">Complete sus datos en el formulario</p>
 
-<!-- <h2 class="text-center display-2" *ngIf="service.user!=null">PERFIL</h2>
-<p class="text-center" *ngIf="service.user!=null">Información de su perfil</p> -->
+<h2 class="text-center display-2" *ngIf="loginService.user!=null">PERFIL</h2>
+<p class="text-center" *ngIf="loginService.user!=null">Sección para ver y/o editar datos de su perfil</p>
 
 <form class="row g-3 needs-validation form" [formGroup]="registerForm" (ngSubmit)="register()">
 
@@ -10,7 +11,8 @@
 
 
   <div class="form-floating mb-3">
-    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Mail" formControlName="mail">
+    <input class="form-control form-input" [disabled]="loginService.user!=null" id="floatingInput" placeholder="Mail"
+      formControlName="mail"> <!--TRATAR DE QUE LA PROPIEDAD DISABLED CAMBIE SI HAY USUARIO O NO-->
     <label for="floatingInput">Mail</label>
   </div>
 
@@ -34,6 +36,6 @@
 
 
   <div class="col-12">
-    <button class="btn" type="submit"><b>REGISTRARSE</b></button>
+    <button class="btn" type="submit"><b>ACEPTAR</b></button>
   </div>
 </form>
