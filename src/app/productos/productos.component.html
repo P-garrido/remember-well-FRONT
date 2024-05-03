@@ -42,10 +42,15 @@
   <button class="btn btn-admin" routerLink="/adminProductos">Administrar Productos</button>
   <article *ngFor="let prod of products" class="prod">
 
-    <img src="{{prod.imgUrl}}" alt="{{prod.name}}" class="prod-img">
+
+    <!-- ACA VA UN CARROUSEL -->
+
+
+
     <div>
       <span><b>{{prod.name}}</b></span>
       <p>{{prod.description}}</p>
+      <p>{{prod.price}}</p>
       <button type="button" class="btn">Agregar al carrito</button>
     </div>
   </article>

@@ -25,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TributoComponent } from './tributo/tributo.component';
 import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { CarritoComponent } from './carrito/carrito.component';
     NgbModule,
     ReactiveFormsModule,
     TabsModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
