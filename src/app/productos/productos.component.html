@@ -70,7 +70,7 @@
 
       <ngb-rating [max]="5" [readonly]="true" [rate]="com.stars"></ngb-rating>
       <p>{{com.text}}</p>
-      <p class="subtle">-{{com.userId}}</p>
+      <p class="subtle">-{{com.username}}</p>
 
     </article>
   </div>
@@ -83,7 +83,7 @@
           formControlName="text"></textarea>
         <label for="floatingTextarea2">Comentar</label>
       </div>
-      <button class="btn btn-comment">Enviar</button>
+      <button (click)="sendComment()" class="btn btn-comment">Enviar</button>
     </form>
 
   </article>

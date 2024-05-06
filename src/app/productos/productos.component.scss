@@ -45,7 +45,7 @@
 
   .scroller {
     display: flex;
-    overflow-x: scroll; //TRATAR DE ARREGLAR QUE SE HACE LA PANTALLA MÁS GRANDE
+    overflow-x: auto;
 
     .com {
       min-width: 50vw;
