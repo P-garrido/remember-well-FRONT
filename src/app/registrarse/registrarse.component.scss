@@ -1,16 +1,24 @@
-.form {
-  width: 90vw;
+ button {
+   margin: auto;
+   margin-top: 1rem;
+   display: block;
+   background-color: #f00;
+   width: 90vw;
+   color: #fff;
+ }
 
-  margin: 0 auto;
+ .form {
+   width: 90vw;
 
-  button {
-    margin-top: 1rem;
-    width: 90vw;
-    background-color: #000;
-    color: #fff;
-  }
+   margin: 0 auto;
 
-  .ng-invalid.ng-touched {
-    outline: .1rem solid #f00;
-  }
-}
+   button {
+     background-color: #000;
+     width: 100%;
+     margin: 0;
+   }
+
+   .ng-invalid.ng-touched {
+     outline: .1rem solid #f00;
+   }
+ }

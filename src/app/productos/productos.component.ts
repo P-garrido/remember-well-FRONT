@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../products.service';
 import { Product } from '../models/products';
+import { Comment } from '../models/coments';
+import { CommentsService } from '../comments.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-productos',
@@ -10,13 +13,14 @@ import { Product } from '../models/products';
 })
 export class ProductosComponent {
 
-  constructor(private service: ProductsService) {
+  constructor(private service: ProductsService, private commentsStervice: CommentsService, private loginService: LoginService) {
     this.getProducts();
+    this.getComments();
   }
 
 
   products: Array<Product> = [];
-  comments: any[] = [{ stars: 4, text: 'Muy buen producto, me legó a tiempo', user: 'Pedro' }, { stars: 5, text: 'Esto me ayudó a recoradr mejor a mi abuelo. Gracias!', user: 'Juana' }, { stars: 5, text: 'Me sirvie mucho para ponerme contento en estos momentos', user: 'Jose' }];
+  comments: Array<Comment> = [];
 
 
   comment = new FormGroup({
@@ -32,7 +36,6 @@ export class ProductosComponent {
   getProducts() {
     this.products.splice(0, this.products.length);
     this.service.getAll().subscribe((res: any) => {
-      console.log(res)
       res.forEach((prod: any) => {
         let imgUrls: string[] = [];
         prod.ProductFiles.forEach((df: any) => {
@@ -44,9 +47,25 @@ export class ProductosComponent {
   }
 
 
+  getComments() {
+    this.comments.splice(0, this.comments.length);
+    this.commentsStervice.getAll().subscribe((res: any) => {
+      res.forEach((com: any) => {
+        this.comments.push(new Comment(com.id, com.text, com.stars, com.User.name));
+      })
+    })
+  }
+
+
   sendComment() {
-    console.log(this.comment.value);
-    this.comment.controls.stars.reset();
-    this.comment.controls.text.reset();
+
+    this.commentsStervice.create(new Comment(null, this.comment.value.text!, this.comment.value.stars, this.loginService.user!.id)).subscribe((res: any) => {
+      if (res) {
+        this.comment.controls.stars.reset();
+        this.comment.controls.text.reset();
+        this.getComments();
+      }
+    })
+
   }
 }

@@ -8,11 +8,9 @@
 <form class="row g-3 needs-validation form" [formGroup]="registerForm" (ngSubmit)="register()">
 
 
-
-
   <div class="form-floating mb-3">
-    <input class="form-control form-input" [disabled]="loginService.user!=null" id="floatingInput" placeholder="Mail"
-      formControlName="mail"> <!--TRATAR DE QUE LA PROPIEDAD DISABLED CAMBIE SI HAY USUARIO O NO-->
+    <input class="form-control form-input" id="floatingInput" placeholder="Mail" formControlName="mail">
+    <!--TRATAR DE QUE LA PROPIEDAD DISABLED CAMBIE SI HAY USUARIO O NO-->
     <label for="floatingInput">Mail</label>
   </div>
 
@@ -39,3 +37,6 @@
     <button class="btn" type="submit"><b>ACEPTAR</b></button>
   </div>
 </form>
+
+
+<button class="btn" (click)="logOut()"><b>CERRAR SESIÓN</b></button>

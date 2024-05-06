@@ -43,7 +43,12 @@
   <article *ngFor="let prod of products" class="prod">
 
 
-    <!-- ACA VA UN CARROUSEL -->
+
+    <carousel class="carousel">
+      <slide *ngFor="let img of prod.imageUrls">
+        <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;">
+      </slide>
+    </carousel>
 
 
 
@@ -65,7 +70,7 @@
 
       <ngb-rating [max]="5" [readonly]="true" [rate]="com.stars"></ngb-rating>
       <p>{{com.text}}</p>
-      <p class="subtle">-{{com.user}}</p>
+      <p class="subtle">-{{com.userId}}</p>
 
     </article>
   </div>

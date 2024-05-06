@@ -11,6 +11,6 @@ export class NavBarComponent {
   constructor(public loginService: LoginService) { }
 
 
-  profiles: any[] = [{ id: 1, name: 'jose' }, { id: 2, name: 'carla' }];
+  profiles: any[] = [];
 
 }

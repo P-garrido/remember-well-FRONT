@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 
@@ -15,14 +15,18 @@ export class LoginComponent {
 
 
   loginForm = new FormGroup({
-    mail: new FormControl(),
-    password: new FormControl()
+    mail: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
   });
 
 
   getOneUser() {
-    this.service.setUserData({ mail: this.loginForm.value.mail, password: this.loginForm.value.password }, "tokenPrueba");
-    this.router.navigate(['/inicio'])
+
+    this.service.login(this.loginForm).subscribe((res: any) => {
+      this.service.setUserData({ id: res.user.id, mail: res.user.mail, password: res.user.password, name: res.user.name, admin: res.user.admin, phone: res.user.phone }, res.token);
+      this.router.navigate(['/inicio'])
+    })
+
 
   }
 

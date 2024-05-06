@@ -26,6 +26,7 @@ import { TributoComponent } from './tributo/tributo.component';
 import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     TabsModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
