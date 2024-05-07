@@ -24,7 +24,7 @@ export class CommentsService {
     return this.http.post(this.baseUrl, {
       text: com.text,
       stars: com.stars,
-      idUser: com.userId
+      idUser: com.user.id
     }, { headers })
   }
 

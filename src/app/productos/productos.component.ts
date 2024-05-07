@@ -5,6 +5,7 @@ import { Product } from '../models/products';
 import { Comment } from '../models/coments';
 import { CommentsService } from '../comments.service';
 import { LoginService } from '../login.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-productos',
@@ -51,7 +52,8 @@ export class ProductosComponent {
     this.comments.splice(0, this.comments.length);
     this.commentsStervice.getAll().subscribe((res: any) => {
       res.forEach((com: any) => {
-        this.comments.push(new Comment(com.id, com.text, com.stars, com.User.name, com.User.id));
+        const user = new User(com.User.id, com.User.mail, com.User.name, com.User.password, com.User.phone, com.User.admin)
+        this.comments.push(new Comment(com.id, com.text, com.stars, user));
       })
     })
   }
@@ -59,10 +61,17 @@ export class ProductosComponent {
 
   sendComment() {
 
-    this.commentsStervice.create(new Comment(null, this.comment.value.text!, this.comment.value.stars, this.loginService.user!.name, this.loginService.user!.id)).subscribe();
-    this.comment.controls.stars.reset();
-    this.comment.controls.text.reset();
-    this.getComments();
+    this.commentsStervice.create(new Comment(null, this.comment.value.text!, this.comment.value.stars, this.loginService.user!)).subscribe((res: any) => {
+      if (res) {
+        this.comment.controls.stars.reset();
+        this.comment.controls.text.reset();
+        this.getComments();
+      }
+    });
+  }
 
+
+  addToCart(prod: Product) {
+    this.service.addToCart(prod);
   }
 }

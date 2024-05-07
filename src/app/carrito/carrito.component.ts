@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { OrderProduct } from '../models/orderProducts';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-carrito',
@@ -8,20 +10,29 @@ import { Component } from '@angular/core';
 export class CarritoComponent {
 
 
-  constructor() {
-    this.getTotal()
+  constructor(private productService: ProductsService) {
+    this.getCart();
+    this.getTotal();
   }
 
 
-  carrito: any[] = [{ nombreProd: 'QR Grande', descripcion: 'Descripcion de prueba', precio: 10000, cantidad: 3 }, { nombreProd: 'QR Chico', descripcion: 'Descripcion de prueba', precio: 5000, cantidad: 2 }];
+  cart: Array<OrderProduct> = [];
   total: number = 0;
+
+
+  getCart() {
+    this.cart.splice(0, this.cart.length);
+    this.productService.cart.forEach((op: OrderProduct) => {
+      this.cart.push(op);
+    })
+  }
 
 
 
   getTotal() {
     let tot = 0;
-    this.carrito.forEach((op: any) => {
-      tot += op.precio * op.cantidad;
+    this.cart.forEach((op: OrderProduct) => {
+      tot += op.product.price * op.quantity;
     });
     this.total = tot;
   }
@@ -31,18 +42,18 @@ export class CarritoComponent {
   }
 
 
-  addAmmount(lp: any) {
-    lp.cantidad++;
+  addAmmount(lp: OrderProduct) {
+    lp.quantity++;
     this.getTotal();
   }
 
-  subAmmount(lp: any) {
-    if (lp.cantidad > 1) {
-      lp.cantidad--
+  subAmmount(lp: OrderProduct) {
+    if (lp.quantity > 1) {
+      lp.quantity--
     }
     else {
-      // this.productService.removeProduct(ordProd);
-      // this.getCart();
+      this.productService.removeFromCart(lp);
+      this.getCart();
       // HACER QUE ACA SE SAQUE EL PRODUCTO DEL CARRITO
     }
     this.getTotal();

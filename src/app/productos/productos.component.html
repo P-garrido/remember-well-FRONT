@@ -37,27 +37,36 @@
   </article>
 </section>
 
-<section class="products">
+<section class="admin">
   <p class="display-6 subtle">Eternal Moments</p>
   <button class="btn btn-admin" routerLink="/adminProductos">Administrar Productos</button>
+</section>
+
+<section class="products">
+
   <article *ngFor="let prod of products" class="prod">
 
 
 
-    <carousel class="carousel">
-      <slide *ngFor="let img of prod.imageUrls">
-        <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;">
-      </slide>
-    </carousel>
-
-
-
-    <div>
-      <span><b>{{prod.name}}</b></span>
-      <p>{{prod.description}}</p>
-      <p>{{prod.price}}</p>
-      <button type="button" class="btn">Agregar al carrito</button>
+    <div class="card" style="width: 18rem;">
+      <carousel class="carousel">
+        <slide *ngFor="let img of prod.imageUrls">
+          <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;">
+        </slide>
+      </carousel>
+      <div class="card-body">
+        <h5 class="card-title">{{prod.name}}</h5>
+        <p class="card-text">{{prod.description}}</p>
+        <p>${{prod.price}}</p>
+        <button type="button" class="btn" (click)="addToCart(prod)">Agregar al carrito</button>
+      </div>
     </div>
+
+
+
+
+
+
   </article>
 
 </section>
@@ -70,7 +79,7 @@
 
       <ngb-rating [max]="5" [readonly]="true" [rate]="com.stars"></ngb-rating>
       <p>{{com.text}}</p>
-      <p class="subtle">-{{com.username}}</p>
+      <p class="subtle">-{{com.user.name}}</p>
 
     </article>
   </div>
@@ -83,7 +92,7 @@
           formControlName="text"></textarea>
         <label for="floatingTextarea2">Comentar</label>
       </div>
-      <button (click)="sendComment()" class="btn btn-comment">Enviar</button>
+      <button class="btn btn-comment">Enviar</button>
     </form>
 
   </article>

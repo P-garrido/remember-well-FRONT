@@ -3,17 +3,17 @@
 
 
 <div class="cart-container">
-  <div class="cart" *ngFor="let lineaPedido of this.carrito">
+  <div class="cart" *ngFor="let lineaPedido of this.cart">
 
     <div class="order-product" style="width: 18rem;">
-      <img src="" class="card-img-top" alt="...">
+      <img src="{{lineaPedido.product.imageUrls[1]}}" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">{{lineaPedido.nombreProd}}</h5>
-        <p class="card-text">{{lineaPedido.descripcion}}</p>
-        <p class="card-text"><b>${{lineaPedido.precio}}</b></p>
+        <h5 class="card-title">{{lineaPedido.product.name}}</h5>
+        <p class="card-text">{{lineaPedido.product.description}}</p>
+        <p class="card-text"><b>${{lineaPedido.product.price}}</b></p>
         <div class="quantity-container">
           <button class="btn btn-secondary" (click)="subAmmount(lineaPedido)">-1</button>
-          <p class="display-6 text-center">{{lineaPedido.cantidad}}</p>
+          <p class="display-6 text-center">{{lineaPedido.quantity}}</p>
           <button class="btn btn-secondary" (click)="addAmmount(lineaPedido)">+1</button>
         </div>
       </div>
