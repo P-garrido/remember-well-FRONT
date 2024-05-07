@@ -34,15 +34,16 @@
 }
 
 
+.form {
+  .btn-modal {
+    margin-top: 1rem;
+    width: 90vw;
+    margin: 1rem auto;
+    background-color: #000;
+    color: #fff;
+  }
 
-
-.btn-modal {
-  margin-top: 1rem;
-  width: 90vw;
-  background-color: #000;
-  color: #fff;
-}
-
-.ng-invalid.ng-touched {
-  outline: .1rem solid #f00;
+  .ng-invalid.ng-touched {
+    outline: .1rem solid #f00;
+  }
 }

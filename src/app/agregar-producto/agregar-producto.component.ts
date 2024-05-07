@@ -62,7 +62,10 @@ export class AgregarProductoComponent {
       })
     }
     else {
-      this.service.editProduct(fd).subscribe((res: any) => {
+      this.service.editProduct(fd).pipe(catchError((error: any) => {
+        alert(`ERROR: ${error}`)
+        return throwError(error);
+      })).subscribe((res: any) => {
         if (res) {
           this.router.navigate(['/productos']);
         }

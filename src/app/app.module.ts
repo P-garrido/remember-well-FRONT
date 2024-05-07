@@ -27,6 +27,7 @@ import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     TabsModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
