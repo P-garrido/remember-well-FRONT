@@ -6,12 +6,21 @@
 
 <section class="products">
   <article *ngFor="let prod of products" class="prod">
-    <img src="{{prod.imgUrl}}" alt="{{prod.name}}" class="prod-img">
-    <div>
-      <span><b>{{prod.name}}</b></span>
-      <p>{{prod.description}}</p>
-      <button type="button" class="btn btn-editar" (click)="edit(prod)" routerLink="/agregarProducto">Editar</button>
-      <button type="button" class="btn btn-eliminar" (click)="delete(prod)">Eliminar</button>
+
+
+    <div class="card" style="width: 18rem;">
+      <carousel class="carousel">
+        <slide *ngFor="let img of prod.imageUrls">
+          <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;">
+        </slide>
+      </carousel>
+      <div class="card-body">
+        <h5 class="card-title">{{prod.name}}</h5>
+        <p class="card-text">{{prod.description}}</p>
+        <p>${{prod.price}}</p>
+        <button type="button" class="btn btn-editar" (click)="edit(prod)" routerLink="/agregarProducto">Editar</button>
+        <button type="button" class="btn btn-eliminar" (click)="delete(prod)">Eliminar</button>
+      </div>
     </div>
   </article>
 

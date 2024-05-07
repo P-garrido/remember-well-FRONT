@@ -1,25 +1,8 @@
 .products {
   padding: 1rem;
+  display: flex;
+  justify-content: center;
 
-
-  .prod {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 1rem 0;
-
-    span {
-      font-size: x-large;
-    }
-
-    .prod-img {
-      height: 10rem;
-      margin-right: 1rem;
-    }
-
-    div {
-      display: inline;
-    }
-  }
 }
 
 .btn-agregar {

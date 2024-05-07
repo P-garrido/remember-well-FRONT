@@ -7,15 +7,16 @@
 
 
   <div class="form-floating mb-3 form-input">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Nombre del producto" formControlName="name"
-      accept="image/*" #fileInput>
+    <input type="email" class="form-control" id="floatingInput" placeholder="Nombre del producto"
+      formControlName="name">
     <label class="label-input" for="floatingInput">Nombre del producto</label>
   </div>
 
   <div class="form-floating mb-3 form-input">
-    <label *ngIf="onEdit" for="img">Solo colocar imágen si quiere cambiar la actual</label>
-    <input type="file" class="form-control" id="floatingInput" placeholder="Imágen" formControlName="file">
-    <label class="label-input" for="floatingInput">Imágen</label>
+    <label *ngIf="onEdit" for="img">Solo colocar archivos si quiere cambiar los actuales</label>
+    <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" formControlName="file" multiple
+      #fileInput>
+    <label class="label-input" for="floatingInput">Archivo</label>
   </div>
 
   <div class="form-floating mb-3 form-input">

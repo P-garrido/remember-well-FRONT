@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../products.service';
+import { Product } from '../models/products';
 
 @Component({
   selector: 'app-admin-productos',
@@ -8,22 +9,41 @@ import { ProductsService } from '../products.service';
 })
 export class AdminProductosComponent {
 
-  constructor(private service: ProductsService) { }
-
-  products: any[] = [{ name: 'QR Chico', description: 'QR de 10x10cm de metal con adherente', imgUrl: 'https://i.etsystatic.com/14699669/r/il/a49001/5067000493/il_570xN.5067000493_4ycd.jpg', price: 500 }, { name: 'QR Grande', description: 'QR de 15x15cm de metal con adherente', imgUrl: 'https://i.etsystatic.com/14699669/r/il/a49001/5067000493/il_570xN.5067000493_4ycd.jpg', price: 5500 }]
-
-
-
-  delete(prod: any) {
-    let index = this.products.indexOf(prod);
-    this.products.splice(index, 1);  //CAMBIAR PARA BBDD  
+  constructor(private service: ProductsService) {
+    this.getProducts()
   }
 
-  edit(prod: any) {
-    this.service.productToEdit = prod;
+  products: Array<Product> = []
+
+
+
+  getProducts() {
+    this.products.splice(0, this.products.length);
+    this.service.getAll().subscribe((res: any) => {
+      res.forEach((prod: any) => {
+        let imgUrls: string[] = [];
+        prod.ProductFiles.forEach((df: any) => {
+          imgUrls.push(df.fileUrl)
+        })
+        this.products.push(new Product(prod.id, prod.name, prod.description, prod.price, imgUrls))
+      })
+    })
+  }
+
+
+  delete(prod: Product) {
+    this.service.delete(prod).subscribe((res: any) => {
+      if (res) {
+        this.getProducts()
+      }
+    })
+  }
+
+  edit(prod: Product) {
+    this.service.productToEdit = prod; //SIRVE PARA QUE EL MISMO COMPONENTE SIRVA PARA EDITAR Y CREAR SEGÚN SI HAY UN PRODUCTO A EDITAR O NO
   }
 
   addProd() {
-    this.service.productToEdit = null;
+    this.service.productToEdit = null; //SIRVE PARA QUE EL MISMO COMPONENTE SIRVA PARA EDITAR Y CREAR SEGÚN SI HAY UN PRODUCTO A EDITAR O NO
   }
 }
