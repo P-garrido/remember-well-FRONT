@@ -38,6 +38,32 @@ export class OrdersService {
   }
 
 
+  changeStatus(ord: Order) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${ord.id}`;
+    return this.http.patch(url, {
+      idUser: ord.user.id,
+      date: Date(),
+      total: ord.total,
+      province: ord.province,
+      city: ord.city,
+      zipCode: ord.zipCode,
+      address: ord.address,
+      floor: ord.floor,
+      appartament: ord.appartament,
+      delivered: !ord.delivered
+    }, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+  delete(ord: Order) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${ord.id}`;
+    return this.http.delete(url, { headers }).pipe(catchError(this.handleError));
+  }
+
 
 
 

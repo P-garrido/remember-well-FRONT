@@ -14,20 +14,20 @@
     </h2>
     <div [id]="'collapse' + i" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <p>Nombre:{{ped.user}}</p>
+        <p>Nombre:{{ped.user.name}}</p>
         <p>Dirección: {{ped.address}}</p>
         <p>Provincia: {{ped.province}}</p>
         <p>Ciudad: {{ped.city}}</p>
-        <p>Código Postal: {{ped.postalCode}}</p>
+        <p>Código Postal: {{ped.zipCode}}</p>
         <p>Estado: {{ped.delivered? 'Entregado' : 'No Entregado'}}</p>
         <p>Fecha: {{ped.date | date: 'dd/MM/yyy HH:mm'}}</p>
         <b>Productos:</b>
         <ul>
           <li *ngFor="let op of ped.orderProducts">
-            {{op.product}} x{{op.quantity}}
+            {{op.product.name}} x{{op.quantity}}
           </li>
         </ul>
-        <p>Precio Total: {{ped.totalPrice}}</p>
+        <p>Precio Total: {{ped.total}}</p>
 
         <button class="btn" (click)="changeStatus(ped)">{{ped.delivered?'Marcar como no entregado': 'Marcar como
           entregado'}}</button>

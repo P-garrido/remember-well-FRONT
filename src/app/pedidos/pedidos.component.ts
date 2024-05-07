@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Order } from '../models/orders';
+import { OrdersService } from '../orders.service';
+import { User } from '../models/user';
+import { OrderProduct } from '../models/orderProducts';
 
 @Component({
   selector: 'app-pedidos',
@@ -8,18 +12,41 @@ import { Component } from '@angular/core';
 export class PedidosComponent {
 
 
-
-  pedidos: any[] = [{ id: 1, user: 'Jose', delivered: false, date: Date(), totalPrice: 5800, province: 'Santa Fe', city: 'Rosario', postalCode: '2000', address: 'Jorge Newbery 9041', orderProducts: [{ product: 'QR Chico', quantity: 4 }, { product: 'QR Mediano', quantity: 1 }] },
-  { id: 2, user: 'Carlos', delivered: true, date: Date(), totalPrice: 60000, province: 'Buenos Aires', city: 'CABA', postalCode: '3459', address: 'Libertador 2100', orderProducts: [{ product: 'QR Grande', quantity: 2 }] }
-  ];
-
-
-  changeStatus(ped: any) {
-    ped.delivered = !ped.delivered  //CAMBIAR PARA BBDD
+  constructor(private service: OrdersService) {
+    this.getAllOrders();
   }
 
-  delete(ped: any) {
-    let index = this.pedidos.indexOf(ped);
-    this.pedidos.splice(index, 1);  //CAMBIAR PARA BBDD  
+
+
+  pedidos: Array<Order> = [];
+
+
+  getAllOrders() {
+    this.pedidos.splice(0, this.pedidos.length);
+    this.service.getAll().subscribe((res: any) => {
+
+      res.forEach((ord: any) => {
+        let us = new User(ord.User.id, ord.User.mail, ord.User.name, ord.User.password, ord.User.phone, ord.User.admin);
+        let op: Array<OrderProduct> = [];
+        ord.OrderProducts.forEach((lp: any) => {
+          let ordProd = new OrderProduct(lp.id, lp.idOrd, lp.Product, lp.cantidad);
+          op.push(ordProd);
+        })
+        this.pedidos.push(new Order(ord.id, us, ord.date, ord.total, ord.province, ord.city, ord.zipCode, ord.address, ord.floor, ord.appartament, ord.delivered, op))
+      })
+    })
+  }
+
+
+  changeStatus(ped: Order) {
+    this.service.changeStatus(ped).subscribe((res: any) => {
+      this.getAllOrders();
+    });
+  }
+
+  delete(ped: Order) {
+    this.service.delete(ped).subscribe((res: any) => {
+      this.getAllOrders();
+    });
   }
 }
