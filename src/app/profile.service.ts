@@ -14,10 +14,31 @@ export class ProfileService {
   baseUrl = 'http://localhost:3000/deceased'
 
 
+
+  getById(id: number) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${id}`
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+
   getAll() {
     const token = this.loginService.token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get(this.baseUrl, { headers }).pipe(catchError(this.handleError));
+    return this.http.get(this.baseUrl, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+  create() {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.baseUrl, {
+      idOwner: this.loginService.user?.id,
+      name: null,
+      deathDate: null,
+      aboutMe: null,
+      playlist: null
+    }, { headers }).pipe(catchError(this.handleError));
   }
 
 

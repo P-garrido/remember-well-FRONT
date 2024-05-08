@@ -9,6 +9,7 @@ import { OrdersService } from '../orders.service';
 import { catchError, throwError } from 'rxjs';
 import { OrderProductsService } from '../order-products.service';
 import { Router } from '@angular/router';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-carrito',
@@ -18,7 +19,7 @@ import { Router } from '@angular/router';
 export class CarritoComponent {
 
 
-  constructor(private productService: ProductsService, private loginService: LoginService, private modalService: BsModalService, private ordersService: OrdersService, private orderProductsService: OrderProductsService, private router: Router) {
+  constructor(private productService: ProductsService, private loginService: LoginService, private modalService: BsModalService, private ordersService: OrdersService, private orderProductsService: OrderProductsService, private router: Router, private profileService: ProfileService) {
     this.getCart();
     this.getTotal();
   }
@@ -78,8 +79,11 @@ export class CarritoComponent {
           return throwError(error);
         })).subscribe()
       });
-
-      this.router.navigate(['/inicio'])
+      this.profileService.create().subscribe((res: any) => {
+        this.cart.splice(0, this.cart.length);
+        this.productService.emptyCart();
+        this.router.navigate(['/inicio'])
+      })
     })
   }
 

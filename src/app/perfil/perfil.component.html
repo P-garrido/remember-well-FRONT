@@ -1,12 +1,11 @@
 <section class="description">
-  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Foto de perfil"
-    class="pfp">
+  <img src="{{profile.profilePicUrl}}" alt="Foto de perfil" class="pfp">
 
   <p class="subtle">En memoria de</p>
 
   <p>{{profile.name}}</p>
 
-  <p>{{profile.death}}</p>
+  <p>{{profile.deathDate}}</p>
 
 
   <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
@@ -36,8 +35,8 @@
         <label for="floatingInput">Sube tus fotos y videos</label>
       </div>
 
-      <app-galeria [galleryData]="images" [showCount]="true" [onEdit]="onEditFiles"
-        (deleteFile)="deleteFile($event)"></app-galeria>
+      <!-- <app-galeria [galleryData]="images" [showCount]="true" [onEdit]="onEditFiles"
+        (deleteFile)="deleteFile($event)"></app-galeria> VER COMO CAMBIAR LO DE ITEM[] ADENTRO DE GALERIA -->
     </tab>
     <tab heading="Tributos">
 
@@ -52,8 +51,8 @@
       </article>
 
 
-      <div *ngFor="let trib of profile.tributes; let i=index">
-        <app-tributo [message]="profile.tributes[i]"></app-tributo>
+      <div *ngFor="let trib of profile.tributes">
+        <app-tributo [tribute]="trib"></app-tributo>
       </div>
     </tab>
   </tabset>

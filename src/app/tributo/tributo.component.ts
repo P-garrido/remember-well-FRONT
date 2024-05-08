@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Tribute } from '../models/tribute';
 
 @Component({
   selector: 'app-tributo',
@@ -8,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class TributoComponent {
 
 
-  @Input() message = '';
+  @Input() tribute: Tribute = new Tribute(-1, -1, "");
 
 
   ngOnInit() {

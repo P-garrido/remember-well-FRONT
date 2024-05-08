@@ -74,6 +74,12 @@ export class ProductsService {
   }
 
 
+  emptyCart() {
+    this.cart.splice(0, this.cart.length);
+    this.setCartData();
+  }
+
+
 
 
 

@@ -35,8 +35,8 @@
             Mis perfiles
           </a>
           <ul class="dropdown-menu">
-            <li *ngFor="let prof of profiles"><a class="dropdown-item"
-                routerLink="/perfiles/{{prof.id}}">{{prof.name}}</a></li>
+            <li *ngFor="let prof of profiles; let i=index"><a class="dropdown-item"
+                routerLink="/perfiles/{{prof.id}}">{{prof.name ? prof.name : 'Nuevo perfil nro '+i}}</a></li>
           </ul>
         </li>
 
