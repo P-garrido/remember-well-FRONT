@@ -6,11 +6,7 @@ import {
   trigger,
   AnimationEvent
 } from '@angular/animations';
-
-interface Item {
-  imageSrc: string;
-  imageAlt: string;
-}
+import { ProfileFiles } from '../models/profileFiles';
 
 
 
@@ -40,7 +36,7 @@ interface Item {
 export class GaleriaComponent implements OnInit {
 
 
-  @Input() galleryData: Item[] = [];
+  @Input() galleryData: Array<ProfileFiles> = [];
   @Input() showCount = true;
   @Input() onEdit = false;
 
@@ -48,7 +44,7 @@ export class GaleriaComponent implements OnInit {
 
   previewImage = false;
   showMask = false;
-  currentLightboxImage: Item = this.galleryData[0];
+  currentLightboxImage: ProfileFiles = this.galleryData[0];
   currentIndex = 0;
   controls = true;
   totalImageCount = 0;
@@ -94,7 +90,7 @@ export class GaleriaComponent implements OnInit {
     this.currentLightboxImage = this.galleryData[this.currentIndex];
   }
 
-  delete(i: number) {
+  delete(i: number) { //CHEQUEAR Q SIRVA PARA BBDD
     this.deleteFile.emit(i);
     this.totalImageCount--;
     this.onClosePreview();
