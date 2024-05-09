@@ -1,24 +1,29 @@
-<form [formGroup]="profileInfo" class="form">
+<form [formGroup]="profileInfo" class="form" (ngSubmit)="edit(profPic)">
 
 
   <div class="form-floating mb-3">
-    <input type="file" class="form-control" id="floatingInput" placeholder="Foto" formControlName="porfilePicture">
-    <label for="floatingInput">Foto de Perfil</label>
+    <input type="file" class="form-control" id="floatingInput" placeholder="Foto" formControlName="porfilePicture"
+      #profPic>
+    <label for="floatingInput">Foto de Perfil (Solo seleccionar si quiere cambiar la actual)</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Nombre" formControlName="name">
+    <input type="email" class="form-control" id="floatingInput" placeholder="{{this.profile.name}}"
+      formControlName="name">
     <label for="floatingInput">Nombre</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="date" class="form-control" id="floatingInput" placeholder="Fecha de fallecido" formControlName="death">
+    <input type="date" class="form-control" id="floatingInput" placeholder="{{this.profile.deathDate}}"
+      formControlName="death">
     <label for="floatingInput">Fecha de Fallecido</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Playlist" formControlName="playlist">
+    <input type="email" class="form-control" id="floatingInput" placeholder="{{this.profile.playlist}}"
+      formControlName="playlist">
     <label for="floatingInput">Playlist</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Sobre mi" formControlName="aboutMe">
+    <input type="email" class="form-control" id="floatingInput" placeholder="{{this.profile.aboutMe}}"
+      formControlName="aboutMe">
     <label for="floatingInput">Sobre mi</label>
   </div>
 

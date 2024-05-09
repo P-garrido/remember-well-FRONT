@@ -19,7 +19,7 @@
     </button>
 
     <button *ngIf="controls && onEdit" class="btn-lightbox-carousel btn-delete"
-      (click)="delete(currentIndex)">Eliminar</button>
+      (click)="delete(galleryData[currentIndex])">Eliminar</button>
 
     <div *ngIf="previewImage" [@animation]="{value: 'visible'}" (@animation.done)="onAnimationEnd($event)"
       class="lightbox-img">

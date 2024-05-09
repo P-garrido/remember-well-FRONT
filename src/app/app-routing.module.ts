@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
   { path: 'perfiles/:id', component: PerfilComponent },
-  { path: 'adminPerfil', component: AdminPerfilComponent },
+  { path: 'adminPerfil/:id', component: AdminPerfilComponent },
   { path: 'carrito', component: CarritoComponent },
 
 ];

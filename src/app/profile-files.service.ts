@@ -1,55 +1,33 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ProfileFiles } from './models/profileFiles';
 import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
+export class ProfileFilesService {
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
-
-  baseUrl = 'http://localhost:3000/deceased'
-
+  baseUrl = 'http://localhost:3000/deceasedFiles'
 
 
-  getById(id: number) {
+  delete(file: ProfileFiles) {
     const token = this.loginService.token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const url = `${this.baseUrl}/${id}`;
-
-    return this.http.get(url, { headers }).pipe(catchError(this.handleError));
-  }
-
-  getAll() {
-    const token = this.loginService.token;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(this.baseUrl, { headers }).pipe(catchError(this.handleError));
+    const url = `${this.baseUrl}/${file.id}`
+    return this.http.delete(url, { headers }).pipe(catchError(this.handleError));
   }
 
 
-  create() {
+  create(fd: FormData) {
     const token = this.loginService.token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(this.baseUrl, {
-      idOwner: this.loginService.user?.id,
-      name: null,
-      deathDate: null,
-      aboutMe: null,
-      playlist: null
-    }, { headers }).pipe(catchError(this.handleError));
+    return this.http.post(this.baseUrl, fd, { headers }).pipe(catchError(this.handleError));
   }
 
-
-  edit(fd: FormData, id: number) {
-    const token = this.loginService.token;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.patch(url, fd, { headers }).pipe(catchError(this.handleError));
-
-  }
 
 
 
@@ -65,5 +43,4 @@ export class ProfileService {
 
     return throwError('Algo salió mal, inténtalo de nuevo más tarde.');
   }
-
 }

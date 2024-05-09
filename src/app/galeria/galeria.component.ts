@@ -33,14 +33,14 @@ import { ProfileFiles } from '../models/profileFiles';
     ])
   ]
 })
-export class GaleriaComponent implements OnInit {
+export class GaleriaComponent {
 
 
   @Input() galleryData: Array<ProfileFiles> = [];
   @Input() showCount = true;
   @Input() onEdit = false;
 
-  @Output() deleteFile = new EventEmitter<number>;
+  @Output() deleteFile = new EventEmitter<ProfileFiles>;
 
   previewImage = false;
   showMask = false;
@@ -52,7 +52,7 @@ export class GaleriaComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.totalImageCount = this.galleryData.length;
   }
 
@@ -62,6 +62,7 @@ export class GaleriaComponent implements OnInit {
     this.previewImage = true;
     this.currentIndex = index;
     this.currentLightboxImage = this.galleryData[index];
+    this.onEdit = true;
   }
 
   onAnimationEnd(event: AnimationEvent) {
@@ -72,6 +73,7 @@ export class GaleriaComponent implements OnInit {
 
   onClosePreview() {
     this.previewImage = false;
+    this.onEdit = false;
   }
 
   next(): void {
@@ -90,8 +92,8 @@ export class GaleriaComponent implements OnInit {
     this.currentLightboxImage = this.galleryData[this.currentIndex];
   }
 
-  delete(i: number) { //CHEQUEAR Q SIRVA PARA BBDD
-    this.deleteFile.emit(i);
+  delete(file: ProfileFiles) { //CHEQUEAR Q SIRVA PARA BBDD
+    this.deleteFile.emit(file);
     this.totalImageCount--;
     this.onClosePreview();
   }

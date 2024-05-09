@@ -13,14 +13,18 @@ import { Tribute } from '../models/tribute';
 export class NavBarComponent {
 
   constructor(public loginService: LoginService, private profileService: ProfileService) {
-    this.getProfiles();
+    if (loginService.user != null) {
+      this.getProfiles();
+    }
   }
 
 
   profiles: Array<Profile> = [];
 
   ngOnChanges() {
-    this.getProfiles();
+    if (this.loginService.user != null) {
+      this.getProfiles();
+    }
   }
 
 

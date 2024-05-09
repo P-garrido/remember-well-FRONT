@@ -5,7 +5,7 @@
 
   <p>{{profile.name}}</p>
 
-  <p>{{profile.deathDate}}</p>
+  <p>Fallecido/a el {{profile.deathDate| date: 'dd/MM/yyy'}}</p>
 
 
   <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
@@ -26,12 +26,12 @@
     <tab heading="Galería">
 
       <button *ngIf="!onEditFiles" class="btn" (click)="this.onEditFiles=true">Editar Archivos</button>
-      <button *ngIf="onEditFiles" class="btn" (click)="editFiles()">Aceptar</button>
+      <button *ngIf="onEditFiles" class="btn" (click)="addFiles()">Aceptar</button>
 
 
       <div *ngIf="onEditFiles" class="form-floating mb-3">
         <!--FALTA HACER QUE PUEDA OBTENER ESTE INPUT EN editfiles() PARA PODER AGREGAR LOS ARCHIVOS-->
-        <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" multiple>
+        <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" multiple #inputGaleria>
         <label for="floatingInput">Sube tus fotos y videos</label>
       </div>
 
