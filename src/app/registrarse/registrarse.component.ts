@@ -34,7 +34,7 @@ export class RegistrarseComponent {
     if (this.loginService.user == null) {
       //ACA VA LA FUNCION REGISTRAR NUEVO USUARIO
       this.userService.create(this.registerForm).pipe(catchError((error: any) => {
-        alert(`ERROR: ${error}`);
+        alert(`ERROR: ${error.message}`);
         if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
           this.loginService.setUserData(null, null);
           this.router.navigate(['/login']);

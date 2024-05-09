@@ -40,28 +40,7 @@ export class NavBarComponent {
 
 
   getProfiles() {
-    this.profiles.splice(0, this.profiles.length);
-    this.profileService.getAll().pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`)
-      this.loginService.setUserData(null, null)
-      this.router.navigate(['/login'])
-      return throwError(error);
-    })).subscribe((res: any) => {
-      res.forEach((prof: any) => {
-        let files: Array<ProfileFiles> = [];
-        prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
-          files.push(file);
-        });
-        let tributes: Array<Tribute> = [];
-        prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-          let tribute = new Tribute(tr.id, tr.idFall, tr.text);
-          tributes.push(tribute);
-        })
-        let profile = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl);
-        this.profiles.push(profile);
-      })
-    })
+    this.profiles = this.loginService.user!.profiles;
   }
 
 }

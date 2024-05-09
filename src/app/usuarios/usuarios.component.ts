@@ -31,7 +31,7 @@ export class UsuariosComponent {
       return throwError(error);
     })).subscribe((res: any) => {
       res.forEach((usu: any) => {
-        this.usuarios.push(new User(usu.id, usu.mail, usu.name, usu.password, usu.phone, usu.admin));
+        this.usuarios.push(new User(usu.id, usu.mail, usu.name, usu.password, usu.phone, usu.admin, []));
       })
     })
   }

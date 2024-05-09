@@ -36,7 +36,7 @@ export class PedidosComponent {
     })).subscribe((res: any) => {
 
       res.forEach((ord: any) => {
-        let us = new User(ord.User.id, ord.User.mail, ord.User.name, ord.User.password, ord.User.phone, ord.User.admin);
+        let us = new User(ord.User.id, ord.User.mail, ord.User.name, ord.User.password, ord.User.phone, ord.User.admin, []);
         let op: Array<OrderProduct> = [];
         ord.OrderProducts.forEach((lp: any) => {
           let ordProd = new OrderProduct(lp.id, lp.idOrd, lp.Product, lp.cantidad);

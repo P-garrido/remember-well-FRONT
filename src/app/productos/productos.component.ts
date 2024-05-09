@@ -71,7 +71,7 @@ export class ProductosComponent {
       return throwError(error);
     })).subscribe((res: any) => {
       res.forEach((com: any) => {
-        const user = new User(com.User.id, com.User.mail, com.User.name, com.User.password, com.User.phone, com.User.admin)
+        const user = new User(com.User.id, com.User.mail, com.User.name, com.User.password, com.User.phone, com.User.admin, [])
         this.comments.push(new Comment(com.id, com.text, com.stars, user));
       })
     })

@@ -30,6 +30,7 @@ export class ProfileService {
   }
 
 
+
   create() {
     const token = this.loginService.token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -38,7 +39,8 @@ export class ProfileService {
       name: null,
       deathDate: null,
       aboutMe: null,
-      playlist: null
+      playlist: null,
+      profilePicUrl: null
     }, { headers }).pipe(catchError(this.handleError));
   }
 
