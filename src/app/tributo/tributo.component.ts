@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tribute } from '../models/tribute';
 
 @Component({
@@ -11,8 +11,16 @@ export class TributoComponent {
 
   @Input() tribute: Tribute = new Tribute(-1, -1, "");
 
+  @Output() deleteTribute = new EventEmitter<Tribute>;
+
 
   ngOnInit() {
+  }
+
+
+
+  delete() {
+    this.deleteTribute.emit(this.tribute)
   }
 
 }

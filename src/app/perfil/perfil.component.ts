@@ -6,6 +6,8 @@ import { ProfileFiles } from '../models/profileFiles';
 import { Tribute } from '../models/tribute';
 import { ProfileService } from '../profile.service';
 import { ProfileFilesService } from '../profile-files.service';
+import { TributesService } from '../tributes.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +18,7 @@ export class PerfilComponent {
 
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProfileService, private profileFilesService: ProfileFilesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProfileService, private profileFilesService: ProfileFilesService, private tributesService: TributesService, public loginService: LoginService) {
 
   }
   profileId: string | null = null;
@@ -64,7 +66,7 @@ export class PerfilComponent {
     this.router.navigate([`/adminPerfil/${this.profileId}`])
   }
 
-  addFiles() { //FALTA HACER QUE FILESINPUT VAYA AL BACK MEDIANTE UN FORMDATA
+  addFiles() {
 
     const filesInput = <HTMLInputElement>document.getElementById('floatingInput')
     const fd = new FormData();
@@ -87,7 +89,7 @@ export class PerfilComponent {
     //ACA VOY A PEDIR EL MAIL A DEL USUARIO A INVITAR
   }
 
-  deleteFile(event: ProfileFiles) { //TESTEAR
+  deleteFile(event: ProfileFiles) {
     this.profileFilesService.delete(event).subscribe((res: any) => {
       this.getProfile();
     })
@@ -95,6 +97,18 @@ export class PerfilComponent {
 
 
   sendTribute() {
-    //HACER PARA ENVIAR TRIBUTOS A LA BBDD
+    const trib = new Tribute(null, parseInt(this.profileId!), this.tribute.value);
+    this.tributesService.create(trib).subscribe((res: any) => {
+      this.getProfile();
+      this.tribute.reset();
+    })
+
+  }
+
+
+  deleteTribute(trib: Tribute) {
+    this.tributesService.delete(trib).subscribe((res: any) => {
+      this.getProfile();
+    })
   }
 }

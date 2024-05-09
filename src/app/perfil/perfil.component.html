@@ -10,8 +10,10 @@
 
   <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
 
-  <button class="btn" (click)="editProfile()">Editar Perfil</button>
-  <button class="btn" (click)="addEditors()">Agregar Editores</button>
+  <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="editProfile()">Editar
+    Perfil</button>
+  <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="addEditors()">Agregar
+    Editores</button>
 
 </section>
 
@@ -52,7 +54,7 @@
 
 
       <div *ngFor="let trib of profile.tributes">
-        <app-tributo [tribute]="trib"></app-tributo>
+        <app-tributo [tribute]="trib" (deleteTribute)="deleteTribute($event)"></app-tributo>
       </div>
     </tab>
   </tabset>

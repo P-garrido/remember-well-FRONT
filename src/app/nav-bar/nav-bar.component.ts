@@ -4,6 +4,7 @@ import { Profile } from '../models/profile';
 import { ProfileService } from '../profile.service';
 import { ProfileFiles } from '../models/profileFiles';
 import { Tribute } from '../models/tribute';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,7 +13,7 @@ import { Tribute } from '../models/tribute';
 })
 export class NavBarComponent {
 
-  constructor(public loginService: LoginService, private profileService: ProfileService) {
+  constructor(public loginService: LoginService, private profileService: ProfileService, private router: Router) {
     if (loginService.user != null) {
       this.getProfiles();
     }
@@ -20,6 +21,22 @@ export class NavBarComponent {
 
 
   profiles: Array<Profile> = [];
+
+
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Realiza la lógica que desees aquí
+        if (this.loginService.user != null) {
+          this.getProfiles();
+        }
+        else {
+          this.profiles.splice(0, this.profiles.length)
+        }
+      }
+    });
+  }
+
 
   ngOnChanges() {
     if (this.loginService.user != null) {
