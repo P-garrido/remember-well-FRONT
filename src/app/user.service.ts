@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { LoginService } from './login.service';
+import { catchError, throwError } from 'rxjs';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +16,19 @@ export class UserService {
   baseUrl = 'http://localhost:3000/users';
 
 
+
+  getAll() {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(this.baseUrl, { headers }).pipe(catchError(this.handleError));
+  }
+
+
   getOne(id: number) {
     const token = this.loginService.token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.baseUrl}/${id}`;
-    return this.http.get(url, { headers })
+    return this.http.get(url, { headers }).pipe(catchError(this.handleError));
   }
 
 
@@ -29,7 +39,7 @@ export class UserService {
       password: fg.value.password,
       phone: fg.value.phone,
       admin: false
-    })
+    }).pipe(catchError(this.handleError));
   }
 
 
@@ -42,6 +52,41 @@ export class UserService {
       password: fg.value.password,
       phone: fg.value.phone,
       admin: admin
-    }, { headers })
+    }, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+  changeStatus(us: User) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${us.id}`;
+    return this.http.patch(url, {
+      mail: us.mail,
+      name: us.name,
+      password: us.password,
+      phone: us.phone,
+      admin: !us.admin,
+    }, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+  delete(us: User) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${us.id}`;
+    return this.http.delete(url, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 401) {
+      return throwError("Terminó el tiempo de tu sesión, inicia sesión nuevamente");
+    } else {
+      console.error('Ocurrió un error inesperado:', error.message);
+      alert(`ERROR: ${error.message}`)
+    }
+
+    return throwError('Algo salió mal, inténtalo de nuevo más tarde.');
   }
 }

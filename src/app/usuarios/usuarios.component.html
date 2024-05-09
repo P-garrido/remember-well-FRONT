@@ -18,7 +18,8 @@
         <p>Teléfono: {{us.phone}}</p>
         <p>Tipo: {{us.admin? 'Admin' : 'Cliente'}}</p>
 
-        <button class="btn" (click)="changeStatus(us)">{{us.admin?'Quitar admin': 'Dar admin'}}</button>
+        <button class="btn" (click)="changeStatus(us)"
+          [ngClass]="{'disabled': us.id==loginService.user!.id}">{{us.admin?'Quitar admin': 'Dar admin'}}</button>
         <button class="btn btn-eliminar" (click)="delete(us)">Eliminar</button>
       </div>
     </div>

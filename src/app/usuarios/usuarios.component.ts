@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { User } from '../models/user';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -7,18 +12,55 @@ import { Component } from '@angular/core';
 })
 export class UsuariosComponent {
 
-  usuarios: any[] = [{ id: 1, mail: 'pedro@gmail.com', name: 'Pedro Garrido', phone: '5493413951826', admin: true },
-  { id: 2, mail: 'juana@gmail.com', name: 'Juana Sin', phone: '5495488545266', admin: false }
-  ];
 
-
-  changeStatus(us: any) {
-    us.admin = !us.admin; //CAMBIAR PARA BBDD  
+  constructor(private service: UserService, private router: Router, public loginService: LoginService) {
+    this.getAllUsers()
   }
 
-  delete(us: any) {
-    let index = this.usuarios.indexOf(us);
-    this.usuarios.splice(index, 1);  //CAMBIAR PARA BBDD  
+  usuarios: Array<User> = [];
+
+
+  getAllUsers() {
+    this.usuarios.splice(0, this.usuarios.length);
+    this.service.getAll().pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
+      res.forEach((usu: any) => {
+        this.usuarios.push(new User(usu.id, usu.mail, usu.name, usu.password, usu.phone, usu.admin));
+      })
+    })
+  }
+
+
+  changeStatus(us: User) {
+    this.service.changeStatus(us).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
+      this.getAllUsers();
+    })
+  }
+
+  delete(us: User) {
+    this.service.delete(us).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
+      this.getAllUsers();
+    })
   }
 
 }
