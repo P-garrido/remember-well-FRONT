@@ -5,6 +5,7 @@ import { ProfileService } from '../profile.service';
 import { ProfileFiles } from '../models/profileFiles';
 import { Tribute } from '../models/tribute';
 import { NavigationEnd, Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,9 +15,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavBarComponent {
 
   constructor(public loginService: LoginService, private profileService: ProfileService, private router: Router) {
-    if (loginService.user != null) {
-      this.getProfiles();
-    }
+
   }
 
 
@@ -24,9 +23,8 @@ export class NavBarComponent {
 
 
   ngOnInit(): void {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe(event => { //HACE QUE CARGIEN LOS PERFILES CUANDO CAMBIE DE LINK
       if (event instanceof NavigationEnd) {
-        // Realiza la lógica que desees aquí
         if (this.loginService.user != null) {
           this.getProfiles();
         }
@@ -38,16 +36,17 @@ export class NavBarComponent {
   }
 
 
-  ngOnChanges() {
-    if (this.loginService.user != null) {
-      this.getProfiles();
-    }
-  }
+
 
 
   getProfiles() {
     this.profiles.splice(0, this.profiles.length);
-    this.profileService.getAll().subscribe((res: any) => {
+    this.profileService.getAll().pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`)
+      this.loginService.setUserData(null, null)
+      this.router.navigate(['/login'])
+      return throwError(error);
+    })).subscribe((res: any) => {
       res.forEach((prof: any) => {
         let files: Array<ProfileFiles> = [];
         prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL

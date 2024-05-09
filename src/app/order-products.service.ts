@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { OrderProduct } from './models/orderProducts';
 import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderProductsService {
 
-  constructor(private http: HttpClient, private loginService: LoginService) { }
+  constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
   baseUrl = 'http://localhost:3000/orderProduct'

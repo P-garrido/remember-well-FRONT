@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../models/products';
+import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-admin-productos',
@@ -9,7 +12,7 @@ import { Product } from '../models/products';
 })
 export class AdminProductosComponent {
 
-  constructor(private service: ProductsService) {
+  constructor(private service: ProductsService, private router: Router, private loginService: LoginService) {
     this.getProducts()
   }
 
@@ -19,7 +22,14 @@ export class AdminProductosComponent {
 
   getProducts() {
     this.products.splice(0, this.products.length);
-    this.service.getAll().subscribe((res: any) => {
+    this.service.getAll().pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
       res.forEach((prod: any) => {
         let imgUrls: string[] = [];
         prod.ProductFiles.forEach((df: any) => {

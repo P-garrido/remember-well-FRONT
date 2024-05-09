@@ -4,6 +4,7 @@ import { ProductsService } from '../products.service';
 import { Product } from '../models/products';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -13,7 +14,7 @@ import { catchError, throwError } from 'rxjs';
 export class AgregarProductoComponent {
 
 
-  constructor(private service: ProductsService, private router: Router) { }
+  constructor(private service: ProductsService, private router: Router, private loginService: LoginService) { }
 
 
   ngOnInit() {
@@ -53,7 +54,11 @@ export class AgregarProductoComponent {
     }
     if (this.onEdit == false) {
       this.service.createProduct(fd).pipe(catchError((error: any) => {
-        alert(`ERROR: ${error}`)
+        alert(`ERROR: ${error}`);
+        if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+          this.loginService.setUserData(null, null);
+          this.router.navigate(['/login']);
+        }
         return throwError(error);
       })).subscribe((res: any) => {
         if (res) {

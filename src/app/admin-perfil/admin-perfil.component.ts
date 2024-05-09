@@ -5,6 +5,8 @@ import { ProfileFiles } from '../models/profileFiles';
 import { ProfileService } from '../profile.service';
 import { Tribute } from '../models/tribute';
 import { Profile } from '../models/profile';
+import { catchError, throwError } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -13,7 +15,7 @@ import { Profile } from '../models/profile';
 })
 export class AdminPerfilComponent {
 
-  constructor(private route: ActivatedRoute, private service: ProfileService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private service: ProfileService, private router: Router, private loginService: LoginService) { }
 
 
   profileId: string | null = null;
@@ -45,7 +47,14 @@ export class AdminPerfilComponent {
 
 
   getProfile() {
-    this.service.getById(parseInt(this.profileId!)).subscribe((prof: any) => {
+    this.service.getById(parseInt(this.profileId!)).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((prof: any) => {
       let files: Array<ProfileFiles> = [];
       prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
         let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
@@ -83,7 +92,14 @@ export class AdminPerfilComponent {
     if (file.files![0] != undefined) {
       formData.append('file', file.files![0]);
     }
-    this.service.edit(formData, parseInt(this.profileId!)).subscribe((res: any) => {
+    this.service.edit(formData, parseInt(this.profileId!)).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
       this.router.navigate([`/perfiles/${this.profileId}`])
     })
   }

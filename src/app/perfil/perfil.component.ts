@@ -8,6 +8,7 @@ import { ProfileService } from '../profile.service';
 import { ProfileFilesService } from '../profile-files.service';
 import { TributesService } from '../tributes.service';
 import { LoginService } from '../login.service';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -43,7 +44,14 @@ export class PerfilComponent {
   onEditFiles: boolean = false;
 
   getProfile() {
-    this.service.getById(parseInt(this.profileId!)).subscribe((prof: any) => {
+    this.service.getById(parseInt(this.profileId!)).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((prof: any) => {
       let files: Array<ProfileFiles> = [];
       prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
         let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
@@ -76,7 +84,14 @@ export class PerfilComponent {
         fd.append('files', file)
       })
     }
-    this.profileFilesService.create(fd).subscribe((res: any) => {
+    this.profileFilesService.create(fd).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
       this.onEditFiles = false;
       this.getProfile()
     })
@@ -90,7 +105,14 @@ export class PerfilComponent {
   }
 
   deleteFile(event: ProfileFiles) {
-    this.profileFilesService.delete(event).subscribe((res: any) => {
+    this.profileFilesService.delete(event).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
       this.getProfile();
     })
   }
@@ -98,7 +120,14 @@ export class PerfilComponent {
 
   sendTribute() {
     const trib = new Tribute(null, parseInt(this.profileId!), this.tribute.value);
-    this.tributesService.create(trib).subscribe((res: any) => {
+    this.tributesService.create(trib).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
       this.getProfile();
       this.tribute.reset();
     })
@@ -107,7 +136,14 @@ export class PerfilComponent {
 
 
   deleteTribute(trib: Tribute) {
-    this.tributesService.delete(trib).subscribe((res: any) => {
+    this.tributesService.delete(trib).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
       this.getProfile();
     })
   }

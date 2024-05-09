@@ -3,6 +3,9 @@ import { Order } from '../models/orders';
 import { OrdersService } from '../orders.service';
 import { User } from '../models/user';
 import { OrderProduct } from '../models/orderProducts';
+import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -12,7 +15,7 @@ import { OrderProduct } from '../models/orderProducts';
 export class PedidosComponent {
 
 
-  constructor(private service: OrdersService) {
+  constructor(private service: OrdersService, private router: Router, private loginService: LoginService) {
     this.getAllOrders();
   }
 
@@ -23,7 +26,14 @@ export class PedidosComponent {
 
   getAllOrders() {
     this.pedidos.splice(0, this.pedidos.length);
-    this.service.getAll().subscribe((res: any) => {
+    this.service.getAll().pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
 
       res.forEach((ord: any) => {
         let us = new User(ord.User.id, ord.User.mail, ord.User.name, ord.User.password, ord.User.phone, ord.User.admin);

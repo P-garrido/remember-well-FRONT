@@ -44,7 +44,8 @@
 
 <section class="products">
 
-  <article *ngFor="let prod of products" class="prod">
+  <article *ngFor="let prod of products; let i=index" class="prod"
+    [ngClass]="{'anmacion': animacionActiva && i === indiceProductoAnimado}">
 
 
 
@@ -58,14 +59,9 @@
         <h5 class="card-title">{{prod.name}}</h5>
         <p class="card-text">{{prod.description}}</p>
         <p>${{prod.price}}</p>
-        <button type="button" class="btn" (click)="addToCart(prod)">Agregar al carrito</button>
+        <button type="button" class="btn" (click)="addToCart(prod, i)">Agregar al carrito</button>
       </div>
     </div>
-
-
-
-
-
 
   </article>
 

@@ -69,7 +69,11 @@ export class CarritoComponent {
     //ACA VA A LINKEAR CON LA API DE MP
     const ord = new Order(null, this.loginService.user!, new Date(), this.total, this.deliveryData.value.province!, this.deliveryData.value.city!, this.deliveryData.value.zipCode!, this.deliveryData.value.address!, this.deliveryData.value.floor ? this.deliveryData.value.floor : null, this.deliveryData.value.appartament ? this.deliveryData.value.appartament : null, false, this.cart)
     this.ordersService.create(ord).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`)
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
       return throwError(error);
     })).subscribe((res: any) => {
       this.cart.forEach((op: OrderProduct) => {

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-registrarse',
@@ -32,7 +33,14 @@ export class RegistrarseComponent {
 
     if (this.loginService.user == null) {
       //ACA VA LA FUNCION REGISTRAR NUEVO USUARIO
-      this.userService.create(this.registerForm).subscribe((res: any) => {
+      this.userService.create(this.registerForm).pipe(catchError((error: any) => {
+        alert(`ERROR: ${error}`);
+        if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+          this.loginService.setUserData(null, null);
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })).subscribe((res: any) => {
         this.loginService.setUserData(res.newUser, res.token);
         this.router.navigate(['/inicio']);
       })
@@ -42,7 +50,14 @@ export class RegistrarseComponent {
       //ACA VA LA FUNCION EDITAR USUARIO
       const id = this.loginService.user.id;
 
-      this.userService.edit(this.registerForm, id, false).subscribe((res: any) => {
+      this.userService.edit(this.registerForm, id, false).pipe(catchError((error: any) => {
+        alert(`ERROR: ${error}`);
+        if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+          this.loginService.setUserData(null, null);
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })).subscribe((res: any) => {
         this.userService.getOne(id).subscribe((res: any) => {
           this.loginService.setUserData(res, this.loginService.token);
         })
