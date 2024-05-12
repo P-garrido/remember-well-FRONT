@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../models/profile';
 import { ProfileFiles } from '../models/profileFiles';
@@ -10,6 +10,8 @@ import { TributesService } from '../tributes.service';
 import { LoginService } from '../login.service';
 import { catchError, throwError } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { UserService } from '../user.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-perfil',
@@ -20,7 +22,7 @@ export class PerfilComponent {
 
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private modalService: BsModalService, private service: ProfileService, private profileFilesService: ProfileFilesService, private tributesService: TributesService, public loginService: LoginService) {
+  constructor(private route: ActivatedRoute, private router: Router, private modalService: BsModalService, private service: ProfileService, private profileFilesService: ProfileFilesService, private tributesService: TributesService, public loginService: LoginService, private usersService: UserService) {
 
   }
   profileId: string | null = null;
@@ -36,13 +38,17 @@ export class PerfilComponent {
   }
 
 
-  profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "");
+  profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "", []);
 
 
 
   tribute = new FormControl();
 
+  mailEditor = new FormControl('', [Validators.required, Validators.email]);
+
   onEditFiles: boolean = false;
+
+
 
 
   modalRef?: BsModalRef;
@@ -75,7 +81,17 @@ export class PerfilComponent {
         let tribute = new Tribute(tr.id, tr.idFall, tr.text);
         tributes.push(tribute);
       });
-      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl);
+      let idsEditors: Array<number> = [];
+      prof.EditionPermit.forEach((ep: any) => {
+        idsEditors.push(ep.idUsu)
+      });
+
+      let editors: Array<User> = []
+      prof.Users.forEach((us: any) => {
+        editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
+      })
+
+      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl, editors);
 
       this.profile = profi
     })
@@ -105,20 +121,15 @@ export class PerfilComponent {
       }
       return throwError(error);
     })).subscribe((res: any) => {
+      this.getProfile();
       this.onEditFiles = false;
-      this.getProfile()
     })
-
-
-  }
-
-  getEditors() {
-    //aca voy a traer los editores para mostrar al usuario dueño
   }
 
 
-  addEditor(mail: string) {
-    this.service.addEditor(mail, this.profile.id).pipe(catchError((error: any) => {
+
+  addEditor() {
+    this.service.addEditor(this.mailEditor.value!, this.profile.id).pipe(catchError((error: any) => {
       alert(`ERROR: ${error}`);
       if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
         this.loginService.setUserData(null, null);
@@ -126,7 +137,7 @@ export class PerfilComponent {
       }
       return throwError(error);
     })).subscribe((res: any) => {
-      this.getEditors();
+      this.getProfile();
     })
   }
 
@@ -139,7 +150,7 @@ export class PerfilComponent {
       }
       return throwError(error);
     })).subscribe((res: any) => {
-      this.getEditors();
+      this.getProfile();
     })
   }
 

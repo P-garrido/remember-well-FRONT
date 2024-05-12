@@ -7,6 +7,7 @@ import { Tribute } from '../models/tribute';
 import { Profile } from '../models/profile';
 import { catchError, throwError } from 'rxjs';
 import { LoginService } from '../login.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -32,7 +33,7 @@ export class AdminPerfilComponent {
 
   }
 
-  profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "");
+  profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "", []);
 
 
 
@@ -65,7 +66,11 @@ export class AdminPerfilComponent {
         let tribute = new Tribute(tr.id, tr.idFall, tr.text);
         tributes.push(tribute);
       });
-      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl);
+      let editors: Array<User> = []
+      prof.Users.forEach((us: any) => {
+        editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
+      })
+      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl, editors);
 
       this.profile = profi
       this.patchForm()

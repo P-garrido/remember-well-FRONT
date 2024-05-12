@@ -78,6 +78,13 @@ export class UserService {
   }
 
 
+  getEditors(idsUser: Array<number>) { //función que va a devolver todos los usuarios con permisos de edición de un perfil
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.baseUrl, { idsUser }, { headers }).pipe(catchError(this.handleError));
+  }
+
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 401) {

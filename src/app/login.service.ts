@@ -44,7 +44,12 @@ export class LoginService {
           let tribute = new Tribute(tr.id, tr.idFall, tr.text);
           tributes.push(tribute);
         });
-        profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.ptofilePicUrl))
+        //aca tengo que traer los ids de los editores
+        let editors: Array<User> = []
+        prof.Users.forEach((us: any) => {
+          editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
+        })
+        profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.ptofilePicUrl, editors))
       })
     }
     this.user = data ? new User(data.id, data.mail, data.name, data.password, data.phone, data.admin, data.profiles) : null;

@@ -75,8 +75,26 @@
   </div>
   <div class="modal-body">
 
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control form-input" id="floatingInput" placeholder="Mail"
+        formControlName="mailEditor">
+      <label for="floatingInput">Mail</label>
+    </div>
 
+    <button class="btn" [disabled]="!mailEditor.valid" (click)="addEditor()">Agregar</button>
 
+    <section class="editores">
+
+      <div class="editor" *ngFor="let editor on profile.editors">
+        <!-- aca van a ir los editores -->
+
+        <p>{{editor.name}}</p>
+        <p>({{editor.mail}})</p>
+        <button (click)="removeEditor(editor.id)" class="btn btn-eliminar">Quitar</button>
+
+      </div>
+
+    </section>
 
 
   </div>
