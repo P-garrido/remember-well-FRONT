@@ -54,6 +54,24 @@ export class ProfileService {
   }
 
 
+  addEditor(mail: string, idProf: number) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/editors`;
+    return this.http.post(url, {
+      idFall: idProf,
+      mail: mail
+    }, { headers }).pipe(catchError(this.handleError));
+  }
+
+  removeEditor(idUser: number, idProf: number) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/editors/${idProf}/${idUser}`;
+    return this.http.delete(url, { headers }).pipe(catchError(this.handleError));
+  }
+
+
 
 
 

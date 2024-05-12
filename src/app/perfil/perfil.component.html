@@ -12,7 +12,7 @@
 
   <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="editProfile()">Editar
     Perfil</button>
-  <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="addEditors()">Agregar
+  <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="openModal(template)">Agregar
     Editores</button>
 
 </section>
@@ -59,3 +59,25 @@
     </tab>
   </tabset>
 </section>
+
+
+
+
+
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Administrar editores</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+
+
+
+  </div>
+</ng-template>

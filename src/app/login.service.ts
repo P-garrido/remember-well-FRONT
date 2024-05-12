@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from './models/user';
 import { Profile } from './models/profile';
 import { ProfileFiles } from './models/profileFiles';
 import { Tribute } from './models/tribute';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,12 +54,35 @@ export class LoginService {
   }
 
 
+
   login(fg: FormGroup) {
     return this.http.post(this.baseUrl, {
       mail: fg.value.mail,
       password: fg.value.password
-    })
+    }).pipe(catchError(this.handleError));
   }
+
+  getOneUser() { //Esto lo hago para poder recuperar los perfiles recién creados
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    const url = `http://localhost:3000/users/${this.user!.id}`
+    return this.http.get(url, { headers }).pipe(catchError(this.handleError));
+
+  }
+
+
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 401) {
+      return throwError("Terminó el tiempo de tu sesión, inicia sesión nuevamente");
+    } else {
+      console.error('Ocurrió un error inesperado:', error.message);
+      alert(`ERROR: ${error.message}`)
+    }
+
+    return throwError('Algo salió mal, inténtalo de nuevo más tarde.');
+  }
+
 
 
 }

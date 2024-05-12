@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../models/profile';
@@ -9,6 +9,7 @@ import { ProfileFilesService } from '../profile-files.service';
 import { TributesService } from '../tributes.service';
 import { LoginService } from '../login.service';
 import { catchError, throwError } from 'rxjs';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-perfil',
@@ -19,7 +20,7 @@ export class PerfilComponent {
 
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProfileService, private profileFilesService: ProfileFilesService, private tributesService: TributesService, public loginService: LoginService) {
+  constructor(private route: ActivatedRoute, private router: Router, private modalService: BsModalService, private service: ProfileService, private profileFilesService: ProfileFilesService, private tributesService: TributesService, public loginService: LoginService) {
 
   }
   profileId: string | null = null;
@@ -42,6 +43,18 @@ export class PerfilComponent {
   tribute = new FormControl();
 
   onEditFiles: boolean = false;
+
+
+  modalRef?: BsModalRef;
+
+  openModal(template: TemplateRef<void>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+
+
+
+
 
   getProfile() {
     this.service.getById(parseInt(this.profileId!)).pipe(catchError((error: any) => {
@@ -99,10 +112,39 @@ export class PerfilComponent {
 
   }
 
-
-  addEditors() {
-    //ACA VOY A PEDIR EL MAIL A DEL USUARIO A INVITAR
+  getEditors() {
+    //aca voy a traer los editores para mostrar al usuario dueño
   }
+
+
+  addEditor(mail: string) {
+    this.service.addEditor(mail, this.profile.id).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
+      this.getEditors();
+    })
+  }
+
+  removeEditor(idUsu: number) {
+    this.service.removeEditor(idUsu, this.profile.id).pipe(catchError((error: any) => {
+      alert(`ERROR: ${error}`);
+      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
+        this.loginService.setUserData(null, null);
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })).subscribe((res: any) => {
+      this.getEditors();
+    })
+  }
+
+
+
 
   deleteFile(event: ProfileFiles) {
     this.profileFilesService.delete(event).pipe(catchError((error: any) => {
