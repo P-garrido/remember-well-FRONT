@@ -16,6 +16,8 @@
   .pfp {
     border-radius: 50%;
     width: 5rem;
+    height: 5rem;
+    object-fit: contain;
   }
 }
 
@@ -48,4 +50,10 @@
 
 .userTrib {
   padding: 1rem;
+}
+
+.editor {
+  display: flex;
+  align-content: center;
+
 }

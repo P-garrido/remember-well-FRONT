@@ -1,4 +1,4 @@
 <div class="tribute-container">
   <p class="tribute text-left">{{tribute.text}}</p>
-  <button (click)="delete()" class="btn btn-eliminar">Eliminar</button>
+  <button *ngIf="owner" (click)="delete()" class="btn btn-eliminar">Eliminar</button>
 </div>

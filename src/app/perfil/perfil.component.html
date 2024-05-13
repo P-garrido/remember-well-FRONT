@@ -10,10 +10,13 @@
 
   <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
 
-  <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="editProfile()">Editar
+  <button *ngIf="this.loginService.user && editorIds.includes(this.loginService.user.id)" class="btn"
+    (click)="editProfile()">Editar
     Perfil</button>
-  <button *ngIf="this.profile.idOwner == this.loginService.user!.id" class="btn" (click)="openModal(template)">Agregar
+  <button *ngIf="this.loginService.user && this.profile.idOwner == this.loginService.user!.id" class="btn"
+    (click)="openModal(adminEditors)">Agregar
     Editores</button>
+
 
 </section>
 
@@ -26,8 +29,8 @@
       </p>
     </tab>
     <tab heading="Galería">
-
-      <button *ngIf="!onEditFiles" class="btn" (click)="this.onEditFiles=true">Editar Archivos</button>
+      <button *ngIf="!onEditFiles && this.loginService.user && editorIds.includes(this.loginService.user.id)"
+        class="btn" (click)="this.onEditFiles=true">Editar Archivos</button>
       <button *ngIf="onEditFiles" class="btn" (click)="addFiles()">Aceptar</button>
 
 
@@ -38,6 +41,7 @@
       </div>
 
       <app-galeria [galleryData]="profile.filesGallery" [showCount]="true" [onEdit]="onEditFiles"
+        [owner]="this.loginService.user && this.loginService.user && editorIds.includes(this.loginService.user.id)"
         (deleteFile)="deleteFile($event)"></app-galeria> <!--CHEQUEAR Q FUNCIONE GALERIA-->
     </tab>
     <tab heading="Tributos">
@@ -48,13 +52,15 @@
             [formControl]="tribute"></textarea>
           <label for="floatingTextarea2">Comentar</label>
         </div>
-        <button (click)="sendTribute()" class="btn btn-comment">Enviar</button>
+        <button (click)="sendTribute()" class="btn btn-comment" [disabled]="!tribute.valid">Enviar</button>
 
       </article>
 
 
       <div *ngFor="let trib of profile.tributes">
-        <app-tributo [tribute]="trib" (deleteTribute)="deleteTribute($event)"></app-tributo>
+        <app-tributo [tribute]="trib"
+          [owner]="this.loginService.user && this.loginService.user && editorIds.includes(this.loginService.user.id)"
+          (deleteTribute)="deleteTribute($event)"></app-tributo>
       </div>
     </tab>
   </tabset>
@@ -66,7 +72,7 @@
 
 
 
-<ng-template #template>
+<ng-template #adminEditors>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Administrar editores</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
@@ -77,7 +83,7 @@
 
     <div class="form-floating mb-3">
       <input type="email" class="form-control form-input" id="floatingInput" placeholder="Mail"
-        formControlName="mailEditor">
+        [formControl]="mailEditor">
       <label for="floatingInput">Mail</label>
     </div>
 
@@ -85,12 +91,12 @@
 
     <section class="editores">
 
-      <div class="editor" *ngFor="let editor on profile.editors">
-        <!-- aca van a ir los editores -->
+      <div class="editor" *ngFor="let editor of profile.editors">
+        <!-- aca van a ir los editores  -->
 
-        <p>{{editor.name}}</p>
-        <p>({{editor.mail}})</p>
-        <button (click)="removeEditor(editor.id)" class="btn btn-eliminar">Quitar</button>
+        <p>{{editor.name}} - ({{editor.mail}})</p>
+        <button [disabled]="editor.id==profile.idOwner" (click)="removeEditor(editor.id)"
+          class="btn btn-eliminar">Quitar</button>
 
       </div>
 

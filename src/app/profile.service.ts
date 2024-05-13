@@ -80,12 +80,11 @@ export class ProfileService {
   private handleError(error: HttpErrorResponse) {
     if (error.status === 401) {
       return throwError("Terminó el tiempo de tu sesión, inicia sesión nuevamente");
-    } else {
-      console.error('Ocurrió un error inesperado:', error.message);
-      alert(`ERROR: ${error.message}`)
     }
-
-    return throwError('Algo salió mal, inténtalo de nuevo más tarde.');
+    else {
+      console.error('Ocurrió un error inesperado:', error.message);
+      return throwError(`Ocurrió un error inesperado:, ${error.message}`);
+    }
   }
 
 }

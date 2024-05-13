@@ -32,27 +32,36 @@ export class LoginService {
 
   setUserData(data: any, tok: string | null) {
     if (data != null) {
-      let profiles: Array<Profile> = [];
-      data.profiles.forEach((prof: any) => {
-        let files: Array<ProfileFiles> = [];
-        prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
-          files.push(file);
-        });
-        let tributes: Array<Tribute> = [];
-        prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-          let tribute = new Tribute(tr.id, tr.idFall, tr.text);
-          tributes.push(tribute);
-        });
-        //aca tengo que traer los ids de los editores
-        let editors: Array<User> = []
-        prof.Users.forEach((us: any) => {
-          editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
+      if (data.profiles != null) {
+        let profiles: Array<Profile> = [];
+        data.profiles.forEach((prof: any) => {
+          let files: Array<ProfileFiles> = [];
+          prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
+            let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
+            files.push(file);
+          });
+          let tributes: Array<Tribute> = [];
+          prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
+            let tribute = new Tribute(tr.id, tr.idFall, tr.text);
+            tributes.push(tribute);
+          });
+          //aca tengo que traer los ids de los editores
+          let editors: Array<User> = []
+          prof.Users.forEach((us: any) => {
+            editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
+          })
+          profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.ptofilePicUrl, editors))
         })
-        profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.ptofilePicUrl, editors))
-      })
+        this.user = new User(data.id, data.mail, data.name, data.password, data.phone, data.admin, profiles);
+      }
+      else {
+        this.user = new User(data.id, data.mail, data.name, data.password, data.phone, data.admin, []);
+      }
+
     }
-    this.user = data ? new User(data.id, data.mail, data.name, data.password, data.phone, data.admin, data.profiles) : null;
+    else {
+      this.user = null;
+    }
     this.token = tok;
     // Almacenar datos en el almacenamiento local
     sessionStorage.setItem(this.sessionStorageKey, JSON.stringify({ user: data, token: tok }));

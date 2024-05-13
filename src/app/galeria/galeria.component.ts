@@ -39,6 +39,7 @@ export class GaleriaComponent {
   @Input() galleryData: Array<ProfileFiles> = [];
   @Input() showCount = true;
   @Input() onEdit = false;
+  @Input() owner: boolean | null = false;
 
   @Output() deleteFile = new EventEmitter<ProfileFiles>;
 

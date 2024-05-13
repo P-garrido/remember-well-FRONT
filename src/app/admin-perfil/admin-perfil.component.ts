@@ -57,19 +57,28 @@ export class AdminPerfilComponent {
       return throwError(error);
     })).subscribe((prof: any) => {
       let files: Array<ProfileFiles> = [];
-      prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-        let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
-        files.push(file);
-      });
+      if (prof.DeceasedFiles) {
+        prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
+          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
+          files.push(file);
+        });
+      }
+
       let tributes: Array<Tribute> = [];
-      prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-        let tribute = new Tribute(tr.id, tr.idFall, tr.text);
-        tributes.push(tribute);
-      });
+      if (prof.tributes) {
+        prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
+          let tribute = new Tribute(tr.id, tr.idFall, tr.text);
+          tributes.push(tribute);
+        });
+      }
+
       let editors: Array<User> = []
-      prof.Users.forEach((us: any) => {
-        editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
-      })
+      if (prof.Users) {
+        prof.Users.forEach((us: any) => {
+          editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
+        })
+      }
+
       let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl, editors);
 
       this.profile = profi

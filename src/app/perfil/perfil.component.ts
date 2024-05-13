@@ -34,15 +34,16 @@ export class PerfilComponent {
     });
     this.getProfile();
 
-
   }
 
 
   profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "", []);
 
+  editorIds: Array<number> = [];
 
 
-  tribute = new FormControl();
+
+  tribute = new FormControl('', Validators.required);
 
   mailEditor = new FormControl('', [Validators.required, Validators.email]);
 
@@ -72,24 +73,29 @@ export class PerfilComponent {
       return throwError(error);
     })).subscribe((prof: any) => {
       let files: Array<ProfileFiles> = [];
-      prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-        let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
-        files.push(file);
-      });
+      if (prof.DeceasedFiles) {
+        prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
+          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
+          files.push(file);
+        });
+      }
       let tributes: Array<Tribute> = [];
-      prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-        let tribute = new Tribute(tr.id, tr.idFall, tr.text);
-        tributes.push(tribute);
-      });
-      let idsEditors: Array<number> = [];
-      prof.EditionPermit.forEach((ep: any) => {
-        idsEditors.push(ep.idUsu)
-      });
+      if (prof.Tributes) {
 
+        prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
+          let tribute = new Tribute(tr.id, tr.idFall, tr.text);
+          tributes.push(tribute);
+        });
+      }
       let editors: Array<User> = []
-      prof.Users.forEach((us: any) => {
-        editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
-      })
+      if (prof.Users) {
+
+        prof.Users.forEach((us: any) => {
+          editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []));
+          this.editorIds.push(us.id);
+        })
+      }
+
 
       let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl, editors);
 
@@ -172,7 +178,7 @@ export class PerfilComponent {
 
 
   sendTribute() {
-    const trib = new Tribute(null, parseInt(this.profileId!), this.tribute.value);
+    const trib = new Tribute(null, parseInt(this.profileId!), this.tribute.value!);
     this.tributesService.create(trib).pipe(catchError((error: any) => {
       alert(`ERROR: ${error}`);
       if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {

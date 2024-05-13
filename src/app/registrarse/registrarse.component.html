@@ -9,33 +9,33 @@
 
 
   <div class="form-floating mb-3">
-    <input class="form-control form-input" id="floatingInput" placeholder="Mail" formControlName="mail">
+    <input class="form-control form-input" id="floatingMail" placeholder="Mail" formControlName="mail">
     <!--TRATAR DE QUE LA PROPIEDAD DISABLED CAMBIE SI HAY USUARIO O NO-->
-    <label for="floatingInput">Mail</label>
+    <label for="floatingMail">Mail</label>
   </div>
 
   <div class="form-floating mb-3">
-    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Contraseña"
+    <input type="password" class="form-control form-input" id="floatingPass" placeholder="Contraseña"
       formControlName="password">
-    <label for="floatingInput">Contraseña</label>
+    <label for="floatingPass">Contraseña</label>
   </div>
 
   <div class="form-floating mb-3">
-    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Nombre" formControlName="name">
-    <label for="floatingInput">Nombre</label>
+    <input type="email" class="form-control form-input" id="floatingName" placeholder="Nombre" formControlName="name">
+    <label for="floatingName">Nombre</label>
   </div>
 
 
   <div class="form-floating mb-3">
-    <input type="email" class="form-control form-input" id="floatingInput" placeholder="Teléfono"
+    <input type="email" class="form-control form-input" id="floatingPhone" placeholder="Teléfono"
       formControlName="phone">
-    <label for="floatingInput">Teléfono</label>
+    <label for="floatingPhone">Teléfono</label>
   </div>
 
 
 
   <div class="col-12">
-    <button class="btn" type="submit"><b>ACEPTAR</b></button>
+    <button class="btn" type="submit" [disabled]="!registerForm.valid"><b>ACEPTAR</b></button>
   </div>
 </form>
 
