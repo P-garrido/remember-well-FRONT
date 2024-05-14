@@ -39,7 +39,7 @@
   <div class="modal-body">
 
 
-    <form (ngSubmit)="checkout(); modalRef?.hide()" [formGroup]="deliveryData" class="form">
+    <form (ngSubmit)="createPayment(); modalRef?.hide()" [formGroup]="deliveryData" class="form">
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingProvince" placeholder="Provincia"
           formControlName="province">

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 import { Order } from './models/orders';
+import { OrderProduct } from './models/orderProducts';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,14 @@ export class OrdersService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.baseUrl}/${ord.id}`;
     return this.http.delete(url, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+  createPayment(cart: Array<OrderProduct>) {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/payments`;
+    return this.http.post(url, cart, { headers }).pipe(catchError(this.handleError));
   }
 
 

@@ -28,6 +28,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     TributoComponent,
     AdminPerfilComponent,
     CarritoComponent,
+    PaymentSuccessComponent,
   ],
   imports: [
     BrowserModule,
