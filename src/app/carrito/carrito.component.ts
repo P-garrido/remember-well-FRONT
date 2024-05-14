@@ -19,7 +19,7 @@ import { ProfileService } from '../profile.service';
 export class CarritoComponent {
 
 
-  constructor(private productService: ProductsService, private loginService: LoginService, private modalService: BsModalService, private ordersService: OrdersService, private orderProductsService: OrderProductsService, private router: Router, private profileService: ProfileService) {
+  constructor(private productService: ProductsService, public loginService: LoginService, private modalService: BsModalService, private ordersService: OrdersService, private orderProductsService: OrderProductsService, private router: Router, private profileService: ProfileService) {
     this.getCart();
     this.getTotal();
   }

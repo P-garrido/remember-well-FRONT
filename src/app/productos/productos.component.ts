@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class ProductosComponent {
 
-  constructor(private service: ProductsService, private commentsStervice: CommentsService, private loginService: LoginService, private router: Router) {
+  constructor(private service: ProductsService, private commentsStervice: CommentsService, public loginService: LoginService, private router: Router) {
     this.getProducts();
     this.getComments();
   }
@@ -30,7 +30,7 @@ export class ProductosComponent {
 
 
   comment = new FormGroup({
-    stars: new FormControl(),
+    stars: new FormControl('', Validators.required),
     text: new FormControl('', Validators.required)
   })
 
@@ -80,7 +80,7 @@ export class ProductosComponent {
 
   sendComment() {
 
-    this.commentsStervice.create(new Comment(null, this.comment.value.text!, this.comment.value.stars, this.loginService.user!)).pipe(catchError((error: any) => {
+    this.commentsStervice.create(new Comment(null, this.comment.value.text!, parseInt(this.comment.value.stars!), this.loginService.user!)).pipe(catchError((error: any) => {
       alert(`ERROR: ${error}`);
       if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
         this.loginService.setUserData(null, null);

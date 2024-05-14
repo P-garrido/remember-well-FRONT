@@ -14,8 +14,7 @@
     (click)="editProfile()">Editar
     Perfil</button>
   <button *ngIf="this.loginService.user && this.profile.idOwner == this.loginService.user!.id" class="btn"
-    (click)="openModal(adminEditors)">Agregar
-    Editores</button>
+    (click)="openModal(adminEditors)">Administrar Editores</button>
 
 
 </section>

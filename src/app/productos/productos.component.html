@@ -39,7 +39,8 @@
 
 <section class="admin">
   <p class="display-6 subtle">Eternal Moments</p>
-  <button class="btn btn-admin" routerLink="/adminProductos">Administrar Productos</button>
+  <button class="btn btn-admin" routerLink="/adminProductos"
+    *ngIf="loginService.user && loginService.user.admin">Administrar Productos</button>
 </section>
 
 <section class="products">
@@ -88,7 +89,7 @@
           formControlName="text"></textarea>
         <label for="floatingTextarea2">Comentar</label>
       </div>
-      <button class="btn btn-comment">Enviar</button>
+      <button class="btn btn-comment" [disabled]="!comment.valid || !loginService.user">Enviar</button>
     </form>
 
   </article>

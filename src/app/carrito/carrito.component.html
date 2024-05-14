@@ -1,5 +1,6 @@
 <h2 class="text-center display-2">CARRITO</h2>
-<p class="text-center">Revise los productos agregados y realize el checkout</p>
+<p class="text-center">Revise los productos agregados y realize el checkout. <br> <b>ES NECESARIO TENER UNA CUENTA PARA
+    REALIZAR UNA COMPRA</b></p>
 
 
 <div class="cart-container">
@@ -21,7 +22,8 @@
     <hr>
   </div>
   <h2>TOTAL: ${{total}}</h2>
-  <button class=" btn btn-checkout" (click)="openModal(template)"><b>COMPRAR</b></button>
+  <button class=" btn btn-checkout" (click)="openModal(template)"
+    [disabled]="!loginService.user"><b>COMPRAR</b></button>
 </div>
 
 <!--FALTA AGREGAR MODAL PARA PEDIR DATOS DE ENVIO-->
