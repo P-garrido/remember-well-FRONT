@@ -82,7 +82,6 @@ export class ProfileService {
       return throwError("Terminó el tiempo de tu sesión, inicia sesión nuevamente");
     }
     else {
-      console.error('Ocurrió un error inesperado:', error.message);
       return throwError(`Ocurrió un error inesperado:, ${error.message}`);
     }
   }

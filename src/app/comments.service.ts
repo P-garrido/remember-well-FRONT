@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { Comment } from './models/coments';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,17 @@ export class CommentsService {
       text: com.text,
       stars: com.stars,
       idUser: com.user.id
-    }, { headers })
+    }, { headers }).pipe(catchError(this.handleError));
+  }
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 401) {
+      return throwError("Terminó el tiempo de tu sesión, inicia sesión nuevamente");
+    }
+    else {
+      return throwError(`Ocurrió un error inesperado:, ${error.message}`);
+    }
   }
 
 
