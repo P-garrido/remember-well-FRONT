@@ -6,7 +6,7 @@
 <div class="cart-container">
   <div class="cart" *ngFor="let lineaPedido of this.cart">
 
-    <div class="order-product" style="width: 18rem;">
+    <div class="order-product">
       <img src="{{lineaPedido.product.imageUrls[0]}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{lineaPedido.product.name}}</h5>

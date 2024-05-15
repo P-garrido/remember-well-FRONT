@@ -6,6 +6,10 @@
   display: 100vw;
   padding: 1rem;
 
+  .cart {
+    width: 18rem;
+  }
+
 
   .quantity-container {
     display: flex;
@@ -46,4 +50,16 @@
   .ng-invalid.ng-touched {
     outline: .1rem solid #f00;
   }
+}
+
+
+
+@media screen and (min-width:850px) {
+  .cart-container {
+    .btn-checkout {
+      width: 50vw
+    }
+  }
+
+
 }
