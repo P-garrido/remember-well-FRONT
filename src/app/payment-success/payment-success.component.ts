@@ -65,7 +65,6 @@ export class PaymentSuccessComponent {
       });
       this.profileService.create().subscribe((res: any) => {
         this.productService.emptyCart();
-        this.router.navigate(['/inicio'])
       })
     })
   }
