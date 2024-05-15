@@ -27,7 +27,7 @@
             {{op.product.name}} x{{op.quantity}}
           </li>
         </ul>
-        <p>Precio Total: {{ped.total}}</p>
+        <p>Precio Total: ${{ped.total}}</p>
 
         <button class="btn" (click)="changeStatus(ped)">{{ped.delivered?'Marcar como no entregado': 'Marcar como
           entregado'}}</button>

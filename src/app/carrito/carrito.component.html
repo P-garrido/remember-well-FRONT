@@ -6,8 +6,8 @@
 <div class="cart-container">
   <div class="cart" *ngFor="let lineaPedido of this.cart">
 
-    <div class="order-product" style="width: 18rem;">
-      <img src="{{lineaPedido.product.imageUrls[1]}}" class="card-img-top" alt="...">
+    <div class="order-product">
+      <img src="{{lineaPedido.product.imageUrls[0]}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{lineaPedido.product.name}}</h5>
         <p class="card-text">{{lineaPedido.product.description}}</p>
@@ -23,7 +23,7 @@
   </div>
   <h2>TOTAL: ${{total}}</h2>
   <button class=" btn btn-checkout" (click)="openModal(template)"
-    [disabled]="!loginService.user"><b>COMPRAR</b></button>
+    [disabled]="!loginService.user || cart.length==0"><b>COMPRAR</b></button>
 </div>
 
 <!--FALTA AGREGAR MODAL PARA PEDIR DATOS DE ENVIO-->
@@ -39,7 +39,7 @@
   <div class="modal-body">
 
 
-    <form (ngSubmit)="checkout(); modalRef?.hide()" [formGroup]="deliveryData" class="form">
+    <form (ngSubmit)="createPayment(); modalRef?.hide()" [formGroup]="deliveryData" class="form">
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingProvince" placeholder="Provincia"
           formControlName="province">

@@ -8,12 +8,16 @@
 
 .products {
   padding: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
 
   .prod {
     margin-top: .5rem;
+  }
+
+  .card {
+    width: 18rem;
   }
 }
 
@@ -79,5 +83,35 @@
 
   100% {
     transform: translateY(-100vh) scale(0.1);
+  }
+}
+
+
+
+@media screen and (min-width:850px) {
+  .carousel-container {
+    display: block;
+    margin: auto;
+    max-width: 60vw;
+  }
+
+  .carousel-item {
+    max-height: 50vh;
+    max-width: 60vw;
+  }
+
+  .prod {
+    width: 80vw;
+
+    .card {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 2fr;
+
+      .prod-img {
+        object-fit: contain;
+      }
+
+    }
   }
 }

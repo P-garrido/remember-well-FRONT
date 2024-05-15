@@ -31,3 +31,21 @@
     min-height: 30vh;
   }
 }
+
+
+
+@media screen and (min-width:850px) {
+
+  .main-container {
+    background-image: url("../../assets/bg-landing-desktop.webp");
+  }
+
+  .carousel-container {
+    height: 100vh;
+
+    .carousel {
+      height: 100vh;
+    }
+  }
+
+}
