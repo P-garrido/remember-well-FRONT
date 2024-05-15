@@ -76,51 +76,29 @@ export class CarritoComponent {
       }
       return throwError(error);
     })).subscribe((res: any) => {
-      window.location.href = res.init_point;
-    })
-  }
 
-  checkout() {
-    //ESTO PROBABLEMENTE PASE AL COMPONENTE SUCCESS
-    const ord = new Order(null, this.loginService.user!, new Date(), this.total, this.deliveryData.value.province!, this.deliveryData.value.city!, this.deliveryData.value.zipCode!, this.deliveryData.value.address!, this.deliveryData.value.floor ? this.deliveryData.value.floor : null, this.deliveryData.value.appartament ? this.deliveryData.value.appartament : null, false, this.cart)
-    this.ordersService.create(ord).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
-      this.cart.forEach((op: OrderProduct) => {
-        let opWithIdOrd = new OrderProduct(null, res.id, op.product, op.quantity)
-        this.orderProductsService.create(opWithIdOrd).pipe(catchError((error: any) => {
-          alert(`ERROR: ${error}`)
-          return throwError(error);
-        })).subscribe()
-      });
-      this.profileService.create().subscribe((res: any) => {
-        this.cart.splice(0, this.cart.length);
-        this.productService.emptyCart();
-        this.router.navigate(['/inicio'])
-      })
+      this.ordersService.setDeliveryData({ province: this.deliveryData.value.province!, city: this.deliveryData.value.city!, zipCode: this.deliveryData.value.zipCode!, address: this.deliveryData.value.address!, floor: this.deliveryData.value.floor ? this.deliveryData.value.floor : '', appartament: this.deliveryData.value.appartament ? this.deliveryData.value.appartament : '' }, this.total)
+      window.location.href = res.init_point; //esto va a la pagina de pago ed mp
     })
   }
 
 
-  addAmmount(lp: OrderProduct) {
+
+  addAmmount(lp: OrderProduct) { //Ver de cambiar cantidades en el cacrt del service
     lp.quantity++;
+    this.productService.setCartData();
     this.getTotal();
   }
 
-  subAmmount(lp: OrderProduct) {
+  subAmmount(lp: OrderProduct) { //Ver de cambiar cantidades en el cacrt del service
     if (lp.quantity > 1) {
       lp.quantity--
     }
     else {
       this.productService.removeFromCart(lp);
       this.getCart();
-      // HACER QUE ACA SE SAQUE EL PRODUCTO DEL CARRITO
     }
+    this.productService.setCartData();
     this.getTotal();
   }
 

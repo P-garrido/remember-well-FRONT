@@ -5,15 +5,43 @@ import { catchError, throwError } from 'rxjs';
 import { Order } from './models/orders';
 import { OrderProduct } from './models/orderProducts';
 
+
+interface DeliveryData {
+  province: string;
+  city: string;
+  zipCode: string;
+  address: string;
+  floor: string;
+  appartament: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class OrdersService {
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
 
-  baseUrl = "http://localhost:3000/orders"
+  baseUrl = "http://localhost:3000/orders";
+
+  sessionStorageDeliveryKey = 'delivery_data';
+
+
+
+
+  setDeliveryData(delData: DeliveryData, tot: number) {
+    sessionStorage.setItem(this.sessionStorageDeliveryKey, JSON.stringify({ deliveryData: delData, total: tot }));
+  }
+
+
+
+
+
+
 
   getAll() {
     const token = this.loginService.token;

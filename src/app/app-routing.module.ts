@@ -15,6 +15,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'perfiles/:id', component: PerfilComponent },
   { path: 'adminPerfil/:id', component: AdminPerfilComponent },
   { path: 'carrito', component: CarritoComponent },
+  { path: 'paymentSuccess', component: PaymentSuccessComponent },
 
 ];
 
