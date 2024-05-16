@@ -8,11 +8,13 @@
   <article *ngFor="let prod of products" class="prod">
 
 
-    <div class="card" style="width: 18rem;">
+    <div class="card">
       <carousel class="carousel">
-        <slide *ngFor="let img of prod.imageUrls">
-          <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;">
+        <slide *ngFor="let img of prod.imageUrls; let i=index">
           <!--VER COMO HACER QUE LA IMAGEN NO SE SALGA DEL LUGAR-->
+          <img *ngIf="['png', 'jpg', 'jpeg'].includes(prod.imageExtentions[i]) " src="{{img}}" alt="prod.name"
+            class="prod-img">
+          <video *ngIf="prod.imageExtentions[i]=='mp4'" src="{{img}}" controls class="prod-img"></video>
         </slide>
       </carousel>
       <div class="card-body">
