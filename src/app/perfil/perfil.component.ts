@@ -34,7 +34,6 @@ export class PerfilComponent {
     this.route.paramMap.subscribe(params => {
       this.profileId = params.get('id');
       this.getProfile();
-      console.log(this.profileId);
     });
   }
 
