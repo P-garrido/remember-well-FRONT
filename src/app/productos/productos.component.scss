@@ -18,6 +18,28 @@
 
   .card {
     width: 18rem;
+
+    .prod-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+  }
+}
+
+
+.tutorial {
+  .carousel-container {
+    .carousel {
+
+      .carousel-item {
+        height: 50vh;
+
+        .carousel-img {
+          height: inherit;
+        }
+      }
+    }
   }
 }
 
@@ -107,10 +129,15 @@
       display: grid;
       width: 100%;
       grid-template-columns: 1fr 2fr;
+      grid-template-rows: 200px;
 
       .prod-img {
+        display: block;
+        width: 100%;
+        max-height: 200px;
         object-fit: contain;
       }
+
 
     }
   }

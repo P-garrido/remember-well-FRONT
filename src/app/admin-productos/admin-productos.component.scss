@@ -1,25 +1,12 @@
-.products {
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  .prod {
-    margin-top: .5rem;
-  }
-
+.btn {
+  background-color: #222;
+  color: #fff;
 }
 
 .btn-agregar {
   display: block;
   margin: auto;
 }
-
-.btn {
-  background-color: #222;
-  color: #fff;
-}
-
 
 .btn-editar {
   background-color: #777;
@@ -28,4 +15,60 @@
 
 .btn-eliminar {
   background-color: #f00;
+}
+
+
+
+.products {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+
+  .prod {
+    margin-top: .5rem;
+  }
+
+  .card {
+    width: 18rem;
+
+    .prod-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+  }
+}
+
+@media screen and (min-width:850px) {
+  .carousel-container {
+    display: block;
+    margin: auto;
+    max-width: 60vw;
+  }
+
+  .carousel-item {
+    max-height: 50vh;
+    max-width: 60vw;
+  }
+
+  .prod {
+    width: 80vw;
+
+    .card {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: 200px;
+
+      .prod-img {
+        display: block;
+        width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+      }
+
+
+    }
+  }
 }
