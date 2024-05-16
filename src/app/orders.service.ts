@@ -4,6 +4,7 @@ import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 import { Order } from './models/orders';
 import { OrderProduct } from './models/orderProducts';
+import { Router } from '@angular/router';
 
 
 interface DeliveryData {
@@ -23,7 +24,7 @@ interface DeliveryData {
 
 export class OrdersService {
 
-  constructor(private http: HttpClient, private loginService: LoginService) { }
+  constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
   baseUrl = "http://localhost:3000/orders";
@@ -105,14 +106,25 @@ export class OrdersService {
 
 
   private handleError(error: HttpErrorResponse) {
-    if (error.status === 401) {
-      return throwError("Terminó el tiempo de tu sesión, inicia sesión nuevamente");
-    } else {
-      console.error('Ocurrió un error inesperado:', error.message);
-      alert(`ERROR: ${error.message}`)
-    }
 
-    return throwError('Algo salió mal, inténtalo de nuevo más tarde.');
+    let errorMessage: string = '';
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('Ocurrió un error:', error.error);
+      errorMessage = error.message;
+    }
+    else if (error.status === 401) {
+      errorMessage = 'Se acabó el tiempo de tu sesión, o no iniciaste. Inicia sesión nuevamente'
+      alert(errorMessage);
+      this.router.navigate(['/login'])
+    }
+    else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(`El servidor devolvió un código ${error.status}, el mensaje fue: `, error.error);
+      errorMessage = error.message;
+    }
+    return throwError(() => new Error(`Ocurrió un error inesperado: ${errorMessage}`));
   }
 
 

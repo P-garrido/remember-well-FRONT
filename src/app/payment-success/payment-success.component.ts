@@ -48,20 +48,10 @@ export class PaymentSuccessComponent {
   checkout() {
     //FALTA PROBAR
     const ord = new Order(null, this.loginService.user!, new Date(), this.total, this.deliveryData.province!, this.deliveryData.city!, this.deliveryData.zipCode!, this.deliveryData.address!, this.deliveryData.floor, this.deliveryData.appartament, false, this.productService.cart);
-    this.ordersService.create(ord).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.ordersService.create(ord).subscribe((res: any) => {
       this.productService.cart.forEach((op: OrderProduct) => {
         let opWithIdOrd = new OrderProduct(null, res.id, op.product, op.quantity)
-        this.orderProductsService.create(opWithIdOrd).pipe(catchError((error: any) => {
-          alert(`ERROR: ${error}`)
-          return throwError(error);
-        })).subscribe()
+        this.orderProductsService.create(opWithIdOrd).subscribe()
       });
       this.profileService.create().subscribe((res: any) => {
         this.productService.emptyCart();
