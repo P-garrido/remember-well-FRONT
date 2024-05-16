@@ -53,6 +53,7 @@ export class GaleriaComponent {
 
   constructor() { }
 
+
   ngOnChanges(): void {
     this.totalImageCount = this.galleryData.length;
   }

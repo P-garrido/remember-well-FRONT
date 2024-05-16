@@ -34,14 +34,13 @@
 
 
       <div *ngIf="onEditFiles" class="form-floating mb-3">
-        <!--FALTA HACER QUE PUEDA OBTENER ESTE INPUT EN editfiles() PARA PODER AGREGAR LOS ARCHIVOS-->
         <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" multiple #inputGaleria>
         <label for="floatingInput">Sube tus fotos y videos</label>
       </div>
 
       <app-galeria [galleryData]="profile.filesGallery" [showCount]="true" [onEdit]="onEditFiles"
         [owner]="this.loginService.user && this.loginService.user && editorIds.includes(this.loginService.user.id)"
-        (deleteFile)="deleteFile($event)"></app-galeria> <!--CHEQUEAR Q FUNCIONE GALERIA-->
+        (deleteFile)="deleteFile($event)"></app-galeria>
     </tab>
     <tab heading="Tributos">
 
