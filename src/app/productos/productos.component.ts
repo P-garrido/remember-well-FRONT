@@ -51,10 +51,12 @@ export class ProductosComponent {
     })).subscribe((res: any) => {
       res.forEach((prod: any) => {
         let imgUrls: string[] = [];
+        let imgExt: string[] = [];
         prod.ProductFiles.forEach((df: any) => {
           imgUrls.push(df.fileUrl)
+          imgExt.push(df.extention)
         })
-        this.products.push(new Product(prod.id, prod.name, prod.description, prod.price, imgUrls))
+        this.products.push(new Product(prod.id, prod.name, prod.description, prod.price, imgUrls, imgExt))
       })
     })
   }

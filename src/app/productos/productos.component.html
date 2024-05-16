@@ -52,13 +52,15 @@
 
     <div class="card">
       <carousel class="carousel">
-        <slide *ngFor="let img of prod.imageUrls">
-          <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;">
+        <slide *ngFor="let img of prod.imageUrls; let ext of prod.imageExtentions">
+          <!-- <img src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;"> -->
 
 
 
-          <!-- <img *ngIf="['png', 'jpg', 'jpeg'].includes(prod.extention) " src="{{img}}" alt="prod.name" class="prod-img" style="display: block; width: 100%;"> FALTA AGREGAR EXTENTION EN LOS ARCHIVOS
-          <video *ngIf="prod.extention=='mp4'" src="{{img}}" controls class="prod-img" style="display: block; width: 100%;"></video> -->
+          <img *ngIf="['png', 'jpg', 'jpeg'].includes(ext) " src="{{img}}" alt="prod.name" class="prod-img"
+            style="display: block; width: 100%;">
+          <video *ngIf="ext=='mp4'" src="{{img}}" controls class="prod-img"
+            style="display: block; width: 100%;"></video>
 
 
 

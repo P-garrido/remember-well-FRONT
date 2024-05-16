@@ -37,7 +37,7 @@ export class LoginService {
         data.profiles.forEach((prof: any) => {
           let files: Array<ProfileFiles> = [];
           prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-            let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
+            let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl, fi.extention);
             files.push(file);
           });
           let tributes: Array<Tribute> = [];

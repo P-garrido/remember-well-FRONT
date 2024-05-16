@@ -1,7 +1,15 @@
 <div class="gallery-lightbox-container">
   <div class="gallery">
     <div *ngFor="let data of galleryData; let i=index" class="gallery-img">
-      <img (click)="onPreviewImage(i)" [src]="data.fileUrl" alt="Imágen de la galería">
+
+
+      <img *ngIf="['png', 'jpg', 'jpeg'].includes(data.extention)" (click)="onPreviewImage(i)" [src]="data.fileUrl"
+        alt="Imágen de la galería" class="gallery-img">
+      <video *ngIf="data.extention=='mp4'" (click)="onPreviewImage(i)" [src]="data.fileUrl" controls
+        class="gallery-img"></video>
+
+
+
     </div>
   </div>
   <div *ngIf="showMask" class="lightbox" @animation2>
@@ -23,7 +31,12 @@
 
     <div *ngIf="previewImage" [@animation]="{value: 'visible'}" (@animation.done)="onAnimationEnd($event)"
       class="lightbox-img">
-      <img [src]="currentLightboxImage.fileUrl" alt="Imágen de la galería">
+      <img *ngIf="['png', 'jpg', 'jpeg'].includes(currentLightboxImage.extention)" [src]="currentLightboxImage.fileUrl"
+        alt="Imágen de la galería">
+      <video *ngIf="currentLightboxImage.extention=='mp4'" [src]="currentLightboxImage.fileUrl"
+        alt="Imágen de la galería" controls></video>
+
+
     </div>
   </div>
 </div>

@@ -59,7 +59,7 @@ export class AdminPerfilComponent {
       let files: Array<ProfileFiles> = [];
       if (prof.DeceasedFiles) {
         prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
+          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl, "");
           files.push(file);
         });
       }

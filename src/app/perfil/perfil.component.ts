@@ -8,7 +8,7 @@ import { ProfileService } from '../profile.service';
 import { ProfileFilesService } from '../profile-files.service';
 import { TributesService } from '../tributes.service';
 import { LoginService } from '../login.service';
-import { catchError, throwError } from 'rxjs';
+import { Subscription, catchError, throwError } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserService } from '../user.service';
 import { User } from '../models/user';
@@ -22,19 +22,24 @@ export class PerfilComponent {
 
 
 
+
   constructor(private route: ActivatedRoute, private router: Router, private modalService: BsModalService, private service: ProfileService, private profileFilesService: ProfileFilesService, private tributesService: TributesService, public loginService: LoginService, private usersService: UserService) {
 
   }
   profileId: string | null = null;
 
+
+
   ngOnInit() {
-    this.profileId = this.route.snapshot.paramMap.get('id');
     this.route.paramMap.subscribe(params => {
       this.profileId = params.get('id');
+      this.getProfile();
+      console.log(this.profileId);
     });
-    this.getProfile();
-
   }
+
+
+
 
 
   profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "", []);
@@ -75,7 +80,7 @@ export class PerfilComponent {
       let files: Array<ProfileFiles> = [];
       if (prof.DeceasedFiles) {
         prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
-          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl);
+          let file = new ProfileFiles(fi.id, fi.idFall, fi.fileUrl, fi.extention);
           files.push(file);
         });
       }

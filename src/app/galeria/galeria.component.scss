@@ -21,6 +21,15 @@
       margin-bottom: 30px;
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .21);
     }
+
+    .gallery-img video {
+      width: 100%;
+      height: auto;
+      cursor: zoom-in;
+      border-radius: .35rem;
+      margin-bottom: 30px;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .21);
+    }
   }
 
   .lightbox {
@@ -115,6 +124,11 @@
     }
 
     .lightbox-img img {
+      width: 100%;
+      border-radius: .35rem;
+    }
+
+    .lightbox-img video {
       width: 100%;
       border-radius: .35rem;
     }
