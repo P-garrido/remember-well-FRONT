@@ -26,14 +26,7 @@ export class PedidosComponent {
 
   getAllOrders() {
     this.pedidos.splice(0, this.pedidos.length);
-    this.service.getAll().pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.service.getAll().subscribe((res: any) => {
 
       res.forEach((ord: any) => {
         let us = new User(ord.User.id, ord.User.mail, ord.User.name, ord.User.password, ord.User.phone, ord.User.admin, []);

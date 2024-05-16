@@ -68,14 +68,7 @@ export class PerfilComponent {
 
 
   getProfile() {
-    this.service.getById(parseInt(this.profileId!)).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((prof: any) => {
+    this.service.getById(parseInt(this.profileId!)).subscribe((prof: any) => {
       let files: Array<ProfileFiles> = [];
       if (prof.DeceasedFiles) {
         prof.DeceasedFiles.forEach((fi: any) => { //CREO UN ARREGLO DE ARCHIVOS CON LOS QUE TRAE EL PERFIL
@@ -123,14 +116,7 @@ export class PerfilComponent {
         fd.append('files', file)
       })
     }
-    this.profileFilesService.create(fd).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.profileFilesService.create(fd).subscribe((res: any) => {
       this.getProfile();
       this.onEditFiles = false;
     })
@@ -139,27 +125,13 @@ export class PerfilComponent {
 
 
   addEditor() {
-    this.service.addEditor(this.mailEditor.value!, this.profile.id).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.service.addEditor(this.mailEditor.value!, this.profile.id).subscribe((res: any) => {
       this.getProfile();
     })
   }
 
   removeEditor(idUsu: number) {
-    this.service.removeEditor(idUsu, this.profile.id).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.service.removeEditor(idUsu, this.profile.id).subscribe((res: any) => {
       this.getProfile();
     })
   }
@@ -168,14 +140,7 @@ export class PerfilComponent {
 
 
   deleteFile(event: ProfileFiles) {
-    this.profileFilesService.delete(event).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.profileFilesService.delete(event).subscribe((res: any) => {
       this.getProfile();
     })
   }
@@ -183,14 +148,7 @@ export class PerfilComponent {
 
   sendTribute() {
     const trib = new Tribute(null, parseInt(this.profileId!), this.tribute.value!);
-    this.tributesService.create(trib).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.tributesService.create(trib).subscribe((res: any) => {
       this.getProfile();
       this.tribute.reset();
     })
@@ -199,14 +157,7 @@ export class PerfilComponent {
 
 
   deleteTribute(trib: Tribute) {
-    this.tributesService.delete(trib).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.tributesService.delete(trib).subscribe((res: any) => {
       this.getProfile();
     })
   }

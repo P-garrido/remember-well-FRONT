@@ -64,14 +64,7 @@ export class ProductosComponent {
 
   getComments() {
     this.comments.splice(0, this.comments.length);
-    this.commentsStervice.getAll().pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.commentsStervice.getAll().subscribe((res: any) => {
       res.forEach((com: any) => {
         const user = new User(com.User.id, com.User.mail, com.User.name, com.User.password, com.User.phone, com.User.admin, [])
         this.comments.push(new Comment(com.id, com.text, com.stars, user));
@@ -82,14 +75,7 @@ export class ProductosComponent {
 
   sendComment() {
 
-    this.commentsStervice.create(new Comment(null, this.comment.value.text!, parseInt(this.comment.value.stars!), this.loginService.user!)).pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.commentsStervice.create(new Comment(null, this.comment.value.text!, parseInt(this.comment.value.stars!), this.loginService.user!)).subscribe((res: any) => {
       if (res) {
         this.comment.controls.stars.reset();
         this.comment.controls.text.reset();

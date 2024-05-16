@@ -53,24 +53,14 @@ export class AgregarProductoComponent {
       })
     }
     if (this.onEdit == false) {
-      this.service.createProduct(fd).pipe(catchError((error: any) => {
-        alert(`ERROR: ${error}`);
-        if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-          this.loginService.setUserData(null, null);
-          this.router.navigate(['/login']);
-        }
-        return throwError(error);
-      })).subscribe((res: any) => {
+      this.service.createProduct(fd).subscribe((res: any) => {
         if (res) {
           this.router.navigate(['/productos']);
         }
       })
     }
     else {
-      this.service.editProduct(fd).pipe(catchError((error: any) => {
-        alert(`ERROR: ${error}`)
-        return throwError(error);
-      })).subscribe((res: any) => {
+      this.service.editProduct(fd).subscribe((res: any) => {
         if (res) {
           this.router.navigate(['/productos']);
         }

@@ -40,14 +40,7 @@ export class NavBarComponent {
 
 
   getProfiles() {
-    this.loginService.getOneUser().pipe(catchError((error: any) => {
-      alert(`ERROR: ${error}`);
-      if (error = "Terminó el tiempo de tu sesión o no iniciaste sesión, inicia sesión nuevamente") {
-        this.loginService.setUserData(null, null);
-        this.router.navigate(['/login']);
-      }
-      return throwError(error);
-    })).subscribe((res: any) => {
+    this.loginService.getOneUser().subscribe((res: any) => {
       this.loginService.setUserData({ id: res.id, mail: res.mail, password: res.password, name: res.name, admin: res.admin, phone: res.phone, profiles: res.Deceaseds }, this.loginService.token)
       this.profiles = this.loginService.user!.profiles;
     })
