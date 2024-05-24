@@ -1,0 +1,44 @@
+.redes {
+  display: block;
+  width: 85vw;
+  margin: auto;
+  background-color: #eee;
+  border-radius: 1rem;
+  padding: 1rem;
+
+
+  a {
+    display: block;
+    font-size: 1.2rem;
+    color: #000;
+    text-decoration: none;
+
+    .insta {
+      background: linear-gradient(45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%);
+      color: #fff;
+      border-radius: 10%;
+      padding: .1rem;
+    }
+
+    .tiktok {
+      background-color: #000;
+      color: #fff;
+      border-radius: 10%;
+      padding: .1rem;
+
+    }
+  }
+}
+
+
+.contacto {
+  display: block;
+  width: 85vw;
+  margin: auto;
+  padding: 1rem;
+}

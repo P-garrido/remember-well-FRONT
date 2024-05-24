@@ -1,1 +1,52 @@
-<p>contacto works!</p>
+<h2 class="text-center display-2">CONTACTO</h2>
+<p class="text-center">Escribinos por cualquiera de los siguientes medios</p>
+
+<section>
+  <aside class="redes">
+    <h3 class="display-3"><b>Redes sociales</b></h3>
+    <a href="https://www.instagram.com/eternalmoments.ar/?utm_source=ig_web_button_share_sheet" target="_blank"><i
+        class="fa-brands
+      fa-instagram insta"></i> Instagram</a>
+    <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok tiktok"></i> Tiktok</a>
+    <h4>Celular</h4>
+    <p>+ 54 9 ...</p>
+    <h4>Correo</h4>
+    <p>eternalmomentsok@gmail.com</p>
+  </aside>
+
+
+  <article class="contacto">
+    <h3 class="display-3"><b>Contactenos</b></h3>
+    <p>Enviá tu consulta, la misma será atendida por nuestro equipo lo antes posible</p>
+
+
+
+    <form class="row g-3 needs-validation form" [formGroup]="mailForm" (ngSubmit)="sendMail()">
+
+
+      <div class="form-floating mb-3">
+        <input class="form-control form-input" id="floatingMail" placeholder="Mail" formControlName="mail">
+        <label for="floatingMail">Mail</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control form-input" id="floatingName" placeholder="Nombre"
+          formControlName="name">
+        <label for="floatingName">Nombre</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <textarea type="text" class="form-control form-input" id="floatingMessage" placeholder="Mensaje"
+          formControlName="message"></textarea>
+        <label for="floatingMessage">Mensaje</label>
+      </div>
+
+
+      <div class="col-12">
+        <button class="btn" type="submit" [disabled]="!mailForm.valid"><b>ACEPTAR</b></button>
+      </div>
+    </form>
+
+
+  </article>
+</section>
