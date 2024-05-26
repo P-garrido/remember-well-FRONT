@@ -20,31 +20,24 @@
     <p>Enviá tu consulta, la misma será atendida por nuestro equipo lo antes posible</p>
 
 
-
-    <form class="row g-3 needs-validation form" [formGroup]="mailForm" (ngSubmit)="sendMail()">
-
-
-      <div class="form-floating mb-3">
-        <input class="form-control form-input" id="floatingMail" placeholder="Mail" formControlName="mail">
-        <label for="floatingMail">Mail</label>
+    <form target="_blank" action="https://formsubmit.co/4fb2691836f775fc1bae6e9476e9e798" method="POST">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col">
+            <input type="text" name="name" class="form-control" placeholder="Nombre Completo" required>
+          </div>
+          <div class="col">
+            <input type="email" name="email" class="form-control" placeholder="Dirección de Correo" required>
+          </div>
+        </div>
       </div>
-
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control form-input" id="floatingName" placeholder="Nombre"
-          formControlName="name">
-        <label for="floatingName">Nombre</label>
+      <div class="form-group">
+        <textarea placeholder="Tu Mensaje" class="form-control" name="message" rows="10" required></textarea>
       </div>
+      <button type="submit" class="btn btn-lg btn-dark btn-block">Enviar</button>
 
-      <div class="form-floating mb-3">
-        <textarea type="textarea" class="form-control form-input message" id="floatingMessage" placeholder="Mensaje"
-          formControlName="message"></textarea>
-        <label for="floatingMessage">Mensaje</label>
-      </div>
-
-
-      <div class="col-12">
-        <button class="btn" type="submit" [disabled]="!mailForm.valid"><b>ACEPTAR</b></button>
-      </div>
+      <input type="hidden" name="_autoresponse" value="Gracias por contactarnos. Su duda será atendida y respondida lo antes posible.
+        -Equipo de Eternal Moments ">
     </form>
 
 
