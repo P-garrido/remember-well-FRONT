@@ -25,10 +25,19 @@
 
 
 .carousel {
-  background: linear-gradient(to bottom, #fff, #aaa);
 
   .carousel-item {
-    min-height: 30vh;
+
+
+    .card {
+      height: 32rem;
+
+      .step-img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+      }
+    }
   }
 }
 
@@ -40,12 +49,12 @@
     background-image: url("../../assets/bg-landing-desktop.webp");
   }
 
-  .carousel-container {
-    height: 100vh;
+  // .carousel-container { ADAPTAR A ESCRITORIO(COPIAR PRODUCTOS)
+  //   height: 100vh;
 
-    .carousel {
-      height: 100vh;
-    }
-  }
+  //   .carousel {
+  //     height: 100vh;
+  //   }
+  // }
 
 }
