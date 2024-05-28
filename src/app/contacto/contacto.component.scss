@@ -6,10 +6,13 @@
     background-color: #eee;
     border-radius: 1rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
 
 
     a {
-      display: block;
+      display: inline-block;
+      width: fit-content;
       font-size: 1.2rem;
       color: #000;
       text-decoration: none;
@@ -34,6 +37,10 @@
         padding: .1rem;
 
       }
+    }
+
+    a:hover {
+      color: #555;
     }
   }
 
