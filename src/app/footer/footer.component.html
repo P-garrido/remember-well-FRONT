@@ -1,1 +1,30 @@
-<h3>PIÉ DE PÁGINA (DISEÑAR)</h3>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Contactanos</h3>
+        <p><i class="fa-regular fa-envelope"></i> info@example.com</p>
+        <p><i class="fa-solid fa-phone"></i> 123-456-7890</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Seguinos</h3>
+        <p><a href="https://www.instagram.com/eternalmoments.ar/?utm_source=ig_web_button_share_sheet"
+            target="_blank"><i class="fa-brands
+                fa-instagram insta"></i> Instagram</a></p>
+        <p><a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok tiktok"></i> Tiktok</a>
+        </p>
+        <h3>Suscribite para no perderte ninguna oferta</h3>
+        <form [formGroup]="emailForm">
+
+          <div class="form-floating mb-3">
+            <input class="form-control form-input" type="email" formControlName="email" id="floatingMail"
+              placeholder="Ingresá tu mail">
+            <label for="floatingMail">Ingresá tu mail</label>
+          </div>
+
+          <button type="submit" class="btn btn-submit" [disabled]="!emailForm.valid">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -42,6 +42,10 @@
 }
 
 
+.title {
+  margin: 2rem 0;
+}
+
 
 @media screen and (min-width:850px) {
 
@@ -49,12 +53,22 @@
     background-image: url("../../assets/bg-landing-desktop.webp");
   }
 
-  // .carousel-container { ADAPTAR A ESCRITORIO(COPIAR PRODUCTOS)
-  //   height: 100vh;
 
-  //   .carousel {
-  //     height: 100vh;
-  //   }
-  // }
+  .card {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px;
+    border: none;
+
+    .step-img {
+      display: block;
+      width: 100%;
+      max-height: 50px;
+      object-fit: contain;
+    }
+
+
+  }
 
 }

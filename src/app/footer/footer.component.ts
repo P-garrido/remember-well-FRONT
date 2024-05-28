@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  constructor() {
+
+  }
+
+  emailForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
 }

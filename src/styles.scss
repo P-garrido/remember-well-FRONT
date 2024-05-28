@@ -6,3 +6,22 @@
 @import "./node_modules/bootstrap/scss/bootstrap";
 /* Importing Bootstrap SCSS file. */
 @import "./node_modules/bootstrap/scss/bootstrap";
+
+
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+
+body {
+  margin: 0;
+  margin-bottom: 520px;
+}
+
+@media screen and (min-width: 850px) {
+  body {
+    margin-bottom: 420px;
+  }
+}
