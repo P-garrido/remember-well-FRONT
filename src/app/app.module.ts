@@ -15,7 +15,6 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AdminProductosComponent } from './admin-productos/admin-productos.component';
 import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -44,7 +43,6 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     AdminProductosComponent,
     AgregarProductoComponent,
     ContactoComponent,
-    SobreNosotrosComponent,
     LoginComponent,
     RegistrarseComponent,
     PerfilComponent,

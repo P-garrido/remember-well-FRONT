@@ -7,12 +7,10 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AdminProductosComponent } from './admin-productos/admin-productos.component';
 import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
-import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { GaleriaComponent } from './galeria/galeria.component';
 import { AdminPerfilComponent } from './admin-perfil/admin-perfil.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
@@ -26,7 +24,6 @@ const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent },
   { path: 'adminProductos', component: AdminProductosComponent },
   { path: 'agregarProducto', component: AgregarProductoComponent },
-  { path: 'sobreNosotros', component: SobreNosotrosComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registrarse', component: RegistrarseComponent },
