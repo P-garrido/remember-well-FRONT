@@ -79,7 +79,7 @@ export class LoginService {
 
   getOneUser() { //Esto lo hago para poder recuperar los perfiles recién creados
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    const url = `http://localhost:3000/users/${this.user!.id}`
+    const url = `http://localhost:80/users/${this.user!.id}`
     return this.http.get(url, { headers }).pipe(catchError(this.handleError));
 
   }
