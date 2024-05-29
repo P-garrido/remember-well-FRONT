@@ -12,7 +12,7 @@ export class TributesService {
 
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
-  baseUrl = 'http://localhost:3000/tributes'
+  baseUrl = 'http://localhost:80/tributes'
 
 
   getByProfile(idProf: number) {

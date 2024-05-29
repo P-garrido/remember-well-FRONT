@@ -18,7 +18,7 @@ export class ProductsService {
 
   productToEdit: Product | null = null;
 
-  baseUrl = 'http://localhost:3000/products';
+  baseUrl = 'http://localhost:80/products';
 
   cartKey = 'cart';
 

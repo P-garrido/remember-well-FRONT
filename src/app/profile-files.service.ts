@@ -12,7 +12,7 @@ export class ProfileFilesService {
 
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
-  baseUrl = 'http://localhost:3000/deceasedFiles'
+  baseUrl = 'http://localhost:80/deceasedFiles'
 
 
   delete(file: ProfileFiles) {

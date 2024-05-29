@@ -13,7 +13,7 @@ export class CommentsService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = "http://localhost:3000/comments"
+  baseUrl = "http://localhost:80/comments"
 
 
   getAll() {

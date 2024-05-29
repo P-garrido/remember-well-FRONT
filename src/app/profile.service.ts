@@ -12,7 +12,7 @@ export class ProfileService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = 'http://localhost:3000/deceased'
+  baseUrl = 'http://localhost:80/deceased'
 
 
 

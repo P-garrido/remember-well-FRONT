@@ -27,7 +27,7 @@ export class OrdersService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = "http://localhost:3000/orders";
+  baseUrl = "http://localhost:80/orders";
 
   sessionStorageDeliveryKey = 'delivery_data';
 
