@@ -4,6 +4,7 @@ import { LoginService } from './login.service';
 import { OrderProduct } from './models/orderProducts';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class OrderProductsService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = 'http://localhost:80/orderProduct'
+  baseUrl = environment.url + '/orderProduct';
 
 
   getAll() {

@@ -5,6 +5,7 @@ import { catchError, throwError } from 'rxjs';
 import { Order } from './models/orders';
 import { OrderProduct } from './models/orderProducts';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 interface DeliveryData {
@@ -27,7 +28,8 @@ export class OrdersService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = "http://localhost:80/orders";
+  baseUrl = environment.url + '/orders';
+
 
   sessionStorageDeliveryKey = 'delivery_data';
 

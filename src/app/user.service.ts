@@ -5,6 +5,7 @@ import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 import { User } from './models/user';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = 'http://localhost:80/users';
+  baseUrl = environment.url + '/users';
 
 
 

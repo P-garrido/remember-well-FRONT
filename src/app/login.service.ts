@@ -7,6 +7,7 @@ import { ProfileFiles } from './models/profileFiles';
 import { Tribute } from './models/tribute';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class LoginService {
 
   public sessionStorageKey = 'user_data';
 
-  baseUrl = 'http://localhost:80/users/login'
+  baseUrl = environment.url + '/users/login';
 
 
 
@@ -79,7 +80,7 @@ export class LoginService {
 
   getOneUser() { //Esto lo hago para poder recuperar los perfiles recién creados
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    const url = `http://localhost:80/users/${this.user!.id}`
+    const url = `${environment.url}/users/${this.user!.id}`
     return this.http.get(url, { headers }).pipe(catchError(this.handleError));
 
   }

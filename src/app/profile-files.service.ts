@@ -4,6 +4,7 @@ import { ProfileFiles } from './models/profileFiles';
 import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ProfileFilesService {
 
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
-  baseUrl = 'http://localhost:80/deceasedFiles'
+  baseUrl = environment.url + '/deceasedFiles';
 
 
   delete(file: ProfileFiles) {

@@ -5,6 +5,7 @@ import { OrderProduct } from './models/orderProducts';
 import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class ProductsService {
 
   productToEdit: Product | null = null;
 
-  baseUrl = 'http://localhost:80/products';
+  baseUrl = environment.url + '/products';
+
 
   cartKey = 'cart';
 

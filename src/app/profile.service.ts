@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ProfileService {
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
 
-  baseUrl = 'http://localhost:80/deceased'
+  baseUrl = environment.url + '/deceased';
 
 
 

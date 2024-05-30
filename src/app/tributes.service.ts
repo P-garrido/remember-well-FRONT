@@ -4,6 +4,7 @@ import { catchError, throwError } from 'rxjs';
 import { Tribute } from './models/tribute';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class TributesService {
 
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router) { }
 
-  baseUrl = 'http://localhost:80/tributes'
+  baseUrl = environment.url + '/tributes';
 
 
   getByProfile(idProf: number) {
