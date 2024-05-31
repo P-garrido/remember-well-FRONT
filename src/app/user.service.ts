@@ -104,8 +104,14 @@ export class UserService {
     else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
-      console.error(`El servidor devolvió un código ${error.status}, el mensaje fue: `, error.error);
-      errorMessage = error.message;
+      if (error.error.error.errors[0].message == "mail must be unique") {
+        errorMessage = "El correo ya está registrado"
+        alert(errorMessage);
+      }
+      else {
+        console.error(`El servidor devolvió un código ${error.status}, el mensaje fue: `, error.error);
+        errorMessage = error.message;
+      }
     }
     return throwError(() => new Error(`Ocurrió un error inesperado: ${errorMessage}`));
   }
