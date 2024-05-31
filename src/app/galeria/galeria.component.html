@@ -7,6 +7,7 @@
         alt="Imágen de la galería" class="gallery-img">
       <video *ngIf="data.extention=='mp4'" (click)="onPreviewImage(i)" [src]="data.fileUrl" controls
         class="gallery-img"></video>
+      <audio *ngIf="data.extention=='mp3'" [src]="data.fileUrl" alt="Audio de la galería" class="gallery-img"></audio>
 
 
 
@@ -35,6 +36,8 @@
         alt="Imágen de la galería">
       <video *ngIf="currentLightboxImage.extention=='mp4'" [src]="currentLightboxImage.fileUrl"
         alt="Imágen de la galería" controls></video>
+      <audio *ngIf="currentLightboxImage.extention=='mp3'" [src]="currentLightboxImage.fileUrl"
+        alt="Audio de la galería"></audio>
 
 
     </div>

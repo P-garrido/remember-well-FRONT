@@ -7,26 +7,25 @@
 
 
   <div class="form-floating mb-3 form-input">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Nombre del producto"
-      formControlName="name">
+    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre del producto" formControlName="name">
     <label class="label-input" for="floatingInput">Nombre del producto</label>
   </div>
 
   <label *ngIf="onEdit">Solo colocar archivos si quiere cambiar los actuales</label>
   <div class="form-floating mb-3 form-input">
-    <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" formControlName="file" multiple
-      #fileInput>
+    <input type="file" class="form-control" id="floatingInput" placeholder="Archivo" formControlName="file"
+      accept=".png, .jpg, .jpeg, .mp4" multiple #fileInput>
     <label class="label-input" for="floatingInput">Archivo</label>
   </div>
 
   <div class="form-floating mb-3 form-input">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Descripción del producto"
+    <input type="text" class="form-control" id="floatingInput" placeholder="Descripción del producto"
       formControlName="desc">
     <label class="label-input" for="floatingInput">Descripción del producto</label>
   </div>
 
   <div class="form-floating mb-3 form-input">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Precio del Producto"
+    <input type="number" class="form-control" id="floatingInput" placeholder="Precio del Producto"
       formControlName="price">
     <label class="label-input" for="floatingInput">Precio del Producto</label>
   </div>
