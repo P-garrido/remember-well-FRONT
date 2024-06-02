@@ -12,7 +12,4 @@ export class FooterComponent {
 
   }
 
-  emailForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email])
-  });
 }
