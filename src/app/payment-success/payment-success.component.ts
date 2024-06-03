@@ -26,37 +26,6 @@ interface DeliveryData {
 })
 export class PaymentSuccessComponent {
 
-  constructor(private loginService: LoginService, private ordersService: OrdersService, private router: Router, private orderProductsService: OrderProductsService, private profileService: ProfileService, private productService: ProductsService) {
-    const storedData = sessionStorage.getItem(this.sessionStorageDeliveryKey);
-    this.deliveryData = storedData ? JSON.parse(storedData).deliveryData : null;
-    this.total = storedData ? JSON.parse(storedData).total : 0;
-  }
 
-  ngOnInit() {
-    this.checkout();
-  }
-
-  deliveryData: DeliveryData = { province: '', city: '', zipCode: '', address: '', floor: '', appartament: '' };
-  total: number = 0;
-
-  sessionStorageDeliveryKey = 'delivery_data'
-
-
-
-
-
-  checkout() {
-    //FALTA PROBAR
-    const ord = new Order(null, this.loginService.user!, new Date(), this.total, this.deliveryData.province!, this.deliveryData.city!, this.deliveryData.zipCode!, this.deliveryData.address!, this.deliveryData.floor, this.deliveryData.appartament, false, this.productService.cart);
-    this.ordersService.create(ord).subscribe((res: any) => {
-      this.productService.cart.forEach((op: OrderProduct) => {
-        let opWithIdOrd = new OrderProduct(null, res.id, op.product, op.quantity)
-        this.orderProductsService.create(opWithIdOrd).subscribe()
-      });
-      this.profileService.create().subscribe((res: any) => {
-        this.productService.emptyCart();
-      })
-    })
-  }
 
 }

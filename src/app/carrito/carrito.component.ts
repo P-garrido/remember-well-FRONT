@@ -68,10 +68,11 @@ export class CarritoComponent {
 
   createPayment() {
     //ACA VA A LINKEAR CON LA API DE MP
-    this.ordersService.createPayment(this.cart).subscribe((res: any) => {
+    this.ordersService.createPayment(this.cart, this.deliveryData).subscribe((res: any) => {
 
       this.ordersService.setDeliveryData({ province: this.deliveryData.value.province!, city: this.deliveryData.value.city!, zipCode: this.deliveryData.value.zipCode!, address: this.deliveryData.value.address!, floor: this.deliveryData.value.floor ? this.deliveryData.value.floor : '', appartament: this.deliveryData.value.appartament ? this.deliveryData.value.appartament : '' }, this.total)
       window.location.href = res.init_point; //esto va a la pagina de pago ed mp
+      //aca vaciar el carrito
     })
   }
 

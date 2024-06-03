@@ -6,6 +6,7 @@ import { Order } from './models/orders';
 import { OrderProduct } from './models/orderProducts';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { FormGroup } from '@angular/forms';
 
 
 interface DeliveryData {
@@ -97,11 +98,11 @@ export class OrdersService {
   }
 
 
-  createPayment(cart: Array<OrderProduct>) {
+  createPayment(cart: Array<OrderProduct>, deliveryData: FormGroup) {
     const token = this.loginService.token;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.baseUrl}/payments`;
-    return this.http.post(url, cart, { headers }).pipe(catchError(this.handleError));
+    return this.http.post(url, { cart, idUser: this.loginService.user!.id, province: deliveryData.value.province, city: deliveryData.value.city, zipCode: deliveryData.value.zipCode, address: deliveryData.value.address, floor: deliveryData.value.floor, appartament: deliveryData.value.appartament }, { headers }).pipe(catchError(this.handleError));
   }
 
 
