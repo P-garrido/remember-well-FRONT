@@ -43,6 +43,7 @@ export class CommentsService {
     else if (error.status === 401) {
       errorMessage = 'Se acabó el tiempo de tu sesión, o no iniciaste. Inicia sesión nuevamente'
       alert(errorMessage);
+      this.loginService.setUserData(null, null);
       this.router.navigate(['/login'])
     }
     else {

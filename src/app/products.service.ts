@@ -97,7 +97,8 @@ export class ProductsService {
     else if (error.status === 401) {
       errorMessage = 'Se acabó el tiempo de tu sesión, o no iniciaste. Inicia sesión nuevamente'
       alert(errorMessage);
-      this.router.navigate(['/login'])
+      this.loginService.setUserData(null, null);
+      this.router.navigate(['/inicio'])
     }
     else {
       // The backend returned an unsuccessful response code.
