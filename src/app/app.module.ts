@@ -28,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { PaymentPendingComponent } from './payment-pending/payment-pending.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     AdminPerfilComponent,
     CarritoComponent,
     PaymentSuccessComponent,
+    PaymentFailureComponent,
+    PaymentPendingComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,9 +13,10 @@ export class Order {
   floor: string | null;
   appartament: string | null;;
   delivered: boolean;
-  orderProducts: Array<OrderProduct>
+  orderProducts: Array<OrderProduct>;
+  payed: boolean;
 
-  constructor(id: number | null, us: User, date: Date, tot: number, prov: string, city: string, zip: string, address: string, floor: string | null, appartament: string | null, delivered: boolean, op: Array<OrderProduct>) {
+  constructor(id: number | null, us: User, date: Date, tot: number, prov: string, city: string, zip: string, address: string, floor: string | null, appartament: string | null, delivered: boolean, op: Array<OrderProduct>, payed: boolean) {
     this.id = id;
     this.user = us;
     this.date = date;
@@ -28,6 +29,7 @@ export class Order {
     this.appartament = appartament;
     this.delivered = delivered;
     this.orderProducts = op;
+    this.payed = payed;
   }
 
 

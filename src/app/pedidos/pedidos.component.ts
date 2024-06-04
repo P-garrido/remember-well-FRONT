@@ -35,7 +35,7 @@ export class PedidosComponent {
           let ordProd = new OrderProduct(lp.id, lp.idOrd, lp.Product, lp.cantidad);
           op.push(ordProd);
         })
-        this.pedidos.push(new Order(ord.id, us, ord.date, ord.total, ord.province, ord.city, ord.zipCode, ord.address, ord.floor, ord.appartament, ord.delivered, op))
+        this.pedidos.push(new Order(ord.id, us, ord.date, ord.total, ord.province, ord.city, ord.zipCode, ord.address, ord.floor, ord.appartament, ord.delivered, op, ord.payed))
       })
     })
   }

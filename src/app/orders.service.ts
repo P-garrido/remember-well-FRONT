@@ -106,6 +106,14 @@ export class OrdersService {
   }
 
 
+  getFromUser() {
+    const token = this.loginService.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${this.loginService.user!.id}`;
+    return this.http.get(url, { headers }).pipe(catchError(this.handleError));
+  }
+
+
 
 
   private handleError(error: HttpErrorResponse) {

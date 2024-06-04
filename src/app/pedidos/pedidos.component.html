@@ -20,6 +20,7 @@
         <p>Ciudad: {{ped.city}}</p>
         <p>Código Postal: {{ped.zipCode}}</p>
         <p>Estado: {{ped.delivered? 'Entregado' : 'No Entregado'}}</p>
+        <p>Pago: {{ped.payed? 'Sí' : 'No'}}</p>
         <p>Fecha: {{ped.date | date: 'dd/MM/yyy HH:mm'}}</p>
         <b>Productos:</b>
         <ul>
