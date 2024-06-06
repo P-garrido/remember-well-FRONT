@@ -24,6 +24,9 @@ export class LoginComponent {
 
     this.service.login(this.loginForm).subscribe((res: any) => {
       this.service.setUserData({ id: res.user.id, mail: res.user.mail, password: res.user.password, name: res.user.name, admin: res.user.admin, phone: res.user.phone, profiles: res.user.Deceaseds }, res.token);
+
+      console.log(res)
+
       this.router.navigate(['/inicio'])
     })
 

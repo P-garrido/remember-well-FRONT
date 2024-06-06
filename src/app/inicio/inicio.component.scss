@@ -39,6 +39,10 @@
         max-height: 300px;
         object-fit: contain;
       }
+
+      .carousel-link {
+        z-index: 100;
+      }
     }
   }
 }
