@@ -14,9 +14,9 @@ export class Order {
   appartament: string | null;;
   delivered: boolean;
   orderProducts: Array<OrderProduct>;
-  payed: boolean;
+  payed: string;
 
-  constructor(id: number | null, us: User, date: Date, tot: number, prov: string, city: string, zip: string, address: string, floor: string | null, appartament: string | null, delivered: boolean, op: Array<OrderProduct>, payed: boolean) {
+  constructor(id: number | null, us: User, date: Date, tot: number, prov: string, city: string, zip: string, address: string, floor: string | null, appartament: string | null, delivered: boolean, op: Array<OrderProduct>, payed: string) {
     this.id = id;
     this.user = us;
     this.date = date;
