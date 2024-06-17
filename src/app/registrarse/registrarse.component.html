@@ -40,4 +40,4 @@
 </form>
 
 
-<button class="btn" (click)="logOut()"><b>CERRAR SESIÓN</b></button>
+<button *ngIf="loginService.user!=null" class="btn" (click)="logOut()"><b>CERRAR SESIÓN</b></button>

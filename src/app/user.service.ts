@@ -109,9 +109,14 @@ export class UserService {
         errorMessage = "El correo ya está registrado"
         alert(errorMessage);
       }
+A      else if (error.error.error.errors[0].message == "phone must be unique") {
+        errorMessage = "El teléfono ya está registrado"
+        alert(errorMessage);
+      }
       else {
         console.error(`El servidor devolvió un código ${error.status}, el mensaje fue: `, error.error);
         errorMessage = error.message;
+        alert(errorMessage)
       }
     }
     return throwError(() => new Error(`Ocurrió un error inesperado: ${errorMessage}`));
