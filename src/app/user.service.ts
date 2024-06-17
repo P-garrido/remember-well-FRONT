@@ -109,7 +109,7 @@ export class UserService {
         errorMessage = "El correo ya está registrado"
         alert(errorMessage);
       }
-A      else if (error.error.error.errors[0].message == "phone must be unique") {
+      else if (error.error.error.errors[0].message == "phone must be unique") {
         errorMessage = "El teléfono ya está registrado"
         alert(errorMessage);
       }
