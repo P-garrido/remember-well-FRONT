@@ -6,6 +6,7 @@ import { OrderProduct } from '../models/orderProducts';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pedidos',
@@ -21,6 +22,7 @@ export class PedidosComponent {
 
 
 
+  url = environment.url;
   pedidos: Array<Order> = [];
 
 

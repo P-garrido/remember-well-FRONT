@@ -86,6 +86,7 @@ export class ProfileService {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('Ocurrió un error:', error.error);
       errorMessage = error.message;
+      alert(errorMessage);
     }
     else if (error.status === 401) {
       errorMessage = 'Se acabó el tiempo de tu sesión, o no iniciaste. Inicia sesión nuevamente'
@@ -98,6 +99,7 @@ export class ProfileService {
       // The response body may contain clues as to what went wrong.
       console.error(`El servidor devolvió un código ${error.status}, el mensaje fue: `, error.error);
       errorMessage = error.message;
+      alert(errorMessage);
     }
     return throwError(() => new Error(`Ocurrió un error inesperado: ${errorMessage}`));
   }

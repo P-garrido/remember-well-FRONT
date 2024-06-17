@@ -1,20 +1,27 @@
-<section class="description">
-  <img src="{{profile.profilePicUrl}}" alt="Foto de perfil" class="pfp">
+<section class="">
+  <article class="photos">
 
-  <p class="subtle">En memoria de</p>
+    <img src="{{profile.profilePicUrl}}" alt="Foto de perfil" class="pfp">
 
-  <p>{{profile.name}}</p>
+    <img src="{{profile.backPicUrl}}" alt="Foto de portada" class="backp">
+  </article>
 
-  <p>Fallecido/a el {{profile.deathDate| date: 'dd/MM/yyy'}}</p>
 
 
-  <a [href]="profile.playlist" class="playlist" target="_blank"> <i class="fa-brands fa-spotify"></i>Playlist</a>
+  <article class="description">
+    <p>{{profile.name || ''}}</p>
 
-  <button *ngIf="this.loginService.user && editorIds.includes(this.loginService.user.id)" class="btn"
-    (click)="editProfile()">Editar
-    Perfil</button>
-  <button *ngIf="this.loginService.user && this.profile.idOwner == this.loginService.user!.id" class="btn"
-    (click)="openModal(adminEditors)">Administrar Editores</button>
+    <p>{{profile.birthDate| date: 'dd/MM/yyy'}} - {{profile.deathDate| date: 'dd/MM/yyy'}}</p>
+
+
+
+    <button *ngIf="this.loginService.user && editorIds.includes(this.loginService.user.id)" class="btn"
+      (click)="editProfile()">Editar Perfil</button>
+    <button *ngIf="this.loginService.user && this.profile.idOwner == this.loginService.user!.id" class="btn"
+      (click)="openModal(adminEditors)">Administrar Editores</button>
+
+  </article>
+
 
 
 </section>
@@ -22,9 +29,10 @@
 
 <section class="tabs">
   <tabset [justified]="true">
-    <tab heading="Sobre mi" customClass="about-me">
+    <tab heading="En memoria de" customClass="about-me">
+      <a href="{{profile.link}}">Link personalizado</a>
       <p>
-        {{profile.aboutMe}}
+        {{profile.aboutMe || ''}}
       </p>
     </tab>
     <tab heading="Galería">
@@ -50,6 +58,11 @@
           <textarea class="form-control" placeholder="Dejá tu comentario" id="floatingTextarea2" style="height: 100px"
             [formControl]="tribute"></textarea>
           <label for="floatingTextarea2">Comentar</label>
+        </div>
+        <div *ngIf="this.loginService.user != null" class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput2" placeholder="Deja tu nombre (opcional)"
+            [formControl]="name">
+          <label for="floatingInput2">Nombre</label>
         </div>
         <button (click)="sendTribute()" class="btn btn-comment" [disabled]="!tribute.valid">Enviar</button>
 

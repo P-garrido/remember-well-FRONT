@@ -44,7 +44,7 @@ export class LoginService {
           });
           let tributes: Array<Tribute> = [];
           prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-            let tribute = new Tribute(tr.id, tr.idFall, tr.text);
+            let tribute = new Tribute(tr.id, tr.idFall, tr.name, tr.text);
             tributes.push(tribute);
           });
           //aca tengo que traer los ids de los editores
@@ -52,7 +52,7 @@ export class LoginService {
           prof.Users.forEach((us: any) => {
             editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
           })
-          profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.ptofilePicUrl, editors))
+          profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.backPickUrl, prof.ptofilePicUrl, editors))
         })
         this.user = new User(data.id, data.mail, data.name, data.password, data.phone, data.admin, profiles);
       }

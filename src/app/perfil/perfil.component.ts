@@ -41,13 +41,15 @@ export class PerfilComponent {
 
 
 
-  profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "", []);
+  profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", "", [], [], "", "", []);
 
   editorIds: Array<number> = [];
 
 
 
+
   tribute = new FormControl('', Validators.required);
+  name = new FormControl('');
 
   mailEditor = new FormControl('', [Validators.required, Validators.email]);
 
@@ -80,7 +82,7 @@ export class PerfilComponent {
       if (prof.Tributes) {
 
         prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-          let tribute = new Tribute(tr.id, tr.idFall, tr.text);
+          let tribute = new Tribute(tr.id, tr.idFall, tr.name, tr.text);
           tributes.push(tribute);
         });
       }
@@ -94,8 +96,7 @@ export class PerfilComponent {
       }
 
 
-      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl, editors);
-
+      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, prof.link, files, tributes, prof.backPicUrl, prof.profilePicUrl, editors);
       this.profile = profi
     })
 
@@ -147,7 +148,14 @@ export class PerfilComponent {
 
 
   sendTribute() {
-    const trib = new Tribute(null, parseInt(this.profileId!), this.tribute.value!);
+    let nam: string = "";
+    if (this.loginService.user) {
+      nam = this.loginService.user.name;
+    }
+    else if (this.name.value) {
+      nam = this.name.value;
+    }
+    const trib = new Tribute(null, parseInt(this.profileId!), nam ? nam : 'Anónimo', this.tribute.value!);
     this.tributesService.create(trib).subscribe((res: any) => {
       this.getProfile();
       this.tribute.reset();

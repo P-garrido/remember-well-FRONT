@@ -33,15 +33,17 @@ export class AdminPerfilComponent {
 
   }
 
-  profile: Profile = new Profile(-1, -1, "", new Date(), "", "", [], [], "", []);
+  profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", "", [], [], "", "", []);
 
 
 
   profileInfo = new FormGroup({
     porfilePicture: new FormControl(),
+    backPicture: new FormControl(),
     name: new FormControl(),
-    death: new FormControl(),
-    playlist: new FormControl(),
+    birth: new FormControl('', Validators.required),
+    death: new FormControl('', Validators.required),
+    link: new FormControl(),
     aboutMe: new FormControl()
   })
 
@@ -60,7 +62,7 @@ export class AdminPerfilComponent {
       let tributes: Array<Tribute> = [];
       if (prof.tributes) {
         prof.Tributes.forEach((tr: any) => { //CREO UN ARREGLO DE TRIBUTOS CON LOS QUE TRAE EL PERFIL
-          let tribute = new Tribute(tr.id, tr.idFall, tr.text);
+          let tribute = new Tribute(tr.id, tr.idFall, tr.name, tr.text);
           tributes.push(tribute);
         });
       }
@@ -72,7 +74,7 @@ export class AdminPerfilComponent {
         })
       }
 
-      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.profilePicUrl, editors);
+      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, prof.link, files, tributes, prof.backPicUrl, prof.profilePicUrl, editors);
 
       this.profile = profi
       this.patchForm()
@@ -83,22 +85,28 @@ export class AdminPerfilComponent {
 
   patchForm() {
     this.profileInfo.controls.name.patchValue(this.profile.name);
+    this.profileInfo.controls.birth.patchValue(String(this.profile.birthDate).substring(0, 10));
     this.profileInfo.controls.death.patchValue(String(this.profile.deathDate).substring(0, 10));
-    this.profileInfo.controls.playlist.patchValue(this.profile.playlist);
+    this.profileInfo.controls.link.patchValue(this.profile.link);
     this.profileInfo.controls.aboutMe.patchValue(this.profile.aboutMe);
   }
 
 
-  edit(file: HTMLInputElement) {
+  edit(profPic: HTMLInputElement, backPic: HTMLInputElement) {
 
     const formData = new FormData();
     formData.append('name', this.profileInfo.value.name);
-    formData.append('deathDate', this.profileInfo.value.death);
+    formData.append('birthDate', this.profileInfo.value.birth!);
+    formData.append('deathDate', this.profileInfo.value.death!);
     formData.append('aboutMe', this.profileInfo.value.aboutMe);
-    formData.append('playlist', this.profileInfo.value.playlist);
-    if (file.files![0] != undefined) {
-      formData.append('file', file.files![0]);
+    formData.append('link', this.profileInfo.value.link);
+    if (profPic.files![0] != undefined) {
+      formData.append('profPic', profPic.files![0]);
     }
+    if (backPic.files![0] != undefined) {
+      formData.append('backPic', backPic.files![0]);
+    }
+
     this.service.edit(formData, parseInt(this.profileId!)).subscribe((res: any) => {
       this.router.navigate([`/perfiles/${this.profileId}`])
     })

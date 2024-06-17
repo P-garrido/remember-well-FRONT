@@ -1,31 +1,41 @@
-<form [formGroup]="profileInfo" class="form" (ngSubmit)="edit(profPic)">
+<form [formGroup]="profileInfo" class="form" (ngSubmit)="edit(profPic, backPic)">
 
 
   <div class="form-floating mb-3">
-    <input type="file" class="form-control" id="floatingInput" placeholder="Foto" formControlName="porfilePicture"
+    <input type="file" class="form-control" id="floatingInput0" placeholder="Foto" formControlName="porfilePicture"
       #profPic>
-    <label for="floatingInput">Foto de Perfil (Solo seleccionar si quiere cambiar la actual)</label>
+    <label for="floatingInput0">Foto de Perfil (Solo seleccionar si quiere cambiar la actual)</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="{{this.profile.name}}"
+    <input type="file" class="form-control" id="floatingInput1" placeholder="Foto" formControlName="backPicture"
+      #backPic>
+    <label for="floatingInput1">Foto de Portada (Solo seleccionar si quiere cambiar la actual)</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput2" placeholder="{{this.profile.name}}"
       formControlName="name">
-    <label for="floatingInput">Nombre</label>
+    <label for="floatingInput2">Nombre</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="date" class="form-control" id="floatingInput" placeholder="{{this.profile.deathDate}}"
+    <input type="date" class="form-control" id="floatingInput6" placeholder="{{this.profile.birthDate}}"
+      formControlName="birth">
+    <label for="floatingInput6">Fecha de Nacimiento</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="date" class="form-control" id="floatingInput3" placeholder="{{this.profile.deathDate}}"
       formControlName="death">
-    <label for="floatingInput">Fecha de Fallecido</label>
+    <label for="floatingInput3">Fecha de Fallecido</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="{{this.profile.playlist}}"
-      formControlName="playlist">
-    <label for="floatingInput">Playlist</label>
+    <input type="text" class="form-control" id="floatingInput4" placeholder="{{this.profile.link}}"
+      formControlName="link">
+    <label for="floatingInput4">Link</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="{{this.profile.aboutMe}}"
+    <input type="text" class="form-control" id="floatingInput5" placeholder="{{this.profile.aboutMe}}"
       formControlName="aboutMe">
-    <label for="floatingInput">Sobre mi</label>
+    <label for="floatingInput5">Sobre mi</label>
   </div>
 
-  <button class="btn">Aceptar</button>
+  <button class="btn" [disabled]="!profileInfo.valid">Aceptar</button>
 </form>
