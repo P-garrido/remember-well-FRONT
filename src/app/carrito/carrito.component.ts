@@ -6,7 +6,7 @@ import { LoginService } from '../login.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrdersService } from '../orders.service';
-import { catchError, throwError } from 'rxjs';
+import { catchError, finalize, throwError } from 'rxjs';
 import { OrderProductsService } from '../order-products.service';
 import { Router } from '@angular/router';
 import { ProfileService } from '../profile.service';
@@ -27,6 +27,8 @@ export class CarritoComponent {
 
   cart: Array<OrderProduct> = [];
   total: number = 0;
+
+  loading: boolean = false;
 
 
   modalRef?: BsModalRef;
@@ -68,12 +70,18 @@ export class CarritoComponent {
 
   createPayment() {
     //ACA VA A LINKEAR CON LA API DE MP
+    this.loading = true;
     this.ordersService.createPayment(this.cart, this.deliveryData).subscribe((res: any) => {
 
       this.ordersService.setDeliveryData({ province: this.deliveryData.value.province!, city: this.deliveryData.value.city!, zipCode: this.deliveryData.value.zipCode!, address: this.deliveryData.value.address!, floor: this.deliveryData.value.floor ? this.deliveryData.value.floor : '', appartament: this.deliveryData.value.appartament ? this.deliveryData.value.appartament : '' }, this.total)
+      this.loading = false;
       window.location.href = res.init_point; //esto va a la pagina de pago ed mp
       //aca vaciar el carrito
+      this.productService.cart.splice(0, this.productService.cart.length);
+      //Acá poner un mensaje de carga
+
     })
+
   }
 
 

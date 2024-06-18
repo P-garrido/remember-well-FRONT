@@ -12,14 +12,15 @@
     height: 6rem;
     object-fit: cover;
     z-index: 1000;
-    position: absolute;
-    top: 12rem;
+    position: relative;
+    top: -5rem;
   }
 }
 
 
 .description {
   padding: 1rem;
+  margin-top: -5rem;
 
   .fa-spotify {
     color: #1db954;
