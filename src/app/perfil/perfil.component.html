@@ -30,7 +30,7 @@
 <section class="tabs">
   <tabset [justified]="true">
     <tab heading="En memoria de" customClass="about-me">
-      <a href="{{profile.link}}">Link personalizado</a>
+      <a *ngIf="profile.link" href="{{profile.link}}" target="_blank">Link personalizado</a>
       <p>
         {{profile.aboutMe || ''}}
       </p>
@@ -57,12 +57,12 @@
         <div class="form-floating">
           <textarea class="form-control" placeholder="Dejá tu comentario" id="floatingTextarea2" style="height: 100px"
             [formControl]="tribute"></textarea>
-          <label for="floatingTextarea2">Comentar</label>
+          <label for="floatingTextarea2">Dejá tu comentario</label>
         </div>
-        <div *ngIf="this.loginService.user != null" class="form-floating mb-3">
+        <div *ngIf="!loginService.user" class="form-floating mb-3">
           <input type="text" class="form-control" id="floatingInput2" placeholder="Deja tu nombre (opcional)"
             [formControl]="name">
-          <label for="floatingInput2">Nombre</label>
+          <label for="floatingInput2">Deja tu nombre (opcional)</label>
         </div>
         <button (click)="sendTribute()" class="btn btn-comment" [disabled]="!tribute.valid">Enviar</button>
 
