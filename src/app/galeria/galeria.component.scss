@@ -139,7 +139,7 @@
 @media screen and (max-width: 1024px) {
   .gallery-lightbox-container {
     .gallery {
-      column-count: 2;
+      column-count: 3;
       width: 100%;
 
       .gallery-img img {
@@ -152,7 +152,7 @@
 @media screen and (max-width: 800px) {
   .gallery-lightbox-container {
     .gallery {
-      column-count: 2;
+      column-count: 3;
 
       .gallery-img img {
         max-width: 100%;
@@ -164,7 +164,7 @@
 @media screen and (max-width: 650px) {
   .gallery-lightbox-container {
     .gallery {
-      column-count: 1;
+      column-count: 2;
 
       .gallery-img img {
         width: 100%;
