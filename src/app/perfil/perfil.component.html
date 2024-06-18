@@ -1,9 +1,11 @@
 <section>
   <article class="photos">
 
-    <img src="{{profile.backPicUrl}}" alt="Foto de portada" class="backp">
+    <img [src]="profile.backPicUrl=== this.url + '/null' ? '../../assets/portada-defecto.webp': profile.backPicUrl"
+      alt="Foto de portada" class="backp">
 
-    <img src="{{profile.profilePicUrl}}" alt="Foto de perfil" class="pfp">
+    <img [src]="profile.profilePicUrl=== this.url + '/null' ? '../../assets/perfil-defecto.webp': profile.profilePicUrl"
+      alt="Foto de perfil" class="pfp">
 
   </article>
 

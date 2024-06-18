@@ -12,6 +12,7 @@ import { Subscription, catchError, throwError } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserService } from '../user.service';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-perfil',
@@ -46,7 +47,7 @@ export class PerfilComponent {
   editorIds: Array<number> = [];
 
 
-
+  url = environment.url + '/images';
 
   tribute = new FormControl('', Validators.required);
   name = new FormControl('');
@@ -169,4 +170,5 @@ export class PerfilComponent {
       this.getProfile();
     })
   }
+
 }
