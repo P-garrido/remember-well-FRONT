@@ -17,6 +17,11 @@ export class RegistrarseComponent {
   }
 
 
+  ngOnInit() {
+    this.registerForm.invalid;
+  }
+
+
 
   registerForm = new FormGroup({
     mail: new FormControl(this.loginService.user ? this.loginService.user.mail : '', [Validators.required, Validators.email]),

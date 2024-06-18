@@ -30,7 +30,7 @@ export class AdminPerfilComponent {
     });
     this.getProfile()
     this.patchForm()
-
+    this.profileInfo.invalid;
   }
 
   profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", "", [], [], "", "", []);
@@ -40,7 +40,7 @@ export class AdminPerfilComponent {
   profileInfo = new FormGroup({
     porfilePicture: new FormControl(),
     backPicture: new FormControl(),
-    name: new FormControl(),
+    name: new FormControl('', Validators.required),
     birth: new FormControl('', Validators.required),
     death: new FormControl('', Validators.required),
     link: new FormControl(),
@@ -95,7 +95,7 @@ export class AdminPerfilComponent {
   edit(profPic: HTMLInputElement, backPic: HTMLInputElement) {
 
     const formData = new FormData();
-    formData.append('name', this.profileInfo.value.name);
+    formData.append('name', this.profileInfo.value.name!);
     formData.append('birthDate', this.profileInfo.value.birth!);
     formData.append('deathDate', this.profileInfo.value.death!);
     formData.append('aboutMe', this.profileInfo.value.aboutMe);

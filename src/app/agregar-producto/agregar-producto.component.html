@@ -8,7 +8,7 @@
 
   <div class="form-floating mb-3 form-input">
     <input type="text" class="form-control" id="floatingInput" placeholder="Nombre del producto" formControlName="name">
-    <label class="label-input" for="floatingInput">Nombre del producto</label>
+    <label class="label-input" for="floatingInput">Nombre del producto (requerido)</label>
   </div>
 
   <label *ngIf="onEdit">Solo colocar archivos si quiere cambiar los actuales</label>
@@ -27,7 +27,7 @@
   <div class="form-floating mb-3 form-input">
     <input type="number" class="form-control" id="floatingInput" placeholder="Precio del Producto"
       formControlName="price">
-    <label class="label-input" for="floatingInput">Precio del Producto</label>
+    <label class="label-input" for="floatingInput">Precio del Producto (requerido)</label>
   </div>
 
   <div class="col-12">
