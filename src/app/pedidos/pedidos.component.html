@@ -14,6 +14,7 @@
     </h2>
     <div [id]="'collapse' + i" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
+        <p>URL: {{this.url}}/perfiles/{{ped.id}}</p>
         <p>Nombre:{{ped.user.name}}</p>
         <p>Dirección: {{ped.address}}</p>
         <p>Provincia: {{ped.province}}</p>

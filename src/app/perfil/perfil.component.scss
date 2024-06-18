@@ -1,5 +1,26 @@
+.photos {
+  .backp {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  .pfp {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    z-index: 1000;
+    position: relative;
+    top: -5rem;
+  }
+}
+
+
 .description {
   padding: 1rem;
+  margin-top: -5rem;
 
   .fa-spotify {
     color: #1db954;
@@ -11,13 +32,6 @@
 
   .subtle {
     opacity: 0.5;
-  }
-
-  .pfp {
-    border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    object-fit: contain;
   }
 }
 
@@ -47,6 +61,10 @@
   background: linear-gradient(to bottom, #fff, #eee);
 }
 
+
+.form-floating {
+  margin-bottom: .5rem;
+}
 
 .userTrib {
   padding: 1rem;

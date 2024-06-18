@@ -24,7 +24,8 @@ export class TributesService {
   create(trib: Tribute) {
     return this.http.post(this.baseUrl, {
       idFall: trib.idProfile,
-      text: trib.text
+      text: trib.text,
+      name: trib.name
     }).pipe(catchError(this.handleError));
   }
 

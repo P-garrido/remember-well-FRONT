@@ -9,7 +9,7 @@ import { Tribute } from '../models/tribute';
 export class TributoComponent {
 
 
-  @Input() tribute: Tribute = new Tribute(-1, -1, "");
+  @Input() tribute: Tribute = new Tribute(-1, -1, "", "");
   @Input() owner: boolean | null = false;
 
   @Output() deleteTribute = new EventEmitter<Tribute>;
