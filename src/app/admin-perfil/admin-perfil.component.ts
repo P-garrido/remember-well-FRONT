@@ -31,6 +31,7 @@ export class AdminPerfilComponent {
     this.getProfile()
     this.patchForm()
     this.profileInfo.invalid;
+    this.profileInfo.markAllAsTouched();
   }
 
   profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", "", [], [], "", "", []);

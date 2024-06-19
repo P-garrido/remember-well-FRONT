@@ -37,7 +37,7 @@ export class LoginComponent {
           let ordProd = new OrderProduct(lp.id, lp.idOrd, lp.Product, lp.cantidad);
           op.push(ordProd);
         })
-        let ord = new Order(order.id, us, order.date, order.total, order.province, order.city, order.zipCode, order.address, order.floor, order.appartament, order.delivered, op, order.payed)
+        let ord = new Order(order.id, us, order.idFall, order.date, order.total, order.province, order.city, order.zipCode, order.address, order.floor, order.appartament, order.delivered, op, order.payed)
         if (ord.payed === 'No pagado') {
           this.orderService.delete(ord).subscribe(() => { })
         }
