@@ -21,6 +21,7 @@ export class AdminPerfilComponent {
 
   profileId: string | null = null;
 
+  // todayDate = new Date();
 
 
   ngOnInit() {
@@ -42,8 +43,8 @@ export class AdminPerfilComponent {
     porfilePicture: new FormControl(),
     backPicture: new FormControl(),
     name: new FormControl('', Validators.required),
-    birth: new FormControl('', Validators.required),
-    death: new FormControl('', Validators.required),
+    birth: new FormControl('2000-01-01', Validators.required),
+    death: new FormControl('2000-01-01', Validators.required),
     aboutMe: new FormControl()
   })
 
@@ -84,9 +85,22 @@ export class AdminPerfilComponent {
 
 
   patchForm() {
+    let bd: any;
+    let dd: any;
+
+    if (this.profile.birthDate) {
+      bd = String(this.profile.birthDate).substring(0, 10);
+    } else {
+      bd = '2000-01-01';
+    }
+    if (this.profile.deathDate) {
+      dd = String(this.profile.deathDate).substring(0, 10);
+    } else {
+      dd = '2000-01-01';
+    }
     this.profileInfo.controls.name.patchValue(this.profile.name);
-    this.profileInfo.controls.birth.patchValue(String(this.profile.birthDate).substring(0, 10));
-    this.profileInfo.controls.death.patchValue(String(this.profile.deathDate).substring(0, 10));
+    this.profileInfo.controls.birth.patchValue(bd);
+    this.profileInfo.controls.death.patchValue(dd);
     this.profileInfo.controls.aboutMe.patchValue(this.profile.aboutMe);
   }
 

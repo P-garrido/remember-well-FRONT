@@ -28,20 +28,20 @@
 }
 
 
-// .tutorial {
-//   .carousel-container {
-//     .carousel {
+.tutorial {
+  .carousel-container {
+    .carousel {
 
-//       .carousel-item {
-//         height: 50vh;
+      .carousel-item {
+        height: 50vh;
 
-//         .carousel-img {
-//           height: inherit;
-//         }
-//       }
-//     }
-//   }
-// }
+        .carousel-img {
+          width: inherit;
+        }
+      }
+    }
+  }
+}
 
 .btn {
   background-color: #222;
