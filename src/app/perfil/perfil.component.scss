@@ -64,6 +64,11 @@
 .about-me {
   padding: 1rem;
   background: linear-gradient(to bottom, #fff, #eee);
+
+  .about-me-p {
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
 }
 
 
