@@ -52,7 +52,7 @@ export class LoginService {
           prof.Users.forEach((us: any) => {
             editors.push(new User(us.id, us.mail, us.name, us.password, us.phone, us.admin, []))
           })
-          profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, prof.playlist, files, tributes, prof.backPickUrl, prof.ptofilePicUrl, editors))
+          profiles.push(new Profile(prof.id, prof.idOw, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, files, tributes, prof.backPickUrl, prof.ptofilePicUrl, editors))
         })
         this.user = new User(data.id, data.mail, data.name, data.password, data.phone, data.admin, profiles);
       }
