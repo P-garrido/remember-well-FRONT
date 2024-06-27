@@ -42,7 +42,7 @@ export class PerfilComponent {
 
 
 
-  profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", "", [], [], "", "", []);
+  profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", [], [], "", "", []);
 
   editorIds: Array<number> = [];
 
@@ -97,7 +97,7 @@ export class PerfilComponent {
       }
 
 
-      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, prof.link, files, tributes, prof.backPicUrl, prof.profilePicUrl, editors);
+      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, files, tributes, prof.backPicUrl, prof.profilePicUrl, editors);
       this.profile = profi
     })
 

@@ -10,21 +10,19 @@ export class Profile {
   birthDate: Date;
   deathDate: Date;
   aboutMe: string;
-  link: string;
   filesGallery: Array<ProfileFiles>;
   tributes: Array<Tribute>;
   backPicUrl: string;
   profilePicUrl: string;
   editors: Array<User>;
 
-  constructor(id: number, idOw: number, name: string, birthDate: Date, deathDate: Date, aboutMe: string, link: string, files: Array<ProfileFiles>, tributes: Array<Tribute>, backPicUrl: string, profilePicUrl: string, editors: Array<User>) {
+  constructor(id: number, idOw: number, name: string, birthDate: Date, deathDate: Date, aboutMe: string, files: Array<ProfileFiles>, tributes: Array<Tribute>, backPicUrl: string, profilePicUrl: string, editors: Array<User>) {
     this.id = id;
     this.idOwner = idOw;
     this.name = name;
     this.birthDate = birthDate;
     this.deathDate = deathDate;
     this.aboutMe = aboutMe;
-    this.link = link;
     this.filesGallery = files;
     this.tributes = tributes;
     this.backPicUrl = backPicUrl;

@@ -34,7 +34,7 @@ export class AdminPerfilComponent {
     this.profileInfo.markAllAsTouched();
   }
 
-  profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", "", [], [], "", "", []);
+  profile: Profile = new Profile(-1, -1, "", new Date(), new Date(), "", [], [], "", "", []);
 
 
 
@@ -44,7 +44,6 @@ export class AdminPerfilComponent {
     name: new FormControl('', Validators.required),
     birth: new FormControl('', Validators.required),
     death: new FormControl('', Validators.required),
-    link: new FormControl(),
     aboutMe: new FormControl()
   })
 
@@ -75,7 +74,7 @@ export class AdminPerfilComponent {
         })
       }
 
-      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, prof.link, files, tributes, prof.backPicUrl, prof.profilePicUrl, editors);
+      let profi = new Profile(prof.id, prof.idOwner, prof.name, prof.birthDate, prof.deathDate, prof.aboutMe, files, tributes, prof.backPicUrl, prof.profilePicUrl, editors);
 
       this.profile = profi
       this.patchForm()
@@ -88,7 +87,6 @@ export class AdminPerfilComponent {
     this.profileInfo.controls.name.patchValue(this.profile.name);
     this.profileInfo.controls.birth.patchValue(String(this.profile.birthDate).substring(0, 10));
     this.profileInfo.controls.death.patchValue(String(this.profile.deathDate).substring(0, 10));
-    this.profileInfo.controls.link.patchValue(this.profile.link);
     this.profileInfo.controls.aboutMe.patchValue(this.profile.aboutMe);
   }
 
@@ -100,7 +98,6 @@ export class AdminPerfilComponent {
     formData.append('birthDate', this.profileInfo.value.birth!);
     formData.append('deathDate', this.profileInfo.value.death!);
     formData.append('aboutMe', this.profileInfo.value.aboutMe);
-    formData.append('link', this.profileInfo.value.link);
     if (profPic.files![0] != undefined) {
       formData.append('profPic', profPic.files![0]);
     }

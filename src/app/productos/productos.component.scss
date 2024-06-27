@@ -28,20 +28,20 @@
 }
 
 
-.tutorial {
-  .carousel-container {
-    .carousel {
+// .tutorial {
+//   .carousel-container {
+//     .carousel {
 
-      .carousel-item {
-        height: 50vh;
+//       .carousel-item {
+//         height: 50vh;
 
-        .carousel-img {
-          height: inherit;
-        }
-      }
-    }
-  }
-}
+//         .carousel-img {
+//           height: inherit;
+//         }
+//       }
+//     }
+//   }
+// }
 
 .btn {
   background-color: #222;
@@ -120,6 +120,14 @@
   .carousel-item {
     max-height: 50vh;
     max-width: 60vw;
+
+    .carousel-img {
+      max-height: 50vh;
+      max-width: 60vw;
+      object-fit: cover;
+      margin: auto;
+
+    }
   }
 
   .prod {

@@ -12,9 +12,10 @@
 
 
   <article class="description">
-    <p>{{profile.name || ''}}</p>
+    <p class="deceased-name">{{profile.name || ''}}</p>
 
-    <p>{{profile.birthDate| date: 'dd/MM/yyy'}} - {{profile.deathDate| date: 'dd/MM/yyy'}}</p>
+    <p>{{profile.birthDate| date: 'dd/MM/yyy'}} <i class="fa-solid fa-cross"></i> {{profile.deathDate| date:
+      'dd/MM/yyy'}}</p>
 
 
 
@@ -33,7 +34,6 @@
 <section class="tabs">
   <tabset [justified]="true">
     <tab heading="En memoria de" customClass="about-me">
-      <a *ngIf="profile.link" href="{{profile.link}}" target="_blank">Link personalizado</a>
       <p>
         {{profile.aboutMe || ''}}
       </p>

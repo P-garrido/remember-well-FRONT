@@ -1,5 +1,5 @@
 .main-container {
-  background-image: url("../../assets/bg-landing-mobile.webp");
+  background-image: url("../../assets/fondoeternal.webp");
   height: 70vh;
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,6 +19,10 @@
     background-color: #fff;
     padding: 1rem;
   }
+
+  .btn-main {
+    margin-top: 30rem;
+  }
 }
 
 .about-us {
@@ -32,11 +36,17 @@
 
 
     .card {
-      height: 32rem;
+      // height: 32rem;
+      padding-bottom: 3rem;
+
+      .card-title {
+        font-weight: 500;
+        font-size: 1.5rem;
+      }
 
       .step-img {
         width: 100%;
-        max-height: 300px;
+        // max-height: 300px;
         object-fit: contain;
       }
 
@@ -51,27 +61,33 @@
 
 .title {
   margin: 2rem 0;
+  font-weight: 500;
+  font-size: 2.2rem;
 }
 
 
 @media screen and (min-width:850px) {
 
   .main-container {
-    background-image: url("../../assets/bg-landing-desktop.webp");
+    background-image: url("../../assets/fondoeternal.webp");
+
+    .btn-main {
+      margin-top: 1rem;
+    }
   }
 
 
   .card {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50px;
+    padding: 0 1rem;
+    grid-template-columns: 1fr 3fr;
     border: none;
 
     .step-img {
       display: block;
       width: 100%;
-      max-height: 50px;
+      // max-height: 50px;
       object-fit: contain;
     }
 
