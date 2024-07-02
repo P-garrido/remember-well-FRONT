@@ -19,6 +19,16 @@
 }
 
 
+.btn-register {
+  background-color: #aaa;
+  color: #000;
+  display: block;
+  margin-top: .5rem;
+  // width: 90vw;
+  margin: auto;
+}
+
+
 
 
 .cart-container {
@@ -75,6 +85,15 @@
   .ng-invalid.ng-touched {
     outline: .1rem solid #f00;
   }
+}
+
+
+.btn-modal-reg {
+  background-color: #000;
+  color: #fff;
+  display: block;
+  margin-top: .5rem;
+  margin-left: auto;
 }
 
 

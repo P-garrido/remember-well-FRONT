@@ -2,6 +2,8 @@
 <p class="text-center">Revise los productos agregados y realize el checkout. <br> <b>ES NECESARIO TENER UNA CUENTA PARA
     REALIZAR UNA COMPRA</b></p>
 
+<button class="btn btn-register" routerLink="/registrarse"><b>¡Registrate acá!</b></button>
+
 
 <div class="cart-container">
   <div class="cart" *ngFor="let lineaPedido of this.cart">
@@ -10,7 +12,6 @@
       <img src="{{lineaPedido.product.imageUrls[0]}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{lineaPedido.product.name}}</h5>
-        <p class="card-text">{{lineaPedido.product.description}}</p>
         <p class="card-text"><b>${{lineaPedido.product.price}}</b></p>
         <div class="quantity-container">
           <button class="btn btn-secondary" (click)="subAmmount(lineaPedido)">-1</button>
@@ -22,14 +23,14 @@
     <hr>
   </div>
   <h2>TOTAL: ${{total}}</h2>
-  <button class=" btn btn-checkout" (click)="openModal(template)"
-    [disabled]="!loginService.user || cart.length==0"><b>COMPRAR</b></button>
+  <button class=" btn btn-checkout" (click)="openModal(templateBuy, templateRegister)"
+    [disabled]="cart.length==0"><b>COMPRAR</b></button>
 </div>
 
 <!--FALTA AGREGAR MODAL PARA PEDIR DATOS DE ENVIO-->
 
 
-<ng-template class="modal-compra" #template>
+<ng-template class="modal-compra" #templateBuy>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Datos de envío</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
@@ -80,6 +81,30 @@
 
   </div>
 </ng-template>
+
+
+
+
+
+
+
+<ng-template #templateRegister>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Inicie sesión</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Debe tener una cuenta para poder realizar compras.
+    <button class="btn btn-modal-reg" routerLink="/registrarse" (click)="modalRef?.hide()">Registrarse</button>
+  </div>
+</ng-template>
+
+
+
+
+
 
 
 

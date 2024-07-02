@@ -33,8 +33,13 @@ export class CarritoComponent {
 
   modalRef?: BsModalRef;
 
-  openModal(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(template);
+  openModal(templateBuy: TemplateRef<void>, templateRegister: TemplateRef<void>) {
+    if (this.loginService.user?.id) {
+      this.modalRef = this.modalService.show(templateBuy);
+    }
+    else {
+      this.modalRef = this.modalService.show(templateRegister);
+    }
   }
 
 
