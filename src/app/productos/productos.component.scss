@@ -21,7 +21,7 @@
 
     .prod-img {
       width: 100%;
-      max-height: 300px;
+      // max-height: 300px;
       object-fit: contain;
     }
   }
@@ -118,7 +118,7 @@
   }
 
   .carousel-item {
-    max-height: 50vh;
+    // max-height: 50vh;
     max-width: 60vw;
 
     .carousel-img {
@@ -137,12 +137,12 @@
       display: grid;
       width: 100%;
       grid-template-columns: 1fr 2fr;
-      grid-template-rows: 200px;
+      // grid-template-rows: 200px;
 
       .prod-img {
         display: block;
-        width: 100%;
-        max-height: 200px;
+        // width: 100%;
+        // max-height: 200px;
         object-fit: contain;
       }
 

@@ -57,9 +57,9 @@
 
 
 
-          <img *ngIf="['png', 'jpg', 'jpeg'].includes(prod.imageExtentions[i]) " src="{{img}}" alt="prod.name"
-            class="prod-img">
-          <video *ngIf="prod.imageExtentions[i]=='mp4'" src="{{img}}" controls class="prod-img"></video>
+          <img *ngIf="['png', 'jpg', 'jpeg'].includes(prod.imageExtentions[i].toLowerCase()) " src="{{img}}"
+            alt="prod.name" class="prod-img">
+          <video *ngIf="prod.imageExtentions[i].toLowerCase()=='mp4'" src="{{img}}" controls class="prod-img"></video>
 
 
 
